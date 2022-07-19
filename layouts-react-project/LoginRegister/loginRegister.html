@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in / Register(Sign up)</title>
+    <link rel="stylesheet" href="./loginRegister.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="right">
+          <button type="button" class="button log-in">Log in</button>
+          <button type="button" class="button sign-up">Sign up</button>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="backround-img">
+        <div class="forms-wrapper">
+          <form action="/#" class="form login-form" type="text">
+            <label for="login_click_btn" class="login-lable-btn-extend">
+              Log in
+              <i class="fa-solid fa-chevron-down"></i>
+            </label>
+            <input
+              type="checkbox"
+              class="login_btn_extend"
+              id="login_click_btn"
+            />
+            <div class="wrapper">
+              <div class="username-wrapper">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="username"
+                  autocomplete="on"
+                />
+              </div>
+              <div class="password-wrapper">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="password" />
+              </div>
+              <button type="button">Log in</button>
+            </div>
+          </form>
+
+          <form action="/#" class="form signup-form" type="text">
+            <label for="signup_click_btn" class="signup-lable-btn-extend">
+              Sign up
+              <i class="fa-solid fa-chevron-down"></i>
+            </label>
+            <input
+              type="checkbox"
+              class="signup_btn_extend"
+              id="signup_click_btn"
+              value="---"
+            />
+            <div class="wrapper">
+              <div class="username-wrapper">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="username" />
+              </div>
+              <div class="password-wrapper">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="password" />
+              </div>
+              <div class="repeat-password-wrapper">
+                <label for="repeat-password">Repeat Password</label>
+                <input
+                  type="password"
+                  id="repeat-password"
+                  placeholder="repeat password"
+                />
+              </div>
+              <button type="button">Sign up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="./loginRegister.js"></script>
+</html>
