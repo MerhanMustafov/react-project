@@ -1,20 +1,27 @@
-export {Nav}
+import {Link} from 'react-router-dom';
+
+// import {LoginViwe} from '../Main/Login.js'
 
 function Nav() {
     return <nav>
+       
         <div className="main-nav-area">
             <div className="logo-area">NoTes</div>
             <ul>
-                <li><a href="/#">Home</a></li>
-                <li><a href="/#">My NoTes</a></li>
-                <li><a href="/#">Create <i className="fa-solid fa-plus"></i></a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/myNotes">My NoTes</Link></li>
+                <li><Link to="/create">Create <i className="fa-solid fa-plus"></i></Link></li>
             </ul>
         </div>
         <div className="user-nav-area">
             <ul>
-                <li><a href="/#">Log in</a></li>
-                <li><a href="/#">Sign up</a></li>
+                <li><Link to="/login">Log in</Link></li>
+                <li><Link to="/register">Sign up</Link></li>
             </ul>
         </div>
     </nav>
-}
+};
+
+
+
+export {Nav};

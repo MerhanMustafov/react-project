@@ -1,11 +1,14 @@
-import { Header } from './components/header/Header'
-import './css/Global.css'
+import './Components/Css/Global.css'
+import { Header } from './Components/Header/Header'
+import { Main } from './Components/Main/Main.js'
+
 function App() {
   return (
-      <div className="App">
-          <Header/>
+    <div className="App">
+      <Header />
+      <Main />
     </div>
-  );
-}
+  )
+};
 
-export default App;
+export default App

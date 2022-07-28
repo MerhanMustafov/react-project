@@ -1,0 +1,8 @@
+@import url(./Nav.css);
+
+header{
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+    border: 5px solid black;
+}

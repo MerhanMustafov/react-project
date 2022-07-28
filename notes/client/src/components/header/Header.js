@@ -1,10 +1,11 @@
-import { Nav } from './Nav'
-import './Header.module.css'
-export { Header }
-
+import { Nav } from './Nav.js'
 
 function Header() {
-    return <header>
-        <Nav/>
+  return (
+    <header>
+      <Nav />
     </header>
+  )
 }
+
+export { Header }

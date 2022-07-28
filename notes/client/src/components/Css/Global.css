@@ -1,0 +1,13 @@
+@import url("https://use.fontawesome.com/releases/v6.1.1/css/all.css");
+@import url(./reset.css);
+
+@import url(./Header/Header.css);
+@import url(./Main/Main.css);
+
+body{
+    min-width: max-content;
+}
+.App{
+    background:rgba(32, 17, 66, 0.164);
+    
+}
