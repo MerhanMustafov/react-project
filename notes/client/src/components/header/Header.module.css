@@ -1,0 +1,75 @@
+header{
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+    border: 5px solid black;
+    /* min-width: max-content; */
+}
+nav{
+    width: 95%;
+    margin: 7px auto;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 80% 19%;
+    grid-template-rows: auto;
+    grid-template-areas: 'main-nav user-nav';
+    border: 2px solid red;
+    
+}
+
+.main-nav-area{
+    grid-area: main-nav;
+    display: flex;
+    border: 2px solid rgb(0, 255, 42);
+}
+.main-nav-area .logo-area{
+    font-size: 45px;
+    border: 3px solid rgb(5, 152, 238);
+}
+
+
+
+.main-nav-area ul{
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid purple;
+    width: 40%;
+}
+.main-nav-area ul li{
+    /* margin: 0px 5px; */
+    padding: 5px 10px;
+    background: orange;
+    border: 3px solid purple;
+}
+.main-nav-area ul li a{
+    color: rgb(228, 228, 228);
+    text-decoration: none;
+    font-size: 22px;
+    border: 3px solid purple;
+}
+
+
+
+.user-nav-area{
+    grid-area: user-nav;
+    display: flex;
+    border: 2px solid rgb(17, 0, 255);
+}
+.user-nav-area ul{
+    grid-area: user-nav;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: 2px solid rgb(0, 247, 255);
+}
+.user-nav-area ul li{
+    grid-area: user-nav;
+    padding: 5px 10px;
+    background: orange;
+    border: 2px solid rgb(94, 255, 0);
+}
+.user-nav-area ul li a{
+    font-size: 22px;
+    grid-area: user-nav;
+    border: 2px solid rgb(255, 0, 0);
+}
