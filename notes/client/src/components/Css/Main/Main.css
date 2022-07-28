@@ -4,6 +4,8 @@
 
 @import url(./Login.css);
 @import url(./Register.css);
+/* @import url(./Login.module.css);
+@import url(./Register.module.css); */
 
 @import url(./NotFound.css);
 

@@ -8,6 +8,13 @@ body{
     min-width: max-content;
 }
 .App{
-    background:rgba(32, 17, 66, 0.164);
-    
+    background:  rgba(42, 42, 54, 0.8);
+}
+
+a{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input{
+    outline: none;
 }

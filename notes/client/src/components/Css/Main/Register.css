@@ -28,7 +28,6 @@
     display: none;
 }
 .show-hide-btn {
-    border: 2px solid blue;
     font-size: 25px;
     text-align: center;
     padding: 3px 0;
@@ -80,4 +79,8 @@
     font-size: 25px;
     color: white;
     background: linear-gradient(to right, rgb(115, 116, 177), rgb(22, 112, 139));
+}
+
+.register-btn:disabled{
+    background: rgba(0,0,0, 0.3);
 }
