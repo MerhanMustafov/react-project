@@ -1,32 +1,32 @@
 // import * as api from '../../Api/userService'
-import {useState} from 'react'
+import { useState } from 'react'
 function Register() {
-    const [errors, setErrors] = useState('')
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [repeatPassword, setRepeatPassword] = useState('')
-    const [img, setImg] = useState('')
-    const [gender, setGender] = useState(null)
-    let allFilled = username.length >= 3 && password.length >= 5 && repeatPassword !== '' && gender !== null
-    console.log(allFilled)
+    let errKey = 0
+  const [errors, setErrors] = useState([])
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
+  const [img, setImg] = useState('')
+  const [gender, setGender] = useState(null)
+  
   async function registerUser(e) {
     e.preventDefault()
-    const formD = new FormData(e.target)
-    if(password !== repeatPassword){
-        setErrors('Passwords do not match!')
-    }
-    const userData = {
+    if (errors.length === 0) {
+      const userData = {
         username: username,
         password: password,
         img: img,
         gender: gender,
+      }
+      console.log(userData)
+      // await api.register(userData)
     }
-    console.log(userData)
-    // await api.register(userData)
   }
   return (
     <div className="register-form-wrapper">
+      
       <form className="registerForm" onSubmit={(e) => registerUser(e)}>
+        
         <div className="r-box">
           <input
             type="checkbox"
@@ -38,6 +38,13 @@ function Register() {
             Sign up <i className="fa-solid fa-chevron-down"></i>
           </label>
         </div>
+        {errors.length > 0 ? (
+        <div className="errors">
+          {errors.map((e) => (
+            <p key={++errKey}>{e}</p>
+          ))}
+        </div>
+      ) : null}
         <div className="r-box">
           <label htmlFor="username" className="r-input-l" defaultValue="sth">
             Username*
@@ -95,25 +102,72 @@ function Register() {
             <label htmlFor="F" className="gender-label">
               Female
             </label>
-            <input type="radio" id="F" name="gender"  value="female" onChange={(e) => setGender(e.target.value)}/>
+            <input
+              type="radio"
+              id="F"
+              name="gender"
+              value="female"
+              onChange={(e) => setGender(e.target.value)}
+            />
           </div>
-            
 
           <div className="M-wrapper">
             <label htmlFor="M" className="gender-label">
               Male
             </label>
-            <input type="radio" id="M" name="gender" value="male" onChange={(e) => setGender(e.target.value)}/>
+            <input
+              type="radio"
+              id="M"
+              name="gender"
+              value="male"
+              onChange={(e) => setGender(e.target.value)}
+            />
           </div>
         </div>
-        <button type="submit" className="register-btn" disabled={allFilled ? false : true} >
+        {/* disabled={allFilled ? false : true} */}
+        <button type="submit" className="register-btn" onClick={() =>  checkforErrors(setErrors, { username, password, repeatPassword, gender })}>
           Sign up
         </button>
       </form>
+      
     </div>
   )
 }
 export { Register }
+
+function checkforErrors(setErrors, inputs) {
+  let err = []
+  const allFilled =
+    inputs.password.length > 0 ||
+    inputs.repeatPassword.length > 0 ||
+    inputs.username.length > 0 ||
+    inputs.gender !== null
+
+    const passMatch = inputs.password === inputs.repeatPassword
+    const passLength = inputs.password.length >= 5
+    const userLength = inputs.username.length >= 3
+    const genderchecked = inputs.gender !== null
+  if (!allFilled) {
+    err.push('all required fields should be filled!')
+  }
+  if (!passMatch) {
+    err.push('passwords do not match!')
+  }
+  if (!userLength) {
+    err.push('username should be at least 3 characters long!')
+  }
+  if(!passLength){
+    err.push('password should be at least 5 characters long!')
+  }
+  if(!genderchecked){
+    err.push('should choose gender!')
+  } else {
+    if(allFilled && passMatch && userLength && genderchecked && passLength){
+        err = []
+    }
+  }
+  setErrors(err)
+}
 
 function checkboxHandler(e) {
   if (e.target.checked) {
