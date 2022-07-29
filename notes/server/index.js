@@ -12,7 +12,10 @@ async function serverOn(){
         console.log(err.message)
     }
     const app = express()
+    app.use(express.json())
     app.use(cors())
+
     app.use('/user', userController)
+    
     app.listen(PORT, () => {console.log(`Server is ON http://localhost:${PORT}`)})
 }
