@@ -13,14 +13,17 @@ function Nav({userStatus}) {
           <li>
             <Link to="/" >Home</Link>
           </li>
-          <li>
+          {userStatus ? <li>
+            <Link  to="/dashboard">Dashboard</Link>
+          </li> : <li>
             <Link  to="/myNotes">My NoTes</Link>
-          </li>
-          <li>
+          </li>}
+          {userStatus ? null : <li>
             <Link to="/create">
               Create <i className="fa-solid fa-plus"></i>
             </Link>
-          </li>
+          </li>}
+          
         </ul>
       </div>
       {userStatus ? 

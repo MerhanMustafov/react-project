@@ -4,6 +4,7 @@ import {Logout} from './Logout'
 import {Register} from '../Main/Register.js';
 import {Create} from '../Main/Create';
 import {MyNotes} from '../Main/MyNotes';
+import {Dashboard} from '../Main/Dashboard';
 import {Home} from '../Main/Home';
 import {NotFound} from '../Main/NotFound';
       
@@ -14,6 +15,7 @@ function Main({setUserStatus}) {
          <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/myNotes" element={<MyNotes />}/>
+            <Route path="/dashboard" element={<Dashboard />}/>
             <Route path="/create" element={<Create />}/>
             <Route path="/login" element={<Login setUserStatus={setUserStatus}/>}></Route>
             <Route path="/register" element={<Register  setUserStatus={setUserStatus}/>}/>
