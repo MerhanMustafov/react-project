@@ -1,9 +1,9 @@
 import { Nav } from './Nav.js'
 
-function Header() {
+function Header({userStatus}) {
   return (
     <header>
-      <Nav />
+      <Nav userStatus={userStatus}/>
     </header>
   )
 }

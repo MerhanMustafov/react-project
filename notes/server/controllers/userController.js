@@ -4,23 +4,16 @@ const jwt = require('jsonwebtoken')
 const tokenSecret = 'asdf123 321fdsa'
 const { ...userService } = require('../services/userService')
 route.post('/register', async (req, res) => {
-//   const userData = req.body
   try {
-    const existing = await userService.getUserByName(req.body.username.trim().toLowerCase())
+    const existing = await userService.getUserByName(req.body.username)
     if (existing) {
         throw new Error('Username already exists!')
     }
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const userData = {
-        username: req.body.username.trim().toLowerCase(),
-        hashedPassword: hashedPassword,
-        img: req.body.img,
-        gender: req.body.gender,
-        userSections: [],
-        userNotes: []
-    }
+    
+    const userData = await generateUserDataDbFormat(req.body)
     const createdUser = await userService.createUser(userData)
     const token = generateToken(createdUser)
+
     res.status(200).json(token)
   }catch(err){
     const errors = {error: [err.message]}
@@ -38,5 +31,17 @@ function generateToken(userData){
       tokenSecret,
     ),
   }
+}
+
+async function generateUserDataDbFormat(userData){
+    const hashedPassword = await bcrypt.hash(userData.password, 10)
+    return {
+        username: userData.username.trim(),
+        hashedPassword: hashedPassword,
+        img: userData.img,
+        gender: userData.gender,
+        userSections: [],
+        userNotes: []
+    }
 }
 module.exports = route

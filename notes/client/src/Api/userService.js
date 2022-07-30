@@ -14,4 +14,7 @@ async function register(userData){
     return response.json()
 }
 
-export {register} 
+async function logout(){
+    localStorage.clear()
+}
+export {register, logout} 

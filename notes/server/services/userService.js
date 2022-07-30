@@ -5,7 +5,7 @@ async function createUser(userData){
     return await user.save()
 }
 async function getUserByName(name){
-    const user = await User.findOne({username: name.trim().toLowerCase()})
+    const user = await User.findOne({username: new RegExp(`^${name}$`, 'i')})
     // console.log(user)
     return user
 }

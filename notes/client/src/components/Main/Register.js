@@ -1,6 +1,8 @@
 import * as api from '../../Api/userService'
-import { useState } from 'react'
-function Register() {
+import { useState, useEffect } from 'react'
+import { Redirect, useNavigate } from 'react-router-dom'
+function Register({setUserStatus}) {
+    const navigate = useNavigate()
   let errKey = 0
   const [errors, setErrors] = useState([])
   const [username, setUsername] = useState('')
@@ -13,7 +15,7 @@ function Register() {
     e.preventDefault()
     if (errors.length === 0) {
       const userData = {
-        username: username.trim().toLocaleLowerCase(),
+        username: username.trim(),
         password: password.trim(),
         img: img.trim(),
         gender: gender.trim(),
@@ -23,8 +25,10 @@ function Register() {
         if(response.error){
             setErrors(response.error)
         }
-        console.log("INSIDE COMPONENT",response)
 
+        setLocalStorage(response)
+        setUserStatus(localStorage.getItem('userId'))
+        navigate('/')
 
       }catch(err){
         const error = [err.message]
@@ -132,7 +136,6 @@ function Register() {
             />
           </div>
         </div>
-        {/* disabled={allFilled ? false : true} */}
         <button
           type="submit"
           className="register-btn"
@@ -195,4 +198,11 @@ function checkboxHandler(e) {
     e.target.form.classList.add('hide-r-form')
     e.target.form.classList.remove('show-r-form')
   }
+}
+
+
+function setLocalStorage(data){
+    localStorage.setItem('userId', data.userId)
+    localStorage.setItem('username', data.username)
+    localStorage.setItem('accessToken', data.accessToken)
 }
