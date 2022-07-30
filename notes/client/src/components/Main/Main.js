@@ -15,7 +15,7 @@ function Main({setUserStatus}) {
             <Route path="/" element={<Home />}/>
             <Route path="/myNotes" element={<MyNotes />}/>
             <Route path="/create" element={<Create />}/>
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/login" element={<Login setUserStatus={setUserStatus}/>}></Route>
             <Route path="/register" element={<Register  setUserStatus={setUserStatus}/>}/>
             <Route path="/logout" element={<Logout setUserStatus={setUserStatus}/>}></Route>
             <Route path="*" element={<NotFound />}/>

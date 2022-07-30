@@ -1,6 +1,6 @@
 import * as api from '../../Api/userService'
 import { useState, useEffect } from 'react'
-import { Redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 function Register({setUserStatus}) {
     const navigate = useNavigate()
   let errKey = 0
@@ -14,12 +14,7 @@ function Register({setUserStatus}) {
   async function registerUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
-      const userData = {
-        username: username.trim(),
-        password: password.trim(),
-        img: img.trim(),
-        gender: gender.trim(),
-      }
+      const userData = generateUserData({username, password, img, gender})
       try{
         const response = await api.register(userData)
         if(response.error){
@@ -205,4 +200,13 @@ function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
     localStorage.setItem('accessToken', data.accessToken)
+}
+
+function generateUserData(inputs){
+    return  {
+        username: inputs.username.trim(),
+        password: inputs.password.trim(),
+        img: inputs.img.trim(),
+        gender: inputs.gender.trim(),
+      }
 }

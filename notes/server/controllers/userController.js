@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const tokenSecret = 'asdf123 321fdsa'
 const { ...userService } = require('../services/userService')
+
 route.post('/register', async (req, res) => {
   try {
     const existing = await userService.getUserByName(req.body.username)
@@ -21,6 +22,23 @@ route.post('/register', async (req, res) => {
   }
 })
 
+route.post('/login', async (req, res) => {
+    try {
+        const existing = await userService.getUserByName(req.body.username)
+        if (!existing) {
+            throw new Error('User does not exist!')
+        }
+        const match = await bcrypt.compare(req.body.password, existing.hashedPassword)
+        if (!match) {
+            throw new Error('Incorrect password!')
+        }
+        const token = generateToken(existing)
+        res.status(200).json(token)
+    } catch (err) {
+         const errors = {error: [err.message]}
+        res.status(404).json(errors)
+    }
+})
 
 function generateToken(userData){
     return {

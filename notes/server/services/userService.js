@@ -6,7 +6,6 @@ async function createUser(userData){
 }
 async function getUserByName(name){
     const user = await User.findOne({username: new RegExp(`^${name}$`, 'i')})
-    // console.log(user)
     return user
 }
 

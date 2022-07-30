@@ -13,8 +13,20 @@ async function register(userData){
     }
     return response.json()
 }
-
+async function login(userData){
+    const endPoint = '/user/login'
+    const response = await fetch(baseUrl + endPoint, {
+         method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(userData)
+    })
+    if(response.ok == false){
+        const errorMessage = await response.json()
+        throw new Error(errorMessage.error)
+    }
+    return response.json()
+}
 async function logout(){
     localStorage.clear()
 }
-export {register, logout} 
+export {register, login, logout} 
