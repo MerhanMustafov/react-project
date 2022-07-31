@@ -58,7 +58,7 @@ async function generateUserDataDbFormat(userData){
         hashedPassword: hashedPassword,
         img: userData.img,
         gender: userData.gender,
-        userSections: [],
+        userNoteSections: [],
         userNotes: []
     }
 }
