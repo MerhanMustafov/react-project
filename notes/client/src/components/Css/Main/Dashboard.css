@@ -1,120 +1,141 @@
-.dashboard-wrapper{
-    width: 100%;
-    height: 100vh;
+.dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* border: 3px solid green; */
+    /* height: 100vh; */
+    min-height: 1000px;
 }
-.note-wrapper{
+.searchBoxWrapper{
+    border: 2px solid red;
     display: flex;
-    flex-direction: column;
-    border: transparent;
-    width: 1200px;
-    /* max-width: max-content; */
-    height: 85%;
-    margin: 0 auto;
-    position: relative;
-    /* overflow: scroll; */
+    align-items: stretch;
+    justify-content: center;
 }
-.add-note-btn{
+.searchBoxWrapper input{
+    width: 90%;
+    min-height: 35px;
     font-size: 30px;
-    position: absolute;
-    top: 0px;
-    right: 100%;
-}
-.add-note-btn .fa-plus{
-    border: 2px solid green;
-    color: rgba(255,255,255);
-}
-.note-sheet-wrapper{
-    border-radius: 30px;
-    border: transparent;
-    margin: 0 auto;
-    width: 100%;
-    height: 0%;
-    visibility: hidden;
-    transition: height ease-in-out 2s, visibility 2s;
-    background: transparent;
-    overflow: hidden;
-}
-.note-sheet-wrapper form{
-    display: flex;
-    flex-direction: column;
-    /* align-self: end; */
-    /* justify-content: flex-end; */
-    height: 100%;
-}
-.show-note{
-    visibility: visible;
-    height: 100%;
-}
-#plus-btn{
-    display: none;
-}
-.noteSection{
-    height: 30px;
-    font-size: 25px;
-    padding-left: 10px;
+    padding-left:20px;
+    border: 2px solid white;
+    outline: none;
     background: transparent;
     color: white;
-    outline: none;
-    border: none;
+
+
+    transition: width 2s;
 }
-.save-note{
-    border: none;
-    color: white;
-    background: transparent;
+.searchBoxWrapper input::placeholder{
+    color: rgba(255, 255, 255, 0.452) ;
+}
+/* .searchBoxWrapper input:focus{
+    width: 90%;
+} */
+
+.searchBoxWrapper .fa-magnifying-glass{
+    /* border: 2px solid green; */
+    display: flex;
+    align-items: center;
     font-size: 25px;
-    width: 100%;
-    margin: 0 auto;
-    animation-name: f;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-}
-#note-content{
-    position: relative;
-    padding: 10px 20px;
-    display: block;
-    width: 908px;
-    max-width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    overflow-y: auto;
-    /* background: rgba(255,255,255, 0.3); */
-    background: rgb(187, 122, 1);
-    font-size: 30px;
-    resize: both;
-    outline: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    
+    padding: 10px;
+    color: white;
 }
 
-@keyframes f {
-    0% {background: rgba(255, 0, 0, 0.3); }
-    100% {background: rgba(0, 0, 255, 0.3);}
-    
+
+/* ADD NOTE BTN /SHEET */
+.addNoteLabel{
+    background: white;
 }
-/* @keyframes f {
-    0% {background: linear-gradient(to right, rgb(255, 0, 0, 0.3), rgb(0, 0, 255, 0.3)); width: 100%;}
-    100% {background: linear-gradient(to right, rgb(0, 0, 255, 0.3), rgb(255, 0, 0, 0.3)); width: 10%;}
-    
-} */
-/* @keyframes f {
-    0% {background: linear-gradient(to right, rgba(255, 0, 0), rgba(0, 0,255))}
-    10% {background: linear-gradient(to right, rgba(200, 0, 0), rgba(0, 0,200))}
-    20% {background: linear-gradient(to right, rgba(150, 0, 0), rgba(0, 0,150))}
-    30% {background: linear-gradient(to right, rgba(100, 0, 0), rgba(0, 0,100))}
-    40% {background: linear-gradient(to right, rgba(50, 0, 0), rgba(0, 0,50))}
-    50% {background: linear-gradient(to right, rgba(20, 0, 0), rgba(0, 0,20))}
-    60% {background: linear-gradient(to right, rgba(50, 0, 0), rgba(0, 0,50))}
-    70% {background: linear-gradient(to right, rgba(100, 0, 0), rgba(0, 0,100))}
-    80% {background: linear-gradient(to right, rgba(150, 0, 0), rgba(0, 0,150))}
-    90% {background: linear-gradient(to right, rgba(200, 0, 0), rgba(0, 0,200))}
-    100% {background: linear-gradient(to right, rgba(255, 0, 0), rgba(0, 0,255))}
-    
-} */
+
+.createNoteWrapper{
+    position: relative;
+    width: 80%;
+    transition: width 5s;
+    margin: 0 auto;
+
+}
+
+.createNoteWrapper form{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1f 1f 1f 1f 1f 1f 1f;
+    grid-template-rows: 30px 30px auto 30px;
+    grid-template-areas: 
+    'lname lname lname lname lname lname lname'
+    't t t t t t t'
+    'n n n n n n n'
+    'n n n n n n n';
+    width: 98%;
+    margin: 0 auto;
+    background: orange;
+
+}
+
+#noteList{
+    grid-area: lname;
+    font-size: 25px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    background: rgb(27, 20, 7);
+    color: white;
+    border-radius: 50px;
+}
+#noteTitle{
+    grid-area: t;
+    font-size: 25px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    background: rgb(51, 45, 35);
+    color: white;
+    border-radius: 50px;
+}
+#noteContent{
+    grid-area: n;
+    width: 97.9%;
+    min-height: 500px;
+    margin: 0 auto;
+    resize: none;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    background: rgb(255, 166, 0);
+    color: white;
+}
+#noteContent::-webkit-scrollbar{
+    width: 5px;
+}
+#noteContent::-webkit-scrollbar-thumb{
+    background: rgb(41, 39, 39);
+}
+#noteContent::-webkit-scrollbar-track{
+    background: rgb(255, 255, 255);
+    border-radius: 50px;
+}
+#saveBtn{
+    font-size: 25px;
+    color: white;
+    border: none;
+    background: rgb(104, 101, 93);
+    border-radius: 50px;
+}
+.noteErrors{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    height: 100%;
+    background-color: rgb(255, 0, 0, 0.9);
+    text-align: center;
+    line-height: 1.5;
+
+}
+.noteErrors p{
+    font-size: 23px;
+    color: white;
+}
+::selection{
+    background: rgb(38, 190, 0);
+}
+/* ADD NOTE BTN /SHEET */
