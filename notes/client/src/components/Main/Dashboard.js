@@ -32,7 +32,7 @@ function Dashboard() {
       </div>
         {/* {sectionsList ? sectionsList.map(s => <p key={++key}>{s.trim()}</p> ): null} */}
         
-        <button type="checkbox" className="addNote" id="addNote" onClick={() => {addNoteClicked ? setAddNoteClicked(false) : setAddNoteClicked(true)} } >Add Note</button>
+        <button type="checkbox" className="addNote" id="addNote" onClick={() => {addNoteClicked ? setAddNoteClicked(false) : setAddNoteClicked(true)} } >Note <i class="fa-solid fa-plus"></i></button>
         {/* <label htmlFor="addNote" className="addNoteLabel">Add Note</label> */}
         {addNoteClicked == true ? <CreateNote /> : null}
     </div>
