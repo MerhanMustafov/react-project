@@ -1,5 +1,6 @@
 .dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
+    background: rgba(80, 79, 99, 0.479) ;
     /* height: 100vh; */
     min-height: 1000px;
 }

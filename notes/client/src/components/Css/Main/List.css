@@ -1,0 +1,10 @@
+.listsWrapper{
+    column-count: 3;
+    border: 2px solid red;
+}
+.listWrapper{
+    background: lightblue;
+    display: flex; 
+    flex-direction: column;
+    /* height: 150px; */
+}

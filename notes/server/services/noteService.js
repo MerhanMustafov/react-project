@@ -8,5 +8,10 @@ async function createNoteRecord(noteData){
 }
 
 
-module.exports = {createNoteRecord}
+async function getAllLists(userId){
+    return await Note.find({ownerId: userId})
+    
+}
+
+module.exports = {createNoteRecord, getAllLists}
 
