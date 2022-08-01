@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const noteSchema = new Schema({
+const listSchema = new Schema({
     listName: {type: String, required: true},
     ownerId: {type: String, required: true},
     notes: [{type: Schema.Types.ObjectId, ref: 'Note'}],
@@ -8,4 +8,4 @@ const noteSchema = new Schema({
 
 })
 
-module.exports = model('Note', noteSchema)
+module.exports = model('List', listSchema)

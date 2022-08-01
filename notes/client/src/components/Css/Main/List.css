@@ -1,10 +1,12 @@
 .listsWrapper{
     column-count: 3;
+    row-gap: 5;
     border: 2px solid red;
 }
 .listWrapper{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 3px solid green;
     background: lightblue;
-    display: flex; 
-    flex-direction: column;
-    /* height: 150px; */
 }

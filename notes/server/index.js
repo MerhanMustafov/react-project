@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const {PORT, DB_CONNECTION_STRING} = require('./config')
 const cors = require('./config/cors')
 const userController = require('./controllers/userController')
-const noteController = require('./controllers/noteController')
+const listController = require('./controllers/listController')
 serverOn()
 async function serverOn(){
     try{
@@ -17,7 +17,7 @@ async function serverOn(){
     app.use(cors())
 
     app.use('/user', userController)
-    app.use('/note', noteController)
+    app.use('/list', listController)
     
     app.listen(PORT, () => {console.log(`Server is ON http://localhost:${PORT}`)})
 }

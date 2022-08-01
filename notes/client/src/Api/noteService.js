@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:5151'
 
 async function createListRecord(listData){
-    const endPoint = '/note/create/newList'
+    const endPoint = '/list/create'
     const response = await fetch(baseUrl + endPoint, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -12,11 +12,8 @@ async function createListRecord(listData){
 
 
 async function getAllLists(userId){
-    const endPoint = `/note/getLists/${userId}`
+    const endPoint = `/list/getAllUsersList/${userId}`
     return await (await fetch(baseUrl + endPoint)).json()
-    // console.log(await fetch(baseUrl + endPoint))
-    // const res = await fetch(baseUrl + endPoint)
-    // console.log( await res.json())
 
     
 }

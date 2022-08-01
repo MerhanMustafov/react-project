@@ -3,6 +3,7 @@
     background: rgba(80, 79, 99, 0.479) ;
     /* height: 100vh; */
     min-height: 1000px;
+    position: relative;
 }
 .searchBoxWrapper{
     border: 2px solid red;
@@ -41,110 +42,34 @@
 
 
 /* ADD NOTE BTN /SHEET */
-.addNote{
-    display: block;
-    font-size: 27px;
-    margin: 0 auto;
-    background: rgba(0, 128, 0, 0.37);
-    color: white;
-    border: none;
-    /* align-self: end; */
-}
-
-.createNoteWrapper{
-    position: relative;
-    width: 80%;
-    transition: width 5s;
-    margin: 0 auto;
-
-}
-
-.createNoteWrapper form{
+.noteW{
+    border:2px solid rgb(0, 0, 0);
     position: absolute;
-    display: grid;
-    grid-template-columns: 1f 1f 1f 1f 1f 1f 1f;
-    grid-template-rows: 30px 30px auto 30px;
-    grid-template-areas: 
-    'lname lname lname lname lname lname lname'
-    't t t t t t t'
-    'n n n n n n n'
-    'n n n n n n n';
-    width: 98%;
-    margin: 0 auto;
-    background: orange;
-
-}
-
-#noteList{
-    grid-area: lname;
-    font-size: 25px;
-    padding-left: 10px;
-    border: none;
-    outline: none;
-    background: rgb(27, 20, 7);
-    color: white;
-    border-radius: 50px;
-}
-#noteTitle{
-    grid-area: t;
-    font-size: 25px;
-    padding-left: 10px;
-    border: none;
-    outline: none;
-    background: rgb(51, 45, 35);
-    color: white;
-    border-radius: 50px;
-}
-#noteContent{
-    grid-area: n;
-    width: 97.9%;
-    min-height: 500px;
-    margin: 0 auto;
-    resize: none;
-    font-size: 27px;
-    border: none;
-    outline: none;
-    padding-left: 20px;
-    background: rgb(255, 166, 0);
-    color: white;
-}
-
-
-
-#noteContent::-webkit-scrollbar{
-    width: 5px;
-}
-#noteContent::-webkit-scrollbar-thumb{
-    background: rgb(41, 39, 39);
-}
-#noteContent::-webkit-scrollbar-track{
-    background: rgb(255, 255, 255);
-    border-radius: 50px;
-}
-#saveBtn{
-    font-size: 25px;
-    color: white;
-    border: none;
-    background: rgb(104, 101, 93);
-    border-radius: 50px;
-}
-.noteErrors{
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    width: 900px;
+    height: 500px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    right: 0px;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(255, 0, 0, 0.9);
-    text-align: center;
-    line-height: 1.5;
-
 }
-.noteErrors p{
-    font-size: 23px;
-    color: white;
+#noteC{
+    font-size: 25px;
+    padding: 35px;
+    width: 100%;
+    height: auto;
+    resize: none;
+    outline: none;
+}
+.fa-xmark{
+    position: absolute;
+    right: 5px;
+    font-size: 30px;
+}
+.fa-floppy-disk{
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    font-size: 30px;
 }
 ::selection{
     background: rgb(38, 190, 0);
