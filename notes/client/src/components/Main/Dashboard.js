@@ -4,29 +4,35 @@ import {List} from './List'
 import {Note} from './Note'
 
 function Dashboard() {
-  let key = 0
+  let key = 165156
   const [refresh, setRefresh] = useState(false)
   const [search, setSearch] = useState(null)
   const [addNoteBtn, setAddNoteBtn] = useState('')
-
   const [listName, setListName] = useState('')
   const [arrayOfLists, setArrayOfLists] = useState([])
-  async function listHandler(e) {
-    const ownerId = localStorage.getItem('userId')
-    const listData = await createListRecord({ listName, notes: [], ownerId })
-    setRefresh(true)
-  }
+
+ 
   useEffect(() => {
     async function getLists(){
         const userId = localStorage.getItem('userId')
         const lists = await getAllLists(userId)
         setArrayOfLists(lists)
-        console.log("CLIENT ", lists)
+        setListName('')
+        // addNoteBtn('')
+        // console.log("CLIENT ", lists)
     }
     getLists()
     setRefresh(false)
         
   }, [refresh === true])
+
+
+   async function listHandler(e) {
+    const ownerId = localStorage.getItem('userId')
+    const listData = await createListRecord({ listName, notes: [], ownerId })
+    
+    setRefresh(true)
+  }
   return (
     <div className="dashboardWrapper">
       <div className="searchBoxWrapper">
@@ -47,6 +53,7 @@ function Dashboard() {
       <button
         className="addList"
         disabled={true ? listName.length === 0 : false}
+
         onClick={(e) => listHandler(e)}
       >
         A List
@@ -55,11 +62,13 @@ function Dashboard() {
         type="text"
         id="listI"
         placeholder="type..."
+        value={'' ? listName.length > 0 : listName}
+
         onChange={(e) => setListName(e.target.value)}
       />
 
       <div className="listsWrapper">
-        {arrayOfLists.map(list => <List key={list._id} listid={list._id} {...list} note={{addNoteBtn, setAddNoteBtn}}/>)}
+        {arrayOfLists.map(list => <List key={list._id} listid={list._id} setRefresh={setRefresh} {...list} note={{addNoteBtn, setAddNoteBtn}}/>)}
       </div>
     </div>
   )

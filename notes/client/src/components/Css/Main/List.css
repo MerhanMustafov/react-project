@@ -10,3 +10,28 @@
     border: 3px solid green;
     background: lightblue;
 }
+.listWrapper .title{
+    /* display: block; */
+    width: 100%;
+    font-size: 25px;
+    border: 2px solid blue;
+    background: yellow;
+}
+.listWrapper main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.listWrapper main .listNote{
+    background: brown;
+    height: 30px;
+    font-size: 30px
+}
+
+.listWrapper footer button{
+    background: green;
+    display: block;
+    margin: 10px auto;
+    font-size: 25px;
+    padding: 4px 15px; 
+}

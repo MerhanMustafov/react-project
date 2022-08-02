@@ -9,5 +9,8 @@ async function createNoteRecord(noteData){
     return created
 }
 
+async function updateNoteRecord(newData,noteId){
+    const note = await Note.findOneAndUpdate({_id: noteId}, newData)
+}
 
-module.exports = {createNoteRecord}
+module.exports = {createNoteRecord, updateNoteRecord}

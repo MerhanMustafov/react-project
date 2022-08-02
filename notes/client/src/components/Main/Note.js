@@ -12,7 +12,7 @@ function Note(props) {
 
     if((text.length === 0 && title.length === 0) || title.length === 0 || text.length === 0){
         setError('title and note content is required!')
-        setTimeout(() => { setError('')}, 2000)
+        setTimeout(() => { setError('')}, 5000)
            
     }else{
         const noteData = {text: text.trim(), listId: addNoteBtn, title: title.trim()}

@@ -28,4 +28,13 @@ async function createNoteRecord(noteData){
     })
 }
 
-export {createListRecord, getAllLists, createNoteRecord}
+async function updateNoteRecord(newData, noteId){
+    const endPoint = `/note/update/${noteId}`
+    return await fetch(baseUrl + endPoint, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newData)
+    })
+}
+
+export {createListRecord, getAllLists, createNoteRecord, updateNoteRecord}
