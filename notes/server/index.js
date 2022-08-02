@@ -4,6 +4,7 @@ const {PORT, DB_CONNECTION_STRING} = require('./config')
 const cors = require('./config/cors')
 const userController = require('./controllers/userController')
 const listController = require('./controllers/listController')
+const noteCotroller = require('./controllers/noteCotroller')
 serverOn()
 async function serverOn(){
     try{
@@ -18,6 +19,7 @@ async function serverOn(){
 
     app.use('/user', userController)
     app.use('/list', listController)
+    app.use('/note', noteCotroller)
     
     app.listen(PORT, () => {console.log(`Server is ON http://localhost:${PORT}`)})
 }

@@ -21,11 +21,12 @@ function Dashboard() {
         const userId = localStorage.getItem('userId')
         const lists = await getAllLists(userId)
         setArrayOfLists(lists)
+        console.log("CLIENT ", lists)
     }
     getLists()
     setRefresh(false)
         
-  }, [refresh == true])
+  }, [refresh === true])
   return (
     <div className="dashboardWrapper">
       <div className="searchBoxWrapper">
@@ -42,10 +43,10 @@ function Dashboard() {
           onKeyDown={(e) => searchBoxHandler(e)}
         />
       </div>
-        {addNoteBtn.length > 0 ?  <Note  noteBtn={{setAddNoteBtn, addNoteBtn} } /> : null }
+        {addNoteBtn.length > 0 ?  <Note setRefresh={setRefresh} noteBtn={{setAddNoteBtn, addNoteBtn} } /> : null }
       <button
         className="addList"
-        disabled={true ? listName.length == 0 : false}
+        disabled={true ? listName.length === 0 : false}
         onClick={(e) => listHandler(e)}
       >
         A List
@@ -68,9 +69,9 @@ export { Dashboard }
 
 function searchBoxHandler(e) {
   const searchIconClicked =
-    e.target.className == 'fa-solid fa-magnifying-glass' &&
-    e._reactName == 'onClick'
-  if (e.key == 'Enter' || searchIconClicked) {
+    e.target.className === 'fa-solid fa-magnifying-glass' &&
+    e._reactName === 'onClick'
+  if (e.key === 'Enter' || searchIconClicked) {
     console.log(e)
     // console.log(search)
   }

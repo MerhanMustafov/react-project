@@ -1,7 +1,7 @@
 const List = require('../models/ListModel')
 
 
-async function createNoteRecord(noteData){
+async function createListRecord(noteData){
     const list = new List(noteData)
     const createdNote = await list.save()
     console.log('createNoteRecord', createdNote)    
@@ -9,9 +9,15 @@ async function createNoteRecord(noteData){
 
 
 async function getAllLists(userId){
-    return await List.find({ownerId: userId})
+    return await List.find({ownerId: userId}).populate('notes')
     
 }
 
-module.exports = {createNoteRecord, getAllLists}
+async function addNote(noteId, listId){
+    const list = await List.findOne({_id: listId})
+    list.notes.push(noteId)
+    list.save()
+}
+
+module.exports = {createListRecord, getAllLists, addNote}
 

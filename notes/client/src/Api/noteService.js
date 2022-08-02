@@ -18,4 +18,14 @@ async function getAllLists(userId){
     
 }
 
-export {createListRecord, getAllLists}
+async function createNoteRecord(noteData){
+    const endPoint = '/note/create'
+    // console.log('CLIENT note data ', noteData)
+    return await fetch(baseUrl + endPoint, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(noteData)
+    })
+}
+
+export {createListRecord, getAllLists, createNoteRecord}
