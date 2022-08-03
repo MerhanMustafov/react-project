@@ -7,7 +7,6 @@ async function createListRecord(listData) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(listData),
   })
-  console.log('FETCH client side')
 }
 
 async function getAllLists(userId) {

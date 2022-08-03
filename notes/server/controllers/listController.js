@@ -25,7 +25,6 @@ route.put('/update/:listid', async (req, res) => {
     try{
     const newData = req.body
     const updated = await updateListTitle(newData, req.params.listid)
-    console.log(updated)
     res.status(200).json(updated)
 
     }catch(err){
@@ -34,7 +33,6 @@ route.put('/update/:listid', async (req, res) => {
 })
 
 route.delete('/delete/:listid', async (req, res) => {
-    // console.log(req.params.listid)
     try{
         const deleted = await deleteList(req.params.listid)
         res.status(200).json(deleted)

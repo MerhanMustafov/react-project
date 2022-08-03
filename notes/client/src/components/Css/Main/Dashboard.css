@@ -84,6 +84,7 @@
     color: white;
     font-size: 70px; 
     padding: 50px;
+    z-index: 10;
     /* height: 200px; */
     /* width: 200px; */
     text-align: center;

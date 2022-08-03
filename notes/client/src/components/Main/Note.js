@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { createNoteRecord } from '../../Api/noteService'
 function Note(props) {
   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
-
   const [error, setError] = useState('')
   const [isSaved, setIsSaved] = useState(false)
   const [text, setText] = useState('')

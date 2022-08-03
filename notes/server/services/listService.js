@@ -3,7 +3,6 @@ const Note = require('../models/NoteModel')
 async function createListRecord(noteData) {
   const list = new List(noteData)
   const createdNote = await list.save()
-  console.log('createNoteRecord', createdNote)
 }
 
 async function getAllLists(userId) {

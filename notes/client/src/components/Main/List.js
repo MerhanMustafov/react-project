@@ -8,7 +8,7 @@ function List(props) {
   let key = 654
   const { addNoteBtn, setAddNoteBtn } = props.note
   const { setRefresh } = props
-  const listid = props._id
+  let listid = props._id
 
   const [title, setTitle] = useState()
   async function requestHandler(e, to) {
@@ -23,7 +23,6 @@ function List(props) {
       }
     }else if(to ===  `/list/delete/${listid}`){
         await deleteList(listid)
-        console.log('client side-/list/delete/id')
         setRefresh(true)
     }
   }
@@ -93,7 +92,7 @@ function List(props) {
       <footer>
         <button
           className="add"
-          onClick={(e) => addNoteBtnHandler(e, props.note)}
+          onClick={(e) => addNoteBtnHandler(e, listid,props.note)}
         >
           Add Note
         </button>
@@ -104,8 +103,7 @@ function List(props) {
 
 export { List }
 
-function addNoteBtnHandler(e, { addNoteBtn, setAddNoteBtn }) {
-  const listid = document.querySelector('.listWrapper').id
+function addNoteBtnHandler(e, listid,{ addNoteBtn, setAddNoteBtn }) {
   addNoteBtn.length === 0 ? setAddNoteBtn(listid) : setAddNoteBtn('')
 }
 
