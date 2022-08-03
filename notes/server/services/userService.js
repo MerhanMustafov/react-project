@@ -8,7 +8,11 @@ async function getUserByName(name){
     const user = await User.findOne({username: new RegExp(`^${name}$`, 'i')})
     return user
 }
+async function getUserById(userId){
+    const user = await User.findOne({_id: userId})
+    return user
+}
 
 
 
-module.exports = {createUser, getUserByName}
+module.exports = {createUser, getUserByName, getUserById}

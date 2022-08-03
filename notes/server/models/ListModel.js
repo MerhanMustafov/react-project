@@ -1,8 +1,8 @@
 const {Schema, model} = require('mongoose');
 
 const listSchema = new Schema({
-    listName: {type: String, required: true},
-    ownerId: {type: String, required: true},
+    listname: {type: String, required: true},
+    ownerid: {type: String, required: true},
     notes: [{type: Schema.Types.ObjectId, ref: 'Note'}],
     // userNotes: [{type: Schema.Types.ObjectId, ref: 'Note'}]
 

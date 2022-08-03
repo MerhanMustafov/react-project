@@ -9,7 +9,7 @@ async function createListRecord(noteData){
 
 
 async function getAllLists(userId){
-    return await List.find({ownerId: userId}).populate('notes')
+    return await List.find({ownerid: userId}).populate('notes')
     
 }
 

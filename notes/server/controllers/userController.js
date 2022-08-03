@@ -4,6 +4,16 @@ const jwt = require('jsonwebtoken')
 const tokenSecret = 'asdf123 321fdsa'
 const { ...userService } = require('../services/userService')
 
+route.get('/get/:userId', async (req, res) => {
+    const existing = await userService.getUserById(req.params.userId)
+    if(!existing){
+        res.status(404).json(null)
+    }else{
+        const token = generateToken(existing)
+        res.status(200).json(token)
+    }
+})
+
 route.post('/register', async (req, res) => {
   try {
     const existing = await userService.getUserByName(req.body.username)

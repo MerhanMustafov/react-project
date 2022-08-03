@@ -20,21 +20,37 @@ async function getAllLists(userId){
 
 async function createNoteRecord(noteData){
     const endPoint = '/note/create'
-    // console.log('CLIENT note data ', noteData)
-    return await fetch(baseUrl + endPoint, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(noteData)
-    })
+    try{
+
+        const response = await fetch(baseUrl + endPoint, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(noteData)
+        })
+        if(response.ok == false){
+            throw new Error('somthing went wrong, please try to refresh the page or logout and login again')
+        }
+        return response
+    }catch(err){
+        throw new Error(err)
+    }
 }
 
 async function updateNoteRecord(newData, noteId){
     const endPoint = `/note/update/${noteId}`
-    return await fetch(baseUrl + endPoint, {
+    try{
+        const response = await fetch(baseUrl + endPoint, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newData)
     })
+    if(response.ok == false){
+         throw new Error('somthing went wrong, please try to refresh the page or logout and login again')
+    }
+    }catch(err){
+        throw new Error(err)
+    }
+    
 }
 
 export {createListRecord, getAllLists, createNoteRecord, updateNoteRecord}
