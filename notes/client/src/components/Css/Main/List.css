@@ -33,7 +33,7 @@
 
 
 .options {
-    display: none;
+    /* display: none; */
   border: 2px solid rgb(3, 3, 59);
   position: absolute;
   right: 5px;
@@ -42,12 +42,12 @@
   
 }
 
-.listWrapper .title:hover ~ .options{
+/* .listWrapper .title:hover ~ .options{
     display: block;
 }
 .options:hover{
     display: block;
-}
+} */
 .options .hide {
   border: 2px solid blue;
   display: none;
@@ -70,12 +70,12 @@
 }
 .listWrapper main .listNote {
   background: brown;
-  /* width: 450px; */
+  width: 100%;
   height: auto;
   font-size: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .listWrapper footer button {
@@ -84,4 +84,37 @@
   margin: 10px auto;
   font-size: 25px;
   padding: 4px 15px;
+}
+
+
+.delConfirmWindow{
+    visibility: hidden;
+    border: 3px solid orange;
+    position: absolute;
+    color: white;
+    top: 27px;
+    right: 60px;
+    text-align: center;
+    background: black;
+    overflow: hidden;
+}
+
+
+.hideDelW{
+    visibility: hidden;  
+    width: 0px;
+    height: 0px;
+    transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
+}
+.showDelW{
+    visibility: visible;
+    width: 200px;
+    height: 75px;
+    transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
+}
+.btnsWrapper{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px auto 0 auto;
+    border: 3px solid black ;
 }

@@ -2,7 +2,7 @@ import { Note } from './Note'
 import { CreatedNote } from './CreatedNote'
 import { useState, useEffect } from 'react'
 
-import { updateListTitle } from '../../Api/noteService'
+import { updateListTitle, deleteList } from '../../Api/noteService'
 
 function List(props) {
   let key = 654
@@ -12,8 +12,8 @@ function List(props) {
 
   const [title, setTitle] = useState()
   async function requestHandler(e, to) {
-    if (e.key == 'Enter') {
-      if (to === `/list/update/${listid}`) {
+    if (to === `/list/update/${listid}`) {
+      if (e.key == 'Enter') {
         if (title.length > 0) {
           const listname = title
           const updated = await updateListTitle(listname, listid)
@@ -21,6 +21,10 @@ function List(props) {
           setRefresh(true)
         }
       }
+    }else if(to ===  `/list/delete/${listid}`){
+        await deleteList(listid)
+        console.log('client side-/list/delete/id')
+        setRefresh(true)
     }
   }
 
@@ -42,7 +46,30 @@ function List(props) {
               title="edit list title"
               onClick={(e) => editBtnHandler(e, listid, setTitle)}
             ></i>
-            <i className="fa-solid fa-trash" title="delete whole list"></i>
+            <i
+              className="fa-solid fa-trash"
+              title="delete whole list"
+              onClick={(e) => deleteBtnHandler(e, listid)}
+            ></i>
+            <div className="delConfirmWindow hideDelW">
+              Are you sure ?
+              <div className="btnsWrapper">
+                <button
+                  className="cancel"
+                  onClick={(e) => {
+                    cancelBtnHandler(e, listid)
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="delete"
+                  onClick={(e) => requestHandler(e, `/list/delete/${listid}`)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
           <i
             className="fa-solid fa-gear"
@@ -92,10 +119,10 @@ function settingsBtnHandler(listid) {
     el.classList.add('hide')
   }
 
-  setTimeout(() => {
-    el.classList.remove('show')
-    el.classList.add('hide')
-  }, 7000)
+  //   setTimeout(() => {
+  //     el.classList.remove('show')
+  //     el.classList.add('hide')
+  //   }, 7000)
 }
 
 function editBtnHandler(e, listid, setTitle) {
@@ -104,4 +131,25 @@ function editBtnHandler(e, listid, setTitle) {
   listTitle.readOnly
     ? (listTitle.readOnly = false)
     : (listTitle.readOnly = true)
+}
+
+function deleteBtnHandler(e, listid) {
+  const el = document.getElementById(listid).querySelector('.delConfirmWindow')
+  if (el.classList.contains('hideDelW')) {
+    el.classList.add('showDelW')
+    el.classList.remove('hideDelW')
+  } else if (el.classList.contains('showDelW')) {
+    el.classList.add('hideDelW')
+    el.classList.remove('showDelW')
+  }
+}
+function cancelBtnHandler(e, listid) {
+  const el = document.getElementById(listid).querySelector('.delConfirmWindow')
+  if (el.classList.contains('hideDelW')) {
+    el.classList.add('showDelW')
+    el.classList.remove('hideDelW')
+  } else if (el.classList.contains('showDelW')) {
+    el.classList.add('hideDelW')
+    el.classList.remove('showDelW')
+  }
 }

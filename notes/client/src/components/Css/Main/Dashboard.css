@@ -7,7 +7,7 @@
 }
 .searchBoxWrapper{
     border: 2px solid red;
-    display: flex;
+    /* display: flex; */
     align-items: stretch;
     justify-content: center;
 }
