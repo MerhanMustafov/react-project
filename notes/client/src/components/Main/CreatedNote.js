@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { updateNoteRecord } from '../../Api/noteService'
+import { updateNoteRecord, deleteNote } from '../../Api/noteService'
 function CreatedNote(props) {
   const { setAddNoteBtn, setRefresh } = props
-  //   const { listid } = props.noteData
-  console.log('NNNNNNOOOOTEEEE', props)
+    const noteid  = props.noteData._id
+    const listid  = props.noteData.listid
   const [error, setError] = useState('')
   const [listNoteclicked, setListNoteClicked] = useState(false)
   const [editMode, setEditMode] = useState(false)
@@ -16,7 +16,7 @@ function CreatedNote(props) {
   }, [])
 
   async function requestHandler(e, to) {
-    if (to == `/note/update/${props.noteData._id}`) {
+    if (to == `/note/update/${noteid}`) {
       if (
         (text.length === 0 && title.length === 0) ||
         title.length === 0 ||
@@ -32,6 +32,11 @@ function CreatedNote(props) {
         setRefresh(true)
         closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
       }
+    }else if(to === `/note/delete/noteid=${noteid}/listid=${listid}`){
+        console.log(`/note/delete/noteid=${noteid}/listid=${listid}`)
+        await deleteNote(noteid, listid)
+        deleteBtnHandler(null, noteid)
+        setRefresh(true)
     }
   }
 
@@ -78,20 +83,24 @@ function CreatedNote(props) {
               className="fa-regular fa-floppy-disk"
               title="save"
               onClick={(e) =>
-                requestHandler(e, `/note/update/${props.noteData._id}`)
+                requestHandler(e, `/note/update/${noteid}`)
               }
             ></i>
           ) : null}
         </div>
       ) : (
-        <div className="listNote" onClick={(e) => setListNoteClicked(true)}>
-          {props.noteData.title}
-          {/* <div className="options">
-          <div className="hide" id={props.listid}>
-            <i class="fa-solid fa-pen" title="edit"></i>
-          </div>
-          <i class="fa-solid fa-gear" onClick={(e) => settingsH(listid)}></i>
-        </div> */}
+        <div className="listNoteWrapper" id={noteid} >
+            <div className="listNoteTitle" onClick={(e) => setListNoteClicked(true)}>{props.noteData.title}</div>
+            <div className="listNoteDelBtn"><i className="fa-solid fa-xmark" onClick={(e) => deleteBtnHandler(e, noteid)}></i></div>
+            <div className="noteDelConfWindow hideNoteDelW">
+                Are you sure ?
+                <div className="btnW">
+                    <button className="cancelBtn" onClick={(e) => cancelBtnHandler(e, noteid)}>Cancel</button>
+                    <button className="delBtn" onClick={(e) => requestHandler(e, `/note/delete/noteid=${noteid}/listid=${listid}`)}>Delete</button>
+                </div>
+
+            </div>
+          
         </div>
       )}
     </div>
@@ -105,3 +114,24 @@ function closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode) {
   setEditMode(false)
 }
 
+function deleteBtnHandler(e, noteid) {
+  const el = document.getElementById(noteid).querySelector('.noteDelConfWindow')
+  if (el.classList.contains('hideNoteDelW')) {
+    el.classList.add('showNoteDelW')
+    el.classList.remove('hideNoteDelW')
+  } else if (el.classList.contains('showNoteDelW')) {
+    el.classList.add('hideNoteDelW')
+    el.classList.remove('showNoteDelW')
+  }
+}
+
+function cancelBtnHandler(e, noteid) {
+  const el = document.getElementById(noteid).querySelector('.noteDelConfWindow')
+  if (el.classList.contains('hideNoteDelW')) {
+    el.classList.add('showNoteDelW')
+    el.classList.remove('hideNoteDelW')
+  } else if (el.classList.contains('showNoteDelW')) {
+    el.classList.add('hideNoteDelW')
+    el.classList.remove('showNoteDelW')
+  }
+}

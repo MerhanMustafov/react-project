@@ -15,7 +15,6 @@ function Login({setUserStatus}) {
     e.preventDefault()
     if (errors.length === 0) {
       const userData = generateUserData({username, password})
-    //   console.log(userData)
       try{
         const response = await api.login(userData)
         if(response.error){

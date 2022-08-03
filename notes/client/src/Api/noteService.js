@@ -31,8 +31,8 @@ async function deleteList(listid) {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     })
-    if(response.ok == false){
-        throw new Error('Error')
+    if (response.ok == false) {
+      throw new Error('Error')
     }
     return response
   } catch (err) {
@@ -77,6 +77,22 @@ async function updateNoteRecord(newData, noteId) {
   }
 }
 
+async function deleteNote(noteid, listid) {
+    const endPoint = `/note/delete/noteid=${noteid}/listid=${listid}`
+  try {
+    const response = await fetch(baseUrl + endPoint, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    if (response.ok === false) {
+      throw new Error('Error')
+    }
+    return response
+  }catch (err) {
+    throw new Error(err.message)
+  }
+}
+
 export {
   createListRecord,
   getAllLists,
@@ -84,4 +100,5 @@ export {
   updateNoteRecord,
   updateListTitle,
   deleteList,
+  deleteNote
 }

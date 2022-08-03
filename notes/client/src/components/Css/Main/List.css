@@ -1,16 +1,10 @@
 .listsWrapper {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* width: 100%; */
-    /* justify-content: space-around; */
-    /* margin: 0 auto; */
   column-count: 3;
   row-gap: 5;
   border: 2px solid red;
 }
 .listWrapper {
   display: inline-block;
-  /* margin: 0 auto; */
   width: 100%;
   margin-bottom: 10px;
   border: 3px solid green;
@@ -72,17 +66,11 @@
 .listWrapper main {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* position: relative; */
+  /* position: relative; */
+  /* gap: 50px; */
 }
-.listWrapper main .listNote {
-  background: brown;
-  width: 100%;
-  height: auto;
-  font-size: 30px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  /* white-space: nowrap; */
-}
+
 
 .listWrapper footer button {
   background: green;
@@ -111,16 +99,19 @@
     width: 0px;
     height: 0px;
     transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
+    z-index: 9;
 }
 .showDelW{
     visibility: visible;
     width: 200px;
     height: 75px;
     transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
+    z-index: 9;
 }
 .btnsWrapper{
     display: flex;
     justify-content: space-evenly;
     margin: 20px auto 0 auto;
     border: 3px solid black ;
+    z-index: 5;
 }

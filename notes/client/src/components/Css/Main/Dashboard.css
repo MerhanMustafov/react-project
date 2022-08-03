@@ -7,7 +7,7 @@
 }
 .searchBoxWrapper{
     border: 2px solid red;
-    /* display: flex; */
+    display: flex;
     align-items: stretch;
     justify-content: center;
 }
@@ -91,9 +91,6 @@
     
 }
 
-.listNote{
-    border: 2px solid red;
-}
 .noteError{
     position: absolute;
     bottom: 70px;

@@ -1,5 +1,5 @@
 const route = require('express').Router()
-const {createNoteRecord, updateNoteRecord} = require('../services/noteService')
+const {createNoteRecord, updateNoteRecord, deleteNoteRecord} = require('../services/noteService')
 route.post('/create', async (req, res) => {
     // req.body.json().map(({key, value}) => console.log(value))
     try{
@@ -25,5 +25,15 @@ route.put('/update/:noteid', async (req, res) => {
         res.status(400).json(errors)
     }
 
+})
+
+route.delete(`/delete/noteid=:noteid/listid=:listid`, async (req, res) => {
+    try{    
+        const deleted = await deleteNoteRecord(req.params.noteid, req.params.listid)
+        res.status(200).json(deleted)
+
+    }catch(err){
+        res.status('404').json(err.message)
+    }
 })
 module.exports = route

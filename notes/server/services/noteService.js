@@ -20,4 +20,23 @@ async function updateNoteRecord(newData, noteId) {
   const note = await Note.findOneAndUpdate({ _id: noteId }, newData)
 }
 
-module.exports = { createNoteRecord, updateNoteRecord }
+async function deleteNoteRecord(noteid, listid){
+    // const list = await List.findByIdAndDelete(listid)
+
+    const list = await List.findById(listid)
+    const modified =  list.notes.filter(objId => objId.toString() !== noteid)
+    list.notes = modified
+    list.save()
+    await Note.findByIdAndDelete(noteid)
+    console.log(list.notes)
+    console.log('server', list.notes[0].toString() !== noteid)
+
+    // await Note.findByIdAndDelete(noteid)
+    // for (let i = 0; i < list.notes.length; i++){
+    //     if(list.notes[i].toString() === noteid){
+    //         await Note.findByIdAndDelete(noteid)
+    //     }
+    // }
+}
+
+module.exports = { createNoteRecord, updateNoteRecord, deleteNoteRecord }
