@@ -47,33 +47,35 @@ function Note(props) {
       {isSaved ? (
         <div className="successfullySaved">Saved</div>
       ) : (
-        <div className="noteW" id={addNoteBtn}>
-          {error.length > 0 ? <div className="noteError">{error}</div> : null}
-          <input
-            type="text"
-            className="noteT"
-            name="noteTitle"
-            placeholder="note title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            name="noteC"
-            id="noteC"
-            cols="30"
-            rows="10"
-            onChange={(e) => setText(e.target.value)}
-          ></textarea>
-          <i
-            className="fa-solid fa-xmark"
-            title="close"
-            onClick={() => closeBtnHandler(setAddNoteBtn)}
-          ></i>
+        <div className="onPopUpBackground">
+          <div className="noteW" id={addNoteBtn}>
+            {error.length > 0 ? <div className="noteError">{error}</div> : null}
+            <input
+              type="text"
+              className="noteT"
+              name="noteTitle"
+              placeholder="note title"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              name="noteC"
+              id="noteC"
+              cols="30"
+              rows="10"
+              onChange={(e) => setText(e.target.value)}
+            ></textarea>
+            <i
+              className="fa-solid fa-xmark"
+              title="close"
+              onClick={() => closeBtnHandler(setAddNoteBtn)}
+            ></i>
 
-          <i
-            className="fa-regular fa-floppy-disk"
-            title="save"
-            onClick={(e) => requestHandler(e, '/note/create')}
-          ></i>
+            <i
+              className="fa-regular fa-floppy-disk"
+              title="save"
+              onClick={(e) => requestHandler(e, '/note/create')}
+            ></i>
+          </div>
         </div>
       )}
     </div>

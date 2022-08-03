@@ -1,11 +1,19 @@
 .listsWrapper {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
   column-count: 3;
-  row-gap: 5;
+  /* column-fill: balance; */
+  /* column-gap: 35px; */
+  /* column-width: 200px; */
+  /* column-rule: 1; */
+  /* row-gap: 5; */
   border: 2px solid red;
 }
 .listWrapper {
-  display: inline-block;
+  display:inline-block;
   width: 100%;
+  /* float: left; */
+  /* height: auto; */
   margin-bottom: 10px;
   border: 3px solid green;
   background: lightblue;
@@ -64,11 +72,19 @@
 
 
 .listWrapper main {
-  display: flex;
-  flex-direction: column;
-  /* position: relative; */
-  /* position: relative; */
-  /* gap: 50px; */
+    overflow-y: scroll;
+    min-height: max-content;
+    max-height: 700px;
+}
+.listWrapper main::-webkit-scrollbar{ 
+    width: 15px;
+} 
+.listWrapper main::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+.listWrapper main::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 200px;
 }
 
 

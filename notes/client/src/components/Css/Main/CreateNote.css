@@ -1,7 +1,7 @@
 .listWrapper main .listNoteWrapper {
     margin: 20px auto 0 auto;
   background: rgb(163, 118, 118);
-  width: 100%;
+  width: auto;
   height: 50px;
   font-size: 25px;
    display: flex; 

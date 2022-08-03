@@ -80,12 +80,14 @@ function List(props) {
       <main>
         {props.notes.length > 0
           ? props.notes.map((noteData) => (
+
               <CreatedNote
                 key={++key}
                 setRefresh={setRefresh}
                 setAddNoteBtn={setAddNoteBtn}
                 noteData={noteData}
               />
+              
             ))
           : null}
       </main>

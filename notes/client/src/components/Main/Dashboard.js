@@ -31,7 +31,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="dashboardWrapper">
+    <div className="dashboardWrapper" >
       <div className="searchBoxWrapper">
         <i
           className="fa-solid fa-magnifying-glass"
