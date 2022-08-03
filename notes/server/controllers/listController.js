@@ -1,6 +1,6 @@
 const route = require('express').Router()
 const {isAuth, isOwner} = require('../middlewares/guards')
-const {createListRecord, getAllLists} = require('../services/listService')
+const {createListRecord, getAllLists, updateListTitle} = require('../services/listService')
 
 route.post('/create', async (req, res) => {
     try{
@@ -21,5 +21,17 @@ route.get('/getAllUsersList/:userId', async (req, res) => {
     }
 })
 
+route.put('/update/:listid', async (req, res) => {
+    try{
+    const newData = req.body
+    const updated = await updateListTitle(newData, req.params.listid)
+    console.log(updated)
+    res.status(200).json(updated)
 
+    }catch(err){
+        res.status(404).json(err.message)
+    }
+
+
+})
 module.exports = route

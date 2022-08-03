@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { updateNoteRecord } from '../../Api/noteService'
-function ListNote(props) {
+function CreatedNote(props) {
   const { setAddNoteBtn, setRefresh } = props
   //   const { listid } = props.noteData
   console.log('NNNNNNOOOOTEEEE', props)
@@ -98,7 +98,7 @@ function ListNote(props) {
   )
 }
 
-export { ListNote }
+export { CreatedNote  }
 
 function closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode) {
   listNoteclicked ? setListNoteClicked(false) : setListNoteClicked(true)

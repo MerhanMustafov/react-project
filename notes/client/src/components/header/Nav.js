@@ -6,7 +6,6 @@ function Nav({userStatus}) {
     // const [userStatus, setUserStatus] = useState(null)
 //   const loged = localStorage.getItem('userId')
     const isUser = userStatus?.length > 0
-    console.log(userStatus)
   return (
     <nav>
       <div className="main-nav-area">

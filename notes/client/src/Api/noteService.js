@@ -18,6 +18,16 @@ async function getAllLists(userId){
     
 }
 
+async function updateListTitle(listname, listid){
+    const endPoint = `/list/update/${listid}`
+    const response = await fetch(baseUrl + endPoint, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({listname})
+    })
+    return response
+}
+
 async function createNoteRecord(noteData){
     const endPoint = '/note/create'
     try{
@@ -53,4 +63,4 @@ async function updateNoteRecord(newData, noteId){
     
 }
 
-export {createListRecord, getAllLists, createNoteRecord, updateNoteRecord}
+export {createListRecord, getAllLists, createNoteRecord, updateNoteRecord, updateListTitle}

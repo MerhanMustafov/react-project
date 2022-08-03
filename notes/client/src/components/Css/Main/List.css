@@ -19,7 +19,6 @@
   max-height: 150px;
 } */
 .listWrapper .title {
-  /* display: block; */
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -27,39 +26,28 @@
   border: 2px solid blue;
   background: yellow;
   border: 12px solid rgb(59, 3, 3);
-  /* z-index: 0; */
-  /* position: relative; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+
 .options {
+    display: none;
   border: 2px solid rgb(3, 3, 59);
   position: absolute;
   right: 5px;
   top: 10px;
   font-size: 25px;
-  /* position: relative; */
-  /* z-index: -0; */
+  
 }
 
-.listSettings[type='radio'] {
-  /* appearance: none; */
-  position: absolute;
-  right: 0px;
-  top: -2px;
-  /* background-color: #fff; */
-  display: none;
-  border:2px solid red;
-  /* border: 2px solid transparent; */
-  box-shadow:0 0 0 1px green;
-  /* box-shadow: 0 0 0 1px transparent; */
-  border-radius: 50%;
-  width: 25px;
-  height: 23px;
-  background-color:white;
-  /* background-color: transparent; */
-  transition: all ease-in 0.2s;
+.listWrapper .title:hover ~ .options{
+    display: block;
 }
-
+.options:hover{
+    display: block;
+}
 .options .hide {
   border: 2px solid blue;
   display: none;
@@ -82,8 +70,12 @@
 }
 .listWrapper main .listNote {
   background: brown;
-  height: 30px;
+  /* width: 450px; */
+  height: auto;
   font-size: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .listWrapper footer button {

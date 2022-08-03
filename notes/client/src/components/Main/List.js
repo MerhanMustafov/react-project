@@ -1,5 +1,8 @@
 import { Note } from './Note'
-import { ListNote } from './ListNote'
+import { CreatedNote } from './CreatedNote'
+import { useState, useEffect } from 'react'
+
+import { updateListTitle } from '../../Api/noteService'
 
 function List(props) {
   let key = 654
@@ -7,13 +10,39 @@ function List(props) {
   const { setRefresh } = props
   const listid = props._id
 
+  const [title, setTitle] = useState()
+  async function requestHandler(e, to) {
+    if (e.key == 'Enter') {
+      if (to === `/list/update/${listid}`) {
+        if (title.length > 0) {
+          const listname = title
+          const updated = await updateListTitle(listname, listid)
+          editBtnHandler(null, listid, setTitle)
+          setRefresh(true)
+        }
+      }
+    }
+  }
+
   return (
-    <div className="listWrapper">
+    <div className="listWrapper" id={listid}>
       <header>
-        <div className="title">{props.listname}</div>
+        <input
+          className="title"
+          name="listname"
+          defaultValue={props.listname}
+          readOnly={true}
+          onChange={(e) => setTitle(e.target.value)}
+          onKeyDown={(e) => requestHandler(e, `/list/update/${listid}`)}
+        />
         <div className="options">
-          <div className="hide" id={listid}>
-            <i className="fa-solid fa-pen" title="edit"></i>
+          <div className="settings hide">
+            <i
+              className="fa-solid fa-pen"
+              title="edit list title"
+              onClick={(e) => editBtnHandler(e, listid, setTitle)}
+            ></i>
+            <i className="fa-solid fa-trash" title="delete whole list"></i>
           </div>
           <i
             className="fa-solid fa-gear"
@@ -25,7 +54,7 @@ function List(props) {
       <main>
         {props.notes.length > 0
           ? props.notes.map((noteData) => (
-              <ListNote
+              <CreatedNote
                 key={++key}
                 setRefresh={setRefresh}
                 setAddNoteBtn={setAddNoteBtn}
@@ -36,7 +65,6 @@ function List(props) {
       </main>
       <footer>
         <button
-          id={listid}
           className="add"
           onClick={(e) => addNoteBtnHandler(e, props.note)}
         >
@@ -49,14 +77,13 @@ function List(props) {
 
 export { List }
 
-
-
 function addNoteBtnHandler(e, { addNoteBtn, setAddNoteBtn }) {
-  addNoteBtn.length === 0 ? setAddNoteBtn(e.target.id) : setAddNoteBtn('')
+  const listid = document.querySelector('.listWrapper').id
+  addNoteBtn.length === 0 ? setAddNoteBtn(listid) : setAddNoteBtn('')
 }
 
 function settingsBtnHandler(listid) {
-  const el = document.getElementById(listid)
+  const el = document.getElementById(listid).querySelector('.settings')
   if (el.classList.contains('hide')) {
     el.classList.remove('hide')
     el.classList.add('show')
@@ -64,4 +91,17 @@ function settingsBtnHandler(listid) {
     el.classList.remove('show')
     el.classList.add('hide')
   }
+
+  setTimeout(() => {
+    el.classList.remove('show')
+    el.classList.add('hide')
+  }, 7000)
+}
+
+function editBtnHandler(e, listid, setTitle) {
+  const listTitle = document.getElementById(listid).querySelector('.title')
+  setTitle(listTitle.value)
+  listTitle.readOnly
+    ? (listTitle.readOnly = false)
+    : (listTitle.readOnly = true)
 }
