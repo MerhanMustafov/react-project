@@ -9,8 +9,14 @@ function List(props) {
   const { addNoteBtn, setAddNoteBtn } = props.note
   const { setRefresh } = props
   let listid = props._id
+  let image = props.listimg
 
   const [title, setTitle] = useState()
+
+    useEffect(() => {
+        document.getElementById(listid).style.backgroundImage = `url(${image})`
+    }, [])
+
   async function requestHandler(e, to) {
     if (to === `/list/update/${listid}`) {
       if (e.key == 'Enter') {

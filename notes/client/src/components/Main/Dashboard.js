@@ -9,6 +9,7 @@ function Dashboard() {
   const [search, setSearch] = useState(null)
   const [addNoteBtn, setAddNoteBtn] = useState('')
   const [listname, setListName] = useState('')
+  const [image, setImage] = useState()
   const [arrayOfLists, setArrayOfLists] = useState([])
 
   useEffect(() => {
@@ -25,10 +26,12 @@ function Dashboard() {
   async function requestHandler(e, to) {
     if (to === '/list/create') {
       const ownerid = localStorage.getItem('userId')
-      const listData = await createListRecord({ listname: listname.trim(), notes: [], ownerid })
+      const listData = await createListRecord({listimg: image, listname: listname.trim(), notes: [], ownerid })
       setRefresh(true)
     }
   }
+
+  
 
   return (
     <div className="dashboardWrapper" >
@@ -54,7 +57,7 @@ function Dashboard() {
         disabled={true ? listname.length === 0 : false}
         onClick={(e) => requestHandler(e, '/list/create')}
       >
-        A List
+        Add new List
       </button>
       <input
         type="text"
@@ -63,6 +66,8 @@ function Dashboard() {
         value={'' ? listname.length > 0 : listname}
         onChange={(e) => setListName(e.target.value)}
       />
+
+      <input type="file" id="uploadimg" name="uploadimg" onChange={(e) => uploadImgHandler(e, setImage)}/>
 
       <div className="listsWrapper">
         {arrayOfLists.map((listData) => (
@@ -88,3 +93,14 @@ function searchBoxHandler(e) {
     console.log(e)
   }
 }
+
+
+function uploadImgHandler(e, setImage){
+    const reader = new FileReader()
+    reader.addEventListener('load', (e) => {
+        const url = reader.result
+        setImage(url)
+    })
+    reader.readAsDataURL(e.target.files[0])
+  }
+
