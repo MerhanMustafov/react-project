@@ -1,133 +1,148 @@
 .listsWrapper {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
   column-count: 3;
-  /* column-fill: balance; */
-  /* column-gap: 35px; */
-  /* column-width: 200px; */
-  /* column-rule: 1; */
-  /* row-gap: 5; */
+  width: 90%;
+  margin: 0 auto;
   border: 2px solid red;
 }
 .listWrapper {
-  display:inline-block;
-  width: 100%;
-  /* float: left; */
-  /* height: auto; */
+  display: inline-block;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
   margin-bottom: 10px;
-  border: 3px solid green;
-  background: lightblue;
+  /* border: 3px solid green; */
+  border-radius: 30px;
+  /* background: rgb(189, 208, 212); */
+    background-image: url(../../../../public/images/dashboard-view-img.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .listWrapper header {
-  border: 3px solid red;
   position: relative;
 }
-/* .listWrapper main {
-  overflow: scroll;
-  max-height: 150px;
-} */
 .listWrapper .title {
+  font-family: Kanit;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  font-size: 25px;
-  border: 2px solid blue;
-  background: yellow;
-  border: 12px solid rgb(59, 3, 3);
+  width: 85%;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.658);
+  font-size: 27px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin: 5px 0 30px 0;
+  padding: 0 0 0 15px;
 }
-
-
+.titleInputReady {
+  animation: inputReady 3s infinite;
+  animation-direction: alternate;
+}
+@keyframes inputReady {
+  0% {
+    border: 3px solid rgb(0, 0, 0);
+  }
+  25% {
+    border: 3px solid rgb(0, 158, 61);
+  }
+  50% {
+    border: 3px solid rgb(1, 47, 107);
+  }
+  100% {
+    border: 3px solid rgb(10, 0, 0);
+  }
+}
 .options {
-    /* display: none; */
-  border: 2px solid rgb(3, 3, 59);
+  /* border: 2px solid rgb(3, 3, 59); */
   position: absolute;
-  right: 5px;
-  top: 10px;
+  right: 3px;
+  top: 17px;
   font-size: 25px;
-  
 }
 
-/* .listWrapper .title:hover ~ .options{
-    display: block;
-}
-.options:hover{
-    display: block;
-} */
 .options .hide {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   display: none;
-  background: rgba(128, 128, 128, 0.644);
 }
 .options .show {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   display: inline;
-  background: rgba(128, 128, 128, 0.644);
+  background: rgba(12, 12, 12, 0.7);
+  border-radius: 20px;
 }
-.options .show i{
-    margin-right: 20px;
+.options .show i {
+  margin: 0px 10px;
 }
 
+.fa-gear, .fa-pen, .fa-trash{
+    color: rgba(255, 255, 255, 0.897);
+}
 
 .listWrapper main {
-    overflow-y: scroll;
-    min-height: max-content;
-    max-height: 700px;
+  overflow-y: auto;
+  min-height: max-content;
+  max-height: 700px;
 }
-.listWrapper main::-webkit-scrollbar{ 
-    width: 15px;
-} 
-.listWrapper main::-webkit-scrollbar-track{
-    background-color: transparent;
+.listWrapper main::-webkit-scrollbar {
+  width: 15px;
 }
-.listWrapper main::-webkit-scrollbar-thumb{
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 200px;
+.listWrapper main::-webkit-scrollbar-track {
+  background-color: transparent;
 }
-
+.listWrapper main::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 200px;
+}
 
 .listWrapper footer button {
-  background: green;
   display: block;
-  margin: 10px auto;
+  font-family: Kanit, 'Courier New', Courier, monospace;
+  font-weight: 600;
   font-size: 25px;
+  margin: 55px 0 5px 0;
   padding: 4px 15px;
+  color: black;
+  /* color: rgba(255, 255, 255, 0.836); */
+  background: rgba(255, 255, 255, 0.664);
+  /* background: green; */
+  border-radius: 20px;
+  width: 70%;
+  border: none;
 }
 
-
-.delConfirmWindow{
-    visibility: hidden;
-    border: 3px solid orange;
-    position: absolute;
-    color: white;
-    top: 27px;
-    right: 60px;
-    text-align: center;
-    background: black;
-    overflow: hidden;
+.delConfirmWindow {
+  visibility: hidden;
+  border: 3px solid orange;
+  position: absolute;
+  color: white;
+  top: 27px;
+  right: 60px;
+  text-align: center;
+  background: black;
+  overflow: hidden;
 }
 
-
-.hideDelW{
-    visibility: hidden;  
-    width: 0px;
-    height: 0px;
-    transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
-    z-index: 9;
+.hideDelW {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  /* transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s; */
+  z-index: 9;
 }
-.showDelW{
-    visibility: visible;
-    width: 200px;
-    height: 75px;
-    transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s;
-    z-index: 9;
+.showDelW {
+  visibility: visible;
+  width: 200px;
+  height: 75px;
+  /* transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s; */
+  z-index: 9;
 }
-.btnsWrapper{
-    display: flex;
-    justify-content: space-evenly;
-    margin: 20px auto 0 auto;
-    border: 3px solid black ;
-    z-index: 5;
+.btnsWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px auto 0 auto;
+  border: 3px solid black;
+  z-index: 5;
 }

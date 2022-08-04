@@ -17,18 +17,22 @@ function List(props) {
         if (title.length > 0) {
           const listname = title
           const updated = await updateListTitle(listname, listid)
-          editBtnHandler(null, listid, setTitle)
+          editBtnHandler(null, listid, setTitle, 'update')
+          document
+            .getElementById(listid)
+            .querySelector('.title')
+            .classList.remove('titleInputReady')
           setRefresh(true)
         }
       }
-    }else if(to ===  `/list/delete/${listid}`){
-        await deleteList(listid)
-        setRefresh(true)
+    } else if (to === `/list/delete/${listid}`) {
+      await deleteList(listid)
+      setRefresh(true)
     }
   }
 
   return (
-    <div className="listWrapper" id={listid}>
+    <div className="listWrapper" id={listid} >
       <header>
         <input
           className="title"
@@ -80,21 +84,19 @@ function List(props) {
       <main>
         {props.notes.length > 0
           ? props.notes.map((noteData) => (
-
               <CreatedNote
                 key={++key}
                 setRefresh={setRefresh}
                 setAddNoteBtn={setAddNoteBtn}
                 noteData={noteData}
               />
-              
             ))
           : null}
       </main>
       <footer>
         <button
           className="add"
-          onClick={(e) => addNoteBtnHandler(e, listid,props.note)}
+          onClick={(e) => addNoteBtnHandler(e, listid, props.note)}
         >
           Add Note
         </button>
@@ -105,7 +107,10 @@ function List(props) {
 
 export { List }
 
-function addNoteBtnHandler(e, listid,{ addNoteBtn, setAddNoteBtn }) {
+
+
+
+function addNoteBtnHandler(e, listid, { addNoteBtn, setAddNoteBtn }) {
   addNoteBtn.length === 0 ? setAddNoteBtn(listid) : setAddNoteBtn('')
 }
 
@@ -119,18 +124,27 @@ function settingsBtnHandler(listid) {
     el.classList.add('hide')
   }
 
-  //   setTimeout(() => {
-  //     el.classList.remove('show')
-  //     el.classList.add('hide')
-  //   }, 7000)
+  // deleteBtnHandler(null, listid)
+  // setTimeout(() => {
+  //   el.classList.remove('show')
+  //   el.classList.add('hide')
+  // }, 7000)
 }
 
-function editBtnHandler(e, listid, setTitle) {
+function editBtnHandler(e, listid, setTitle, from) {
   const listTitle = document.getElementById(listid).querySelector('.title')
   setTitle(listTitle.value)
   listTitle.readOnly
     ? (listTitle.readOnly = false)
     : (listTitle.readOnly = true)
+
+  const title = document.getElementById(listid).querySelector('.title')
+  title.classList.contains('titleInputReady')
+    ? title.classList.remove('titleInputReady')
+    : title.classList.add('titleInputReady')
+  if (from !== 'update') {
+    settingsBtnHandler(listid)
+  }
 }
 
 function deleteBtnHandler(e, listid) {
@@ -142,6 +156,10 @@ function deleteBtnHandler(e, listid) {
     el.classList.add('hideDelW')
     el.classList.remove('showDelW')
   }
+  setTimeout(() => {
+    el.classList.remove('showDelW')
+    el.classList.add('hideDelW')
+  }, 2000)
 }
 function cancelBtnHandler(e, listid) {
   const el = document.getElementById(listid).querySelector('.delConfirmWindow')
@@ -153,3 +171,6 @@ function cancelBtnHandler(e, listid) {
     el.classList.remove('showDelW')
   }
 }
+
+
+

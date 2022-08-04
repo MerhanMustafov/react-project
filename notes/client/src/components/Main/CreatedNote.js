@@ -150,6 +150,11 @@ function deleteBtnHandler(e, noteid) {
     el.classList.add('hideNoteDelW')
     el.classList.remove('showNoteDelW')
   }
+
+  setTimeout(() => {
+    el.classList.add('hideNoteDelW')
+    el.classList.remove('showNoteDelW')
+  }, 2500)
 }
 
 function cancelBtnHandler(e, noteid) {
