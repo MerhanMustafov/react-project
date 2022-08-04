@@ -11,9 +11,9 @@
   padding: 20px;
   margin-bottom: 10px;
   /* border: 3px solid green; */
-  border-radius: 30px;
+  border-radius: 10px;
   /* background: rgb(189, 208, 212); */
-    background-image: url(../../../../public/images/dashboard-view-img.jpg);
+    background-image: url(../../../../public/images/wallpaperflarNeonCircle.jpg);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,13 +28,13 @@
   justify-content: space-between;
   width: 85%;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.658);
   font-size: 27px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 5px 0 30px 0;
+  margin: 0px 0 20px 0;
   padding: 0 0 0 15px;
 }
 .titleInputReady {
@@ -84,10 +84,15 @@
 .listWrapper main {
   overflow-y: auto;
   min-height: max-content;
-  max-height: 700px;
+  max-height: 250px;
+  border-top: 2px solid rgb(156, 156, 156);
+  border-bottom: 2px solid rgb(156, 156, 156);
+  /* border-top: 3px solid rgba(255, 0, 0, 0.452); */
+  /* border-bottom: 3px solid rgba(255, 0, 0, 0.452); */
+
 }
 .listWrapper main::-webkit-scrollbar {
-  width: 15px;
+  width: 11px;
 }
 .listWrapper main::-webkit-scrollbar-track {
   background-color: transparent;
@@ -101,25 +106,24 @@
   display: block;
   font-family: Kanit, 'Courier New', Courier, monospace;
   font-weight: 600;
-  font-size: 25px;
-  margin: 55px 0 5px 0;
-  padding: 4px 15px;
+  font-size: 20px;
+  margin: 45px 0 5px 0;
   color: black;
-  /* color: rgba(255, 255, 255, 0.836); */
   background: rgba(255, 255, 255, 0.664);
-  /* background: green; */
-  border-radius: 20px;
-  width: 70%;
+  border-radius: 10px;
+  width: 87%;
   border: none;
 }
 
 .delConfirmWindow {
   visibility: hidden;
-  border: 3px solid orange;
+  /* border: 3px solid orange; */
+  font-size: 20px;
+
   position: absolute;
   color: white;
   top: 27px;
-  right: 60px;
+  right: 20px;
   text-align: center;
   background: black;
   overflow: hidden;
@@ -136,7 +140,7 @@
   visibility: visible;
   width: 200px;
   height: 75px;
-  /* transition: width ease-in-out 1s, height ease-in-out 1s, visibility 1s; */
+  transition: width ease-in-out 0.7s, height ease-in-out 0.7s, visibility 1s;
   z-index: 9;
 }
 .btnsWrapper {
@@ -145,4 +149,15 @@
   margin: 20px auto 0 auto;
   border: 3px solid black;
   z-index: 5;
+}
+
+.delete{
+    background: rgba(255, 0, 0, 0.61);
+    padding: 3px;
+    color: white;
+}
+.cancel{
+    background: rgba(9, 255, 0, 0.61);
+    padding: 3px;
+    color: white;
 }

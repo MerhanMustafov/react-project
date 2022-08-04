@@ -156,10 +156,10 @@ function deleteBtnHandler(e, listid) {
     el.classList.add('hideDelW')
     el.classList.remove('showDelW')
   }
-  setTimeout(() => {
-    el.classList.remove('showDelW')
-    el.classList.add('hideDelW')
-  }, 2000)
+//   setTimeout(() => {
+//     el.classList.remove('showDelW')
+//     el.classList.add('hideDelW')
+//   }, 4000)
 }
 function cancelBtnHandler(e, listid) {
   const el = document.getElementById(listid).querySelector('.delConfirmWindow')

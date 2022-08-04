@@ -33,7 +33,7 @@ route.delete(`/delete/noteid=:noteid/listid=:listid`, async (req, res) => {
         res.status(200).json(deleted)
 
     }catch(err){
-        res.status('404').json(err.message)
+        res.status(404).json(err.message)
     }
 })
 module.exports = route

@@ -103,6 +103,7 @@ function CreatedNote(props) {
           <div className="listNoteDelBtn">
             <i
               className="fa-solid fa-xmark"
+              title="delete single note"
               onClick={(e) => deleteBtnHandler(e, noteid)}
             ></i>
           </div>
@@ -151,10 +152,10 @@ function deleteBtnHandler(e, noteid) {
     el.classList.remove('showNoteDelW')
   }
 
-  setTimeout(() => {
-    el.classList.add('hideNoteDelW')
-    el.classList.remove('showNoteDelW')
-  }, 2500)
+//   setTimeout(() => {
+//     el.classList.add('hideNoteDelW')
+//     el.classList.remove('showNoteDelW')
+//   }, 4000)
 }
 
 function cancelBtnHandler(e, noteid) {
