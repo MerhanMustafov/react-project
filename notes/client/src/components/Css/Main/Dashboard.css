@@ -1,8 +1,9 @@
 .dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
-    /* height: 100vh; */
-    min-height: 1000px;
+    height: 100%;
+    /* min-height: 1000px; */
+
     position: relative;
 }
 .searchBoxWrapper{
@@ -62,18 +63,24 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 900px;
-    /* height: 500px; */
+    width: 50%;
+    height: 70%;
     z-index: 5;
+    opacity: 0.9;
+    border-radius: 10px ;
+    border: 3px solid rgba(128, 0, 0, 0.815);
 }
 .noteT{
 
-    background: rgb(131, 91, 4);
+    background: rgb(131, 4, 4);
     /* background: transparent; */
     height: 40px;
     font-size: 30px;
     padding-left: 15px;
     color: white;
+    border-radius: inherit;
+    width: auto;
+    border: none;
 }
 .noteT::placeholder{
     color: rgba(255, 255, 255, 0.555);
@@ -81,13 +88,15 @@
 }
 #noteC{
     /* background: transparent; */
-
+border-radius: inherit;
     font-size: 25px;
     padding: 35px;
-    /* width: 100%; */
-    height: 500px;
+    width: auto;
+    height: 100%;
     resize: none;
+    border: none;
     outline: none;
+    /* position: fixed; */
 
     /* z-index: 5; */
 }
@@ -131,8 +140,9 @@
 }
 .fa-xmark{
     position: absolute;
-    right: 5px;
-    font-size: 30px;
+    top: 2px;
+    right: 10px;
+    font-size: 27px;
 }
 .fa-pen-to-square{
     position: absolute;
@@ -142,7 +152,7 @@
 }
 .fa-floppy-disk{
     position: absolute;
-    right: 5px;
+    right: 10px;
     bottom: 10px;
     font-size: 30px;
 }
