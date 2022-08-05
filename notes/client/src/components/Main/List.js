@@ -44,10 +44,7 @@ function List(props) {
     }
   }
 
-  UseResizeObserverCallback(listWrapper, (entries) => {
-    // console.log(entry)
-    // sizeHandler(entries)
-  })
+
 
   return (
     <div className="expandBackground">
@@ -207,11 +204,3 @@ function expandList(e, listid) {
     listWrapper.querySelector('main').classList.remove('expandMain')
   }
 }
-// function sizeHandler(entries) {
-//   const box = entries.target
-//   console.log(entries.contentRect)
-//   if (entries.contentRect.width > 305) {
-//     box.classList.remove('notSpanBox')
-//     box.classList.add('spanBox')
-//   }
-// }

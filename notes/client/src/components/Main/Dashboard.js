@@ -11,6 +11,7 @@ function Dashboard() {
   const [listname, setListName] = useState('')
   const [image, setImage] = useState()
   const [arrayOfLists, setArrayOfLists] = useState([])
+  const [waitingData, setWaitingData] = useState(false)
 
   useEffect(() => {
     async function getLists() {

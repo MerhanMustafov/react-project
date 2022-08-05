@@ -31,7 +31,7 @@ function Note(props) {
             setIsSaved(false)
             setAddNoteBtn('')
             props.setRefresh(true)
-          }, 2100)
+          }, 5100)
         } catch (err) {
           setError(err.message)
           setTimeout(() => {
@@ -45,7 +45,8 @@ function Note(props) {
   return (
     <div>
       {isSaved ? (
-        <div className="successfullySaved">Saved</div>
+        // <div className="successfullySaved">Saved</div>
+        <div className="spinner">Saved</div>
       ) : (
         <div className="onPopUpBackground">
           <div className="noteW" id={addNoteBtn}>
