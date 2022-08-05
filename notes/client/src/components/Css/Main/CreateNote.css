@@ -1,45 +1,43 @@
 .listWrapper main .listNoteWrapper {
-  margin: 5px auto 30px auto;
-  background: rgba(255, 255, 255, 0.226);
-  border-radius: 10px;
-  border:none; 
-  width: auto;
+  margin: 1px 0 50px 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  border: none;
+  width: 85%;
   height: 35px;
-  /* font-size: 2px; */
   display: flex;
   position: relative;
-  /* border: 2px solid rgba(255,255,255, 0.3); */
-  border: 3px solid rgba(0, 0, 0, 0);
-  /* border: 7px solid linear-gradient(to right, red, blue); */
-  
+  border: none;
 }
 
-
 .listNoteTitle {
-    font-family: Kanit ;
-    font-weight: 400;
+  font-family: Kanit;
+  font-weight: 500;
+  letter-spacing: 2px;
   width: 80%;
-  border: 1px solid rgb(0, 0, 0);
-  background: rgb(8, 8, 8);
+  border: none;
   border-radius: inherit;
-  padding: 2px 0  0 15px ;
+  background: rgb(0, 0, 0, 0.9);
+  padding: 2px 0 0 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 25px;
-  color: rgba(255, 255, 255, 0.753);
+  color: rgba(255, 255, 255);
 
   transition: font-size, 2s;
 }
-.listNoteTitle:hover{
-    font-size: 31px;
+.listNoteTitle:hover {
+  font-size: 31px;
 }
 .listNoteDelBtn .fa-xmark {
   position: absolute;
-  font-size: 20px;
+  font-size: 17px;
   top: 10px;
-  right: 15px;
-  color: rgba(255, 255, 255, 0.747);
+  right: 5px;
+  /* color: rgba(255, 255, 255, 0.747); */
+  color: rgba(0, 0, 0);
+  /* color: rgb(255, 0, 0); */
 }
 
 .noteDelConfWindow {
@@ -70,13 +68,13 @@
   display: flex;
 }
 
-.delBtn{
-    background: rgba(255, 0, 0, 0.61);
-    padding: 3px;
-    color: white;
+.delBtn {
+  background: rgba(255, 0, 0, 0.61);
+  padding: 3px;
+  color: white;
 }
-.cancelBtn{
-    background: rgba(9, 255, 0, 0.61);
-    padding: 3px;
-    color: white;
+.cancelBtn {
+  background: rgba(9, 255, 0, 0.61);
+  padding: 3px;
+  color: white;
 }
