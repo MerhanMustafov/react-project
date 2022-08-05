@@ -28,15 +28,7 @@ async function deleteNoteRecord(noteid, listid){
     list.notes = modified
     list.save()
     await Note.findByIdAndDelete(noteid)
-    console.log(list.notes)
-    console.log('server', list.notes[0].toString() !== noteid)
 
-    // await Note.findByIdAndDelete(noteid)
-    // for (let i = 0; i < list.notes.length; i++){
-    //     if(list.notes[i].toString() === noteid){
-    //         await Note.findByIdAndDelete(noteid)
-    //     }
-    // }
 }
 
 module.exports = { createNoteRecord, updateNoteRecord, deleteNoteRecord }

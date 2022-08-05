@@ -1,6 +1,6 @@
-import './Components/Css/Global.css'
-import { Header } from './Components/Header/Header'
-import { Main } from './Components/Main/Main.js'
+import './components/Css/Global.css'
+import { Header } from './components/header/Header.js'
+import { Main } from './components/Main/Main.js'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
