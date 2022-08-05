@@ -1,5 +1,5 @@
 .listWrapper main .listNoteWrapper {
-  margin: 5px auto 20px auto;
+  margin: 5px auto 30px auto;
   background: rgba(255, 255, 255, 0.226);
   border-radius: 10px;
   border:none; 
@@ -14,9 +14,10 @@
   
 }
 
+
 .listNoteTitle {
     font-family: Kanit ;
-    font-weight: 100;
+    font-weight: 400;
   width: 80%;
   border: 1px solid rgb(0, 0, 0);
   background: rgb(8, 8, 8);
@@ -27,8 +28,12 @@
   white-space: nowrap;
   font-size: 25px;
   color: rgba(255, 255, 255, 0.753);
-}
 
+  transition: font-size, 2s;
+}
+.listNoteTitle:hover{
+    font-size: 31px;
+}
 .listNoteDelBtn .fa-xmark {
   position: absolute;
   font-size: 20px;

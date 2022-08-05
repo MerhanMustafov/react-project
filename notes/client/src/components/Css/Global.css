@@ -16,6 +16,7 @@
 
 body {
   min-width: max-content;
+  background: rgba(42, 42, 54);
 }
 .App {
   background: rgba(42, 42, 54, 0.8);

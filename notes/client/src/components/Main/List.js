@@ -1,6 +1,7 @@
+import { useState, useEffect, useRef } from 'react'
+import UseResizeObserverCallback from '@react-hook/resize-observer'
 import { Note } from './Note'
 import { CreatedNote } from './CreatedNote'
-import { useState, useEffect } from 'react'
 
 import { updateListTitle, deleteList } from '../../Api/noteService'
 
@@ -10,12 +11,18 @@ function List(props) {
   const { setRefresh } = props
   let listid = props._id
   let image = props.listimg
-
+  const listWrapper = useRef(null)
   const [title, setTitle] = useState()
 
-    useEffect(() => {
-        document.getElementById(listid).style.backgroundImage = `url(${image})`
-    }, [])
+  const [expand, setExpand] = useState(false)
+
+  //   const [boxSpan, setBoxSpan] = useState(false)
+
+  useEffect(() => {
+    if (image) {
+      document.getElementById(listid).style.backgroundImage = `url(${image})`
+    }
+  }, [])
 
   async function requestHandler(e, to) {
     if (to === `/list/update/${listid}`) {
@@ -37,84 +44,94 @@ function List(props) {
     }
   }
 
+  UseResizeObserverCallback(listWrapper, (entries) => {
+    // console.log(entry)
+    // sizeHandler(entries)
+  })
+
   return (
-    <div className="listWrapper" id={listid} >
-      <header>
-        <input
-          className="title"
-          name="listname"
-          defaultValue={props.listname}
-          readOnly={true}
-          onChange={(e) => setTitle(e.target.value)}
-          onKeyDown={(e) => requestHandler(e, `/list/update/${listid}`)}
-        />
-        <div className="options">
-          <div className="settings hide">
-            <i
-              className="fa-solid fa-pen"
-              title="edit list title"
-              onClick={(e) => editBtnHandler(e, listid, setTitle)}
-            ></i>
-            <i
-              className="fa-solid fa-trash"
-              title="delete whole list"
-              onClick={(e) => deleteBtnHandler(e, listid)}
-            ></i>
-            <div className="delConfirmWindow hideDelW">
-              Are you sure ?
-              <div className="btnsWrapper">
-                <button
-                  className="cancel"
-                  onClick={(e) => {
-                    cancelBtnHandler(e, listid)
-                  }}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="delete"
-                  onClick={(e) => requestHandler(e, `/list/delete/${listid}`)}
-                >
-                  Delete
-                </button>
+    <div className="expandBackground">
+      <div className="listWrapper" id={listid} ref={listWrapper}>
+        <div className="listInnerWrapper">
+        <i
+          className="fa-solid fa-arrows-left-right expandListBtn"
+          onClick={(e) => expandList(e, listid)}
+        ></i>
+        <header>
+          <input
+            className="title"
+            name="listname"
+            defaultValue={props.listname}
+            readOnly={true}
+            onChange={(e) => setTitle(e.target.value)}
+            onKeyDown={(e) => requestHandler(e, `/list/update/${listid}`)}
+          />
+          <div className="options">
+            <div className="settings hide">
+              <i
+                className="fa-solid fa-pen"
+                title="edit list title"
+                onClick={(e) => editBtnHandler(e, listid, setTitle)}
+              ></i>
+              <i
+                className="fa-solid fa-trash"
+                title="delete whole list"
+                onClick={(e) => deleteBtnHandler(e, listid)}
+              ></i>
+              <div className="delConfirmWindow hideDelW">
+                Are you sure ?
+                <div className="btnsWrapper">
+                  <button
+                    className="cancel"
+                    onClick={(e) => {
+                      cancelBtnHandler(e, listid)
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="delete"
+                    onClick={(e) => requestHandler(e, `/list/delete/${listid}`)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
+            <i
+              className="fa-solid fa-gear"
+              title="settings"
+              onClick={(e) => settingsBtnHandler(listid)}
+            ></i>
           </div>
-          <i
-            className="fa-solid fa-gear"
-            title="settings"
-            onClick={(e) => settingsBtnHandler(listid)}
-          ></i>
+        </header>
+        <main>
+          {props.notes.length > 0
+            ? props.notes.map((noteData) => (
+                <CreatedNote
+                  key={++key}
+                  setRefresh={setRefresh}
+                  setAddNoteBtn={setAddNoteBtn}
+                  noteData={noteData}
+                />
+              ))
+            : null}
+        </main>
+        <footer>
+          <button
+            className="add"
+            onClick={(e) => addNoteBtnHandler(e, listid, props.note)}
+          >
+            Add Note
+          </button>
+        </footer>
         </div>
-      </header>
-      <main>
-        {props.notes.length > 0
-          ? props.notes.map((noteData) => (
-              <CreatedNote
-                key={++key}
-                setRefresh={setRefresh}
-                setAddNoteBtn={setAddNoteBtn}
-                noteData={noteData}
-              />
-            ))
-          : null}
-      </main>
-      <footer>
-        <button
-          className="add"
-          onClick={(e) => addNoteBtnHandler(e, listid, props.note)}
-        >
-          Add Note
-        </button>
-      </footer>
+      </div>
     </div>
   )
 }
 
 export { List }
-
-
-
 
 function addNoteBtnHandler(e, listid, { addNoteBtn, setAddNoteBtn }) {
   addNoteBtn.length === 0 ? setAddNoteBtn(listid) : setAddNoteBtn('')
@@ -162,10 +179,10 @@ function deleteBtnHandler(e, listid) {
     el.classList.add('hideDelW')
     el.classList.remove('showDelW')
   }
-//   setTimeout(() => {
-//     el.classList.remove('showDelW')
-//     el.classList.add('hideDelW')
-//   }, 4000)
+  //   setTimeout(() => {
+  //     el.classList.remove('showDelW')
+  //     el.classList.add('hideDelW')
+  //   }, 4000)
 }
 function cancelBtnHandler(e, listid) {
   const el = document.getElementById(listid).querySelector('.delConfirmWindow')
@@ -178,5 +195,23 @@ function cancelBtnHandler(e, listid) {
   }
 }
 
-
-
+function expandList(e, listid) {
+  const listWrapper = document.getElementById(listid)
+  if (!listWrapper.classList.contains('expand')) {
+    listWrapper.classList.add('expand')
+    listWrapper.parentElement.classList.add('expandBackgroundOn')
+    listWrapper.querySelector('main').classList.add('expandMain')
+  } else {
+    listWrapper.classList.remove('expand')
+    listWrapper.parentElement.classList.remove('expandBackgroundOn')
+    listWrapper.querySelector('main').classList.remove('expandMain')
+  }
+}
+// function sizeHandler(entries) {
+//   const box = entries.target
+//   console.log(entries.contentRect)
+//   if (entries.contentRect.width > 305) {
+//     box.classList.remove('notSpanBox')
+//     box.classList.add('spanBox')
+//   }
+// }
