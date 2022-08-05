@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { createListRecord, getAllLists } from '../../Api/noteService'
 import { List } from './List'
 import { Note } from './Note'
-
+import { Spinner } from './Spinner/Spinner'
 function Dashboard() {
   let key = 165156
   const [refresh, setRefresh] = useState(false)
@@ -15,27 +15,32 @@ function Dashboard() {
 
   useEffect(() => {
     async function getLists() {
+    //   setWaitingData(true)
       const userId = localStorage.getItem('userId')
       const lists = await getAllLists(userId)
       setArrayOfLists(lists)
       setListName('')
+        setRefresh(false)
+
     }
     getLists()
-    setRefresh(false)
   }, [refresh === true])
 
   async function requestHandler(e, to) {
     if (to === '/list/create') {
       const ownerid = localStorage.getItem('userId')
-      const listData = await createListRecord({listimg: image, listname: listname.trim(), notes: [], ownerid })
+      const listData = await createListRecord({
+        listimg: image,
+        listname: listname.trim(),
+        notes: [],
+        ownerid,
+      })
       setRefresh(true)
     }
   }
 
-  
-
   return (
-    <div className="dashboardWrapper" >
+    <div className="dashboardWrapper">
       <div className="searchBoxWrapper">
         <i
           className="fa-solid fa-magnifying-glass"
@@ -50,8 +55,13 @@ function Dashboard() {
           onKeyDown={(e) => searchBoxHandler(e)}
         />
       </div>
+
       {addNoteBtn.length > 0 ? (
-        <Note setRefresh={setRefresh} noteBtn={{ setAddNoteBtn, addNoteBtn }} />
+        <Note
+          setRefresh={setRefresh}
+          noteBtn={{ setAddNoteBtn, addNoteBtn }}
+          setWaitingData={setWaitingData}
+        />
       ) : null}
       <button
         className="addList"
@@ -68,18 +78,27 @@ function Dashboard() {
         onChange={(e) => setListName(e.target.value)}
       />
 
-      <input type="file" id="uploadimg" name="uploadimg" onChange={(e) => uploadImgHandler(e, setImage)}/>
+      <input
+        type="file"
+        id="uploadimg"
+        name="uploadimg"
+        onChange={(e) => uploadImgHandler(e, setImage)}
+      />
 
-      <div className="listsWrapper">
-        {arrayOfLists.map((listData) => (
-          <List
-            key={listData._id}
-            setRefresh={setRefresh}
-            {...listData}
-            note={{ addNoteBtn, setAddNoteBtn }}
-          />
-        ))}
-      </div>
+      {waitingData ? (
+        <Spinner />
+      ) : (
+        <div className="listsWrapper">
+          {arrayOfLists.map((listData) => (
+            <List
+              key={listData._id}
+              setRefresh={setRefresh}
+              {...listData}
+              note={{ addNoteBtn, setAddNoteBtn }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -95,13 +114,11 @@ function searchBoxHandler(e) {
   }
 }
 
-
-function uploadImgHandler(e, setImage){
-    const reader = new FileReader()
-    reader.addEventListener('load', (e) => {
-        const url = reader.result
-        setImage(url)
-    })
-    reader.readAsDataURL(e.target.files[0])
-  }
-
+function uploadImgHandler(e, setImage) {
+  const reader = new FileReader()
+  reader.addEventListener('load', (e) => {
+    const url = reader.result
+    setImage(url)
+  })
+  reader.readAsDataURL(e.target.files[0])
+}

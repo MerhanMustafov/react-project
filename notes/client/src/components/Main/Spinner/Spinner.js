@@ -5,3 +5,5 @@ function Spinner(){
         <div className="spinner"></div>
     );
 }
+
+export {Spinner}

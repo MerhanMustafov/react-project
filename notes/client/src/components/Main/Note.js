@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { createNoteRecord } from '../../Api/noteService'
 function Note(props) {
+  const [refreshList, seRefreshList] = useState(false)
   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
+  const {setWaitingData} = props
   const [error, setError] = useState('')
   const [isSaved, setIsSaved] = useState(false)
   const [text, setText] = useState('')
@@ -20,18 +22,19 @@ function Note(props) {
         }, 5000)
       } else {
         try {
+            // setWaitingData(true)
           const noteData = {
             text: text.trim(),
             listid: addNoteBtn,
             title: title.trim(),
           }
           await createNoteRecord(noteData)
-          setIsSaved(true)
-          setTimeout(() => {
-            setIsSaved(false)
             setAddNoteBtn('')
             props.setRefresh(true)
-          }, 5100)
+        //   setTimeout(() => {
+            // seRefreshList(true)
+            // setWaitingData(false)
+        //   }, 1500)
         } catch (err) {
           setError(err.message)
           setTimeout(() => {
