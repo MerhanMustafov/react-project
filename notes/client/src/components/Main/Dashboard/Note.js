@@ -1,15 +1,22 @@
 import { useState } from 'react'
 import { createNoteRecord } from '../../../Api/noteService'
 function Note(props) {
-  const [refreshList, seRefreshList] = useState(false)
-  const { addNoteBtn, setAddNoteBtn } = props.noteBtn
-  const {setWaitingData} = props
+//   const {setWaitingData} = props
+//   const { setrefreshNotesList } = props
+//   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
+//   const [isSaved, setIsSaved] = useState(false)
+const {listid} = props
+const {setAddNoteBtnClicked} = props
+const {setSpinnerNotes} = props
+const {setLstId} = props
+const {setRefreshList} = props
   const [error, setError] = useState('')
-  const [isSaved, setIsSaved] = useState(false)
   const [text, setText] = useState('')
   const [title, setTitle] = useState('')
 
+
   async function requestHandler(e, to) {
+    setSpinnerNotes(true)
     if (to === '/note/create') {
       if (
         (text.length === 0 && title.length === 0) ||
@@ -22,19 +29,16 @@ function Note(props) {
         }, 5000)
       } else {
         try {
-            // setWaitingData(true)
           const noteData = {
             text: text.trim(),
-            listid: addNoteBtn,
+            listid: listid,
             title: title.trim(),
           }
-          await createNoteRecord(noteData)
-            setAddNoteBtn('')
-            props.setRefresh(true)
-        //   setTimeout(() => {
-            // seRefreshList(true)
-            // setWaitingData(false)
-        //   }, 1500)
+          const note =  await createNoteRecord(noteData)
+          setAddNoteBtnClicked(false)
+          setLstId(note.listid)
+          setRefreshList(true)
+          
         } catch (err) {
           setError(err.message)
           setTimeout(() => {
@@ -47,41 +51,41 @@ function Note(props) {
 
   return (
     <div>
-      {isSaved ? (
-        // <div className="successfullySaved">Saved</div>
+      {/* {isSaved ? ( */}
+      {/* // <div className="successfullySaved">Saved</div>
         <div className="spinner">Saved</div>
-      ) : (
-        <div className="onPopUpBackground">
-          <div className="noteW" id={addNoteBtn}>
-            {error.length > 0 ? <div className="noteError">{error}</div> : null}
-            <input
-              type="text"
-              className="noteT"
-              name="noteTitle"
-              placeholder="note title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-              name="noteC"
-              id="noteC"
-              cols="30"
-              rows="10"
-              onChange={(e) => setText(e.target.value)}
-            ></textarea>
-            <i
-              className="fa-solid fa-xmark"
-              title="close"
-              onClick={() => closeBtnHandler(setAddNoteBtn)}
-            ></i>
+      ) : ( */}
+      <div className="onPopUpBackground">
+        <div className="noteW" id={listid}>
+          {error.length > 0 ? <div className="noteError">{error}</div> : null}
+          <input
+            type="text"
+            className="noteT"
+            name="noteTitle"
+            placeholder="note title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            name="noteC"
+            id="noteC"
+            cols="30"
+            rows="10"
+            onChange={(e) => setText(e.target.value)}
+          ></textarea>
+          <i
+            className="fa-solid fa-xmark"
+            title="close"
+            onClick={() => closeBtnHandler(setAddNoteBtnClicked)}
+          ></i>
 
-            <i
-              className="fa-regular fa-floppy-disk"
-              title="save"
-              onClick={(e) => requestHandler(e, '/note/create')}
-            ></i>
-          </div>
+          <i
+            className="fa-regular fa-floppy-disk"
+            title="save"
+            onClick={(e) => requestHandler(e, '/note/create')}
+          ></i>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   )
 }
@@ -89,5 +93,5 @@ function Note(props) {
 export { Note }
 
 function closeBtnHandler(setBtn) {
-  setBtn('')
+  setBtn(false)
 }

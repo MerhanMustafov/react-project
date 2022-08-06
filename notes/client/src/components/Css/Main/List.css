@@ -63,6 +63,7 @@
   margin: 0 auto;
 }
 .listInnerWrapper {
+    
   display: flex;
   flex-direction: column;
   /* width: 70%; */
@@ -79,13 +80,15 @@
   border-bottom: 2px solid rgb(156, 156, 156);
 }
 .listWrapper main {
-  overflow-y: auto;
+  overflow: auto;
   min-height: 50px;
-  max-height: 400px;
+  max-height: 310px;
   border-top: 2px solid rgb(156, 156, 156);
   border-bottom: 2px solid rgb(156, 156, 156);
 }
-
+.listsWrapper main div{
+    /* position: relative; */
+}
 .expandListBtn {
   position: absolute;
   top: 5px;

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { createListRecord, getAllLists } from '../../../Api/noteService'
 import { List } from './List'
-import { Note } from './Note'
 import { Spinner } from '../Spinner/Spinner'
+
+
 function Dashboard() {
   let key = 165156
   const [refresh, setRefresh] = useState(false)
@@ -15,12 +16,13 @@ function Dashboard() {
 
   useEffect(() => {
     async function getLists() {
-    //   setWaitingData(true)
+      setWaitingData(true)
       const userId = localStorage.getItem('userId')
       const lists = await getAllLists(userId)
       setArrayOfLists(lists)
       setListName('')
         setRefresh(false)
+        setWaitingData(false)
 
     }
     getLists()
@@ -56,13 +58,7 @@ function Dashboard() {
         />
       </div>
 
-      {addNoteBtn.length > 0 ? (
-        <Note
-          setRefresh={setRefresh}
-          noteBtn={{ setAddNoteBtn, addNoteBtn }}
-          setWaitingData={setWaitingData}
-        />
-      ) : null}
+     
       <button
         className="addList"
         disabled={true ? listname.length === 0 : false}
@@ -94,7 +90,6 @@ function Dashboard() {
               key={listData._id}
               setRefresh={setRefresh}
               {...listData}
-              note={{ addNoteBtn, setAddNoteBtn }}
             />
           ))}
         </div>

@@ -16,6 +16,11 @@ async function createNoteRecord(noteData) {
   }
 }
 
+async function getAllNoteRecords(listid){
+    const notes = await Note.find({listid: listid})
+    return notes
+}
+
 async function updateNoteRecord(newData, noteId) {
   const note = await Note.findOneAndUpdate({ _id: noteId }, newData)
 }
@@ -28,7 +33,8 @@ async function deleteNoteRecord(noteid, listid){
     list.notes = modified
     list.save()
     await Note.findByIdAndDelete(noteid)
+    return list
 
 }
 
-module.exports = { createNoteRecord, updateNoteRecord, deleteNoteRecord }
+module.exports = { createNoteRecord, updateNoteRecord, deleteNoteRecord, getAllNoteRecords }
