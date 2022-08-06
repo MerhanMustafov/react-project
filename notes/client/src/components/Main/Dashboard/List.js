@@ -3,7 +3,7 @@ import UseResizeObserverCallback from '@react-hook/resize-observer'
 import { Note } from './Note'
 import { CreatedNote } from './CreatedNote'
 
-import { updateListTitle, deleteList } from '../../Api/noteService'
+import { updateListTitle, deleteList } from '../../../Api/noteService'
 
 function List(props) {
   let key = 654

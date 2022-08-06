@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createNoteRecord } from '../../Api/noteService'
+import { createNoteRecord } from '../../../Api/noteService'
 function Note(props) {
   const [refreshList, seRefreshList] = useState(false)
   const { addNoteBtn, setAddNoteBtn } = props.noteBtn

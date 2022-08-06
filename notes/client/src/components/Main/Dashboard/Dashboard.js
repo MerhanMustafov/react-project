@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { createListRecord, getAllLists } from '../../Api/noteService'
+import { createListRecord, getAllLists } from '../../../Api/noteService'
 import { List } from './List'
 import { Note } from './Note'
-import { Spinner } from './Spinner/Spinner'
+import { Spinner } from '../Spinner/Spinner'
 function Dashboard() {
   let key = 165156
   const [refresh, setRefresh] = useState(false)
