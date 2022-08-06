@@ -4,7 +4,7 @@ import { Login } from './User/Login'
 import { Logout } from './User/Logout'
 import { Register } from './User/Register.js'
 
-import { Dashboard } from '../Main/Dashboard'
+import { Dashboard } from './Dashboard/Dashboard'
 import { Home } from '../Main/Home'
 import { NotFound } from '../Main/NotFound'
 

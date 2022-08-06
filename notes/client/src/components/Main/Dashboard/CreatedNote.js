@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { updateNoteRecord, deleteNote } from '../../Api/noteService'
+import { updateNoteRecord, deleteNote } from '../../../Api/noteService'
 function CreatedNote(props) {
   const { setAddNoteBtn, setRefresh } = props
   const noteid = props.noteData._id
