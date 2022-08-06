@@ -1,24 +1,23 @@
 import { Routes, Route } from 'react-router-dom'
-import { Login } from './Login'
-import { Logout } from './Logout'
-import { Register } from '../Main/Register.js'
-import { Create } from '../Main/Create'
-import { MyNotes } from '../Main/MyNotes'
+
+import { Login } from './User/Login'
+import { Logout } from './User/Logout'
+import { Register } from './User/Register.js'
+
 import { Dashboard } from '../Main/Dashboard'
 import { Home } from '../Main/Home'
 import { NotFound } from '../Main/NotFound'
 
 function Main({ userStatus, setUserStatus }) {
   const isUser = userStatus?.length > 0
+  
   return (
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
         {isUser ? (
           <>
-            <Route path="/myNotes" element={<MyNotes />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/create" element={<Create />} />
             <Route
               path="/logout"
               element={<Logout setUserStatus={setUserStatus} />}

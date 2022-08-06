@@ -1,4 +1,4 @@
-import * as api from '../../Api/userService'
+import * as api from '../../../Api/userService'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 function Register({setUserStatus}) {

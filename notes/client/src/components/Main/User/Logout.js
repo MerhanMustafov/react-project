@@ -1,4 +1,4 @@
-import * as userService from '../../Api/userService'
+import * as userService from '../../../Api/userService'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 function Logout({ setUserStatus }) {
