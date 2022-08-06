@@ -6,21 +6,21 @@ import {
   updateListTitle,
   deleteList,
   getOneList,
+  getAllLists
 } from '../../../Api/noteService'
 
 import { SpinnerNOtesList } from '../Spinner/Spinner'
 
 function List(props) {
   let key = 654
+  const [refreshList, setRefreshList] = useState(false)
   const [addNoteBtnClicked, setAddNoteBtnClicked] = useState(false)
   const [spinnerNotes, setSpinnerNotes] = useState(false)
-  const [refreshList, setRefreshList] = useState(false)
   const [lstId, setLstId] = useState(null)
   const [lists, setLists] = useState([])
   const { setRefresh } = props
   let listid = props._id
   let image = props.listimg
-  const listWrapper = useRef(null)
   const [title, setTitle] = useState()
 
   useEffect(() => {
@@ -30,22 +30,22 @@ function List(props) {
         const singleList = await getOneList(lstId)
         data = singleList[0].notes
       } else {
+        // const userId = localStorage.getItem('userId')
+        // const lists = await getAllLists(userId)
         data = props.notes
       }
       if (image) {
         document.getElementById(listid).style.backgroundImage = `url(${image})`
       }
       setLists(data)
+      setLstId(listid)
+      setSpinnerNotes(false)
+      setRefreshList(false)
     }
     update()
-    setTimeout(() => {
-        setSpinnerNotes(false)
-    }, 1000)
-
-
-    setRefreshList(false)
-  }, [refreshList == true])
-
+    // setTimeout(() => {
+    // }, 1000)
+  }, [refreshList])
 
   async function requestHandler(e, to) {
     if (to === `/list/update/${listid}`) {
@@ -58,18 +58,16 @@ function List(props) {
             .getElementById(listid)
             .querySelector('.title')
             .classList.remove('titleInputReady')
-        //   setRefresh(true)
-        setRefreshList(true)
+          //   setRefresh(true)
+          setRefreshList(true)
         }
       }
     } else if (to === `/list/delete/${listid}`) {
       await deleteList(listid)
-      setRefresh(true)
+      //   setRefresh(true)
+      setRefreshList(true)
     }
   }
-
-
-    
 
   return (
     <div className="expandBackground">
@@ -82,7 +80,7 @@ function List(props) {
           setLstId={setLstId}
         />
       ) : null}
-      <div className="listWrapper" id={listid} ref={listWrapper}>
+      <div className="listWrapper" id={listid}>
         <div className="listInnerWrapper">
           <i
             className="fa-solid fa-arrows-left-right expandListBtn"
@@ -138,19 +136,16 @@ function List(props) {
               ></i>
             </div>
           </header>
-          <main className="scrollMain" >
-            
+          <main className="scrollMain">
             {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null}
             {lists.length > 0
               ? lists.map((noteData) => (
-                
                   <CreatedNote
                     key={++key}
                     setRefresh={setRefresh}
                     setRefreshList={setRefreshList}
                     spinnerNotes={spinnerNotes}
                     noteData={noteData}
-                    
                   />
                 ))
               : null}
@@ -188,7 +183,6 @@ function settingsBtnHandler(listid) {
     el.classList.remove('show')
     el.classList.add('hide')
   }
-
 }
 
 function editBtnHandler(e, listid, setTitle, from) {

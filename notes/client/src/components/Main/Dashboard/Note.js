@@ -1,22 +1,20 @@
 import { useState } from 'react'
 import { createNoteRecord } from '../../../Api/noteService'
 function Note(props) {
-//   const {setWaitingData} = props
-//   const { setrefreshNotesList } = props
-//   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
-//   const [isSaved, setIsSaved] = useState(false)
-const {listid} = props
-const {setAddNoteBtnClicked} = props
-const {setSpinnerNotes} = props
-const {setLstId} = props
-const {setRefreshList} = props
+  //   const {setWaitingData} = props
+  //   const { setrefreshNotesList } = props
+  //   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
+  //   const [isSaved, setIsSaved] = useState(false)
+  const { listid } = props
+  const { setAddNoteBtnClicked } = props
+  const { setSpinnerNotes } = props
+  const { setLstId } = props
+  const { setRefreshList } = props
   const [error, setError] = useState('')
   const [text, setText] = useState('')
   const [title, setTitle] = useState('')
 
-
   async function requestHandler(e, to) {
-    setSpinnerNotes(true)
     if (to === '/note/create') {
       if (
         (text.length === 0 && title.length === 0) ||
@@ -29,16 +27,16 @@ const {setRefreshList} = props
         }, 5000)
       } else {
         try {
+          setSpinnerNotes(true)
           const noteData = {
             text: text.trim(),
             listid: listid,
             title: title.trim(),
           }
-          const note =  await createNoteRecord(noteData)
+          const note = await createNoteRecord(noteData)
           setAddNoteBtnClicked(false)
           setLstId(note.listid)
           setRefreshList(true)
-          
         } catch (err) {
           setError(err.message)
           setTimeout(() => {
