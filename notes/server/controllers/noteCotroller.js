@@ -1,5 +1,15 @@
 const route = require('express').Router()
-const {createNoteRecord, updateNoteRecord, deleteNoteRecord} = require('../services/noteService')
+const {createNoteRecord, updateNoteRecord, deleteNoteRecord, getAllNoteRecords} = require('../services/noteService')
+
+route.get('/getAll/:listid', async (req, res) =>{
+    try{
+        const notes = await getAllNoteRecords(req.params.listid)
+        res.status(200).json(notes)
+    }catch(err){
+        res.status(404).json(err.message)
+    }
+})
+
 route.post('/create', async (req, res) => {
     // req.body.json().map(({key, value}) => console.log(value))
     try{
@@ -29,8 +39,8 @@ route.put('/update/:noteid', async (req, res) => {
 
 route.delete(`/delete/noteid=:noteid/listid=:listid`, async (req, res) => {
     try{    
-        const deleted = await deleteNoteRecord(req.params.noteid, req.params.listid)
-        res.status(200).json(deleted)
+        const modifiedList = await deleteNoteRecord(req.params.noteid, req.params.listid)
+        res.status(200).json(modifiedList)
 
     }catch(err){
         res.status(404).json(err.message)

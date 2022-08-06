@@ -7,11 +7,19 @@ async function createListRecord(listData) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(listData),
   })
+    return response
 }
 
 async function getAllLists(userId) {
   const endPoint = `/list/getAllUsersList/${userId}`
   return await (await fetch(baseUrl + endPoint)).json()
+}
+async function getOneList(listid) {
+  if (listid) {
+    const endPoint = `/list/getOneList/${listid}`
+    const response = await fetch(baseUrl + endPoint)
+    return await response.json()
+  }
 }
 
 async function updateListTitle(listname, listid) {
@@ -48,14 +56,26 @@ async function createNoteRecord(noteData) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(noteData),
     })
+
     if (response.ok == false) {
       throw new Error(
         'somthing went wrong, please try to refresh the page or logout and login again',
       )
     }
-    return response
+    return await response.json()
   } catch (err) {
     throw new Error(err)
+  }
+}
+
+async function getAllNoteRecords(listid) {
+  const endPoint = `/note/getAll/${listid}`
+
+  try {
+    const response = await fetch(baseUrl + endPoint)
+    return response
+  } catch (err) {
+    return [err.message]
   }
 }
 
@@ -78,7 +98,7 @@ async function updateNoteRecord(newData, noteId) {
 }
 
 async function deleteNote(noteid, listid) {
-    const endPoint = `/note/delete/noteid=${noteid}/listid=${listid}`
+  const endPoint = `/note/delete/noteid=${noteid}/listid=${listid}`
   try {
     const response = await fetch(baseUrl + endPoint, {
       method: 'DELETE',
@@ -87,8 +107,8 @@ async function deleteNote(noteid, listid) {
     if (response.ok === false) {
       throw new Error('Error')
     }
-    return response
-  }catch (err) {
+    return await response.json()
+  } catch (err) {
     throw new Error(err.message)
   }
 }
@@ -96,9 +116,11 @@ async function deleteNote(noteid, listid) {
 export {
   createListRecord,
   getAllLists,
-  createNoteRecord,
-  updateNoteRecord,
+  getOneList,
   updateListTitle,
   deleteList,
-  deleteNote
+  createNoteRecord,
+  getAllNoteRecords,
+  updateNoteRecord,
+  deleteNote,
 }

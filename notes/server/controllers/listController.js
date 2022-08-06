@@ -1,6 +1,6 @@
 const route = require('express').Router()
 const {isAuth, isOwner} = require('../middlewares/guards')
-const {createListRecord, getAllLists, updateListTitle, deleteList} = require('../services/listService')
+const {createListRecord, getAllLists, updateListTitle, deleteList, getOneList} = require('../services/listService')
 
 route.post('/create', async (req, res) => {
     try{
@@ -18,6 +18,15 @@ route.get('/getAllUsersList/:userId', async (req, res) => {
     }catch(err){
         const errors = {errors: err.message}
         res.status(404).json(errors)
+    }
+})
+
+route.get('/getOneList/:listid', async (req, res) => {
+    try{
+        const list = await getOneList(req.params.listid)
+        res.status(200).json(list)
+    }catch(err){
+        res.status(404).json(err.message)
     }
 })
 

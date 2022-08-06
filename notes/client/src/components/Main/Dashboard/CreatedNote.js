@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { updateNoteRecord, deleteNote } from '../../../Api/noteService'
+import { SpinnerNOtesList } from '../Spinner/Spinner'
 function CreatedNote(props) {
-  const { setAddNoteBtn, setRefresh } = props
+  const { setAddNoteBtn, setRefresh, setRefreshList } = props
   const noteid = props.noteData._id
   const listid = props.noteData.listid
   const [error, setError] = useState('')
@@ -13,6 +14,9 @@ function CreatedNote(props) {
   useEffect(() => {
     setText(props.noteData.text)
     setTitle(props.noteData.title)
+    const scrollMain = document.getElementById(listid).querySelector('.scrollMain')
+    scrollMain.scrollTo(0, scrollMain.scrollHeight);
+    
   }, [])
 
   async function requestHandler(e, to) {
@@ -29,14 +33,14 @@ function CreatedNote(props) {
       } else {
         const newData = { title, text }
         await updateNoteRecord(newData, props.noteData._id)
-        setRefresh(true)
+        // setRefresh(true)
+        setRefreshList(true)
         closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
       }
     } else if (to === `/note/delete/noteid=${noteid}/listid=${listid}`) {
-      console.log(`/note/delete/noteid=${noteid}/listid=${listid}`)
-      await deleteNote(noteid, listid)
+      const modifiedList =  await deleteNote(noteid, listid)
       deleteBtnHandler(null, noteid)
-      setRefresh(true)
+      setRefreshList(true)
     }
   }
 
@@ -93,43 +97,46 @@ function CreatedNote(props) {
           </div>
         </div>
       ) : (
-        <div className="listNoteWrapper" id={noteid}>
-          <div
-            className="listNoteTitle"
-            onClick={(e) => setListNoteClicked(true)}
-          >
-            {props.noteData.title}
-          </div>
-          <div className="listNoteDelBtn">
-            <i
-              className="fa-solid fa-xmark"
-              title="delete single note"
-              onClick={(e) => deleteBtnHandler(e, noteid)}
-            ></i>
-          </div>
-          <div className="noteDelConfWindow hideNoteDelW">
-            Are you sure ?
-            <div className="btnW">
-              <button
-                className="cancelBtn"
-                onClick={(e) => cancelBtnHandler(e, noteid)}
-              >
-                Cancel
-              </button>
-              <button
-                className="delBtn"
-                onClick={(e) =>
-                  requestHandler(
-                    e,
-                    `/note/delete/noteid=${noteid}/listid=${listid}`,
-                  )
-                }
-              >
-                Delete
-              </button>
+        <>
+            
+          <div className="listNoteWrapper" id={noteid} >
+            <div
+              className="listNoteTitle"
+              onClick={(e) => setListNoteClicked(true)}
+            >
+              {props.noteData.title}
+            </div>
+            <div className="listNoteDelBtn">
+              <i
+                className="fa-solid fa-xmark"
+                title="delete single note"
+                onClick={(e) => deleteBtnHandler(e, noteid)}
+              ></i>
+            </div>
+            <div className="noteDelConfWindow hideNoteDelW">
+              Are you sure ?
+              <div className="btnW">
+                <button
+                  className="cancelBtn"
+                  onClick={(e) => cancelBtnHandler(e, noteid)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="delBtn"
+                  onClick={(e) =>
+                    requestHandler(
+                      e,
+                      `/note/delete/noteid=${noteid}/listid=${listid}`,
+                    )
+                  }
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )
@@ -151,11 +158,6 @@ function deleteBtnHandler(e, noteid) {
     el.classList.add('hideNoteDelW')
     el.classList.remove('showNoteDelW')
   }
-
-//   setTimeout(() => {
-//     el.classList.add('hideNoteDelW')
-//     el.classList.remove('showNoteDelW')
-//   }, 4000)
 }
 
 function cancelBtnHandler(e, noteid) {
