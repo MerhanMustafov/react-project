@@ -19,6 +19,7 @@ function Dashboard() {
       setWaitingData(true)
       const userId = localStorage.getItem('userId')
       const lists = await getAllLists(userId)
+      console.log(lists)
       setArrayOfLists(lists)
       setListName('')
         setRefresh(false)
