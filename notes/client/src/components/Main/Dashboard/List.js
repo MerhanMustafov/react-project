@@ -30,8 +30,6 @@ function List(props) {
         const singleList = await getOneList(lstId)
         data = singleList[0].notes
       } else {
-        // const userId = localStorage.getItem('userId')
-        // const lists = await getAllLists(userId)
         data = props.notes
       }
       if (image) {
@@ -41,6 +39,10 @@ function List(props) {
       setLstId(listid)
       setSpinnerNotes(false)
       setRefreshList(false)
+       const scrollMain = document
+            .getElementById(listid)
+            .querySelector('.scrollMain')
+        scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
     // setTimeout(() => {
@@ -144,6 +146,7 @@ function List(props) {
                     key={++key}
                     setRefresh={setRefresh}
                     setRefreshList={setRefreshList}
+                    refreshList={refreshList}
                     spinnerNotes={spinnerNotes}
                     noteData={noteData}
                   />

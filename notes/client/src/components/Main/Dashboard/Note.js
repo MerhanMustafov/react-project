@@ -37,6 +37,7 @@ function Note(props) {
           setAddNoteBtnClicked(false)
           setLstId(note.listid)
           setRefreshList(true)
+          
         } catch (err) {
           setError(err.message)
           setTimeout(() => {
@@ -54,7 +55,8 @@ function Note(props) {
         <div className="spinner">Saved</div>
       ) : ( */}
       <div className="onPopUpBackground">
-        <div className="noteW" id={listid}>
+        {/* id={listid} */}
+        <div className="noteW">
           {error.length > 0 ? <div className="noteError">{error}</div> : null}
           <input
             type="text"
