@@ -66,8 +66,8 @@ function List(props) {
       }
     } else if (to === `/list/delete/${listid}`) {
       await deleteList(listid)
-      //   setRefresh(true)
-      setRefreshList(true)
+        setRefresh(true)
+    //   setRefreshList(true)
     }
   }
 
