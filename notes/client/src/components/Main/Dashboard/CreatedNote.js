@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { updateNoteRecord, deleteNote } from '../../../Api/noteService'
 import { SpinnerNOtesList } from '../Spinner/Spinner'
 function CreatedNote(props) {
-  const { setAddNoteBtn, setRefresh, setRefreshList } = props
+  const { setAddNoteBtn, setRefresh, setRefreshList, refreshList } = props
   const noteid = props.noteData._id
   const listid = props.noteData.listid
   const [error, setError] = useState('')
@@ -14,9 +14,6 @@ function CreatedNote(props) {
   useEffect(() => {
     setText(props.noteData.text)
     setTitle(props.noteData.title)
-    const scrollMain = document.getElementById(listid).querySelector('.scrollMain')
-    scrollMain.scrollTo(0, scrollMain.scrollHeight);
-    
   }, [])
 
   async function requestHandler(e, to) {
@@ -38,7 +35,7 @@ function CreatedNote(props) {
         closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
       }
     } else if (to === `/note/delete/noteid=${noteid}/listid=${listid}`) {
-      const modifiedList =  await deleteNote(noteid, listid)
+      const modifiedList = await deleteNote(noteid, listid)
       deleteBtnHandler(null, noteid)
       setRefreshList(true)
     }
@@ -98,8 +95,7 @@ function CreatedNote(props) {
         </div>
       ) : (
         <>
-            
-          <div className="listNoteWrapper" id={noteid} >
+          <div className="listNoteWrapper" id={noteid}>
             <div
               className="listNoteTitle"
               onClick={(e) => setListNoteClicked(true)}
