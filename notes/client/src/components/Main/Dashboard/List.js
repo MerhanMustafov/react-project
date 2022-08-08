@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Note } from './Note'
 import { CreatedNote } from './CreatedNote'
+import {SearchNote} from './Search/SearchNote'
 
 import {
   updateListTitle,
@@ -81,6 +82,7 @@ function List(props) {
         />
       ) : null}
       <div className="listWrapper" id={listid}>
+        <SearchNote listid={listid} notes={lists} setNotes={setLists}/>
         <div className="listInnerWrapper">
           <i
             className="fa-solid fa-arrows-left-right expandListBtn"
