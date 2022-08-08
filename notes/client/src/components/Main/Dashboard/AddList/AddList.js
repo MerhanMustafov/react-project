@@ -22,27 +22,35 @@ function AddList(props) {
   }
   return (
     <div className="addListWrapper">
-      <button
-        className="addList"
-        disabled={true ? listname.length === 0 : false}
-        onClick={(e) => requestHandler(e, '/list/create')}
-      >
-        New List
-      </button>
-      <input
-        type="text"
-        id="listI"
-        placeholder="type..."
-        value={'' ? listname.length > 0 : listname}
-        onChange={(e) => setListName(e.target.value)}
-      />
-
-      <input
-        type="file"
-        id="uploadimg"
-        name="uploadimg"
-        onChange={(e) => uploadImgHandler(e, setImage)}
-      />
+      <div className="addListInnerWrapper">
+        <button
+          className="addList"
+          disabled={true ? listname.length === 0 : false}
+          onClick={(e) => requestHandler(e, '/list/create')}
+        >
+          New List
+        </button>
+        <input
+          type="text"
+          id="listI"
+          placeholder="Type List Title..."
+          value={'' ? listname.length > 0 : listname}
+          onChange={(e) => setListName(e.target.value)}
+        />
+        <label
+          htmlFor="uploadimg"
+          class="labelInputListImg"
+          onChange={(e) => uploadImgHandler(e, setImage)}
+        >
+          Upload List Img
+        </label>
+        <input
+          type="file"
+          id="uploadimg"
+          name="uploadimg"
+          // onChange={(e) => uploadImgHandler(e, setImage)}
+        />
+      </div>
     </div>
   )
 }

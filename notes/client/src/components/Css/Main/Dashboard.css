@@ -1,4 +1,5 @@
 @import './Search/Search.css';
+@import './AddList//AddList.css';
 
 .dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
