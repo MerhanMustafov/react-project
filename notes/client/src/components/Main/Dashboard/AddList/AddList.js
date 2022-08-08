@@ -48,7 +48,7 @@ function AddList(props) {
           type="file"
           id="uploadimg"
           name="uploadimg"
-          // onChange={(e) => uploadImgHandler(e, setImage)}
+          onChange={(e) => uploadImgHandler(e, setImage)}
         />
       </div>
     </div>

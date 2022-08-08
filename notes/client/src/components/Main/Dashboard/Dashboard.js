@@ -22,7 +22,7 @@ function Dashboard() {
       setRefresh(false)
       setTimeout(() => {
         setWaitingData(false)
-      }, 300)
+      }, 150)
     }
     getLists()
   }, [refresh === true])
