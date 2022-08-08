@@ -1,0 +1,37 @@
+.searchNoteWrapper{
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    gap: 7px;
+    top: 7px;
+    left: 9px;
+    width: 80%;
+}
+
+.searchNoteIcon{
+    font-size: 15px;
+    color: white;
+}
+.searchNoteInput{
+    visibility: hidden;
+    width: 0%;
+    outline: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.329);
+    transition: width 2s, visibility 2s; 
+
+}
+
+.showSearchNoteInput{
+    width: 100%;
+    visibility: visible;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    /* letter-spacing: 1px; */
+    padding: 0 0 0 10px;
+    outline: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.329);
+}

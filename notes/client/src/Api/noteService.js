@@ -74,7 +74,7 @@ async function getAllNoteRecords(listid) {
 
   try {
     const response = await fetch(baseUrl + endPoint)
-    return response
+    return await response.json()
   } catch (err) {
     return [err.message]
   }
