@@ -39,7 +39,7 @@ function AddList(props) {
         />
         <label
           htmlFor="uploadimg"
-          class="labelInputListImg"
+          className="labelInputListImg"
           onChange={(e) => uploadImgHandler(e, setImage)}
         >
           Upload List Img
