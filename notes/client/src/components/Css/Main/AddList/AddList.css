@@ -1,0 +1,39 @@
+.addListWrapper{
+    /* border: 2px solid red ; */
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px ;
+}
+.addListInnerWrapper{
+    /* border: 2px solid red ; */
+    display: flex;
+    font-size: 20px;
+}
+
+.addList{
+    font-size: 20px;
+    background: linear-gradient(to right, rgba(19, 178, 206, 0.616), rgba(1, 169, 199, 0.137));
+    color: rgb(252, 238, 238);
+    border: none;
+    
+}
+.addList:disabled{
+    background: gray;
+}
+#listI{
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+#uploadimg{
+    display: none;
+}
+
+.labelInputListImg{
+    background: linear-gradient(to right, rgba(19, 178, 206, 0.616), rgba(1, 169, 199, 0.137));
+    color: rgb(252, 238, 238);
+
+    padding: 10px;
+}
+

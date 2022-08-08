@@ -60,14 +60,12 @@ function List(props) {
             .getElementById(listid)
             .querySelector('.title')
             .classList.remove('titleInputReady')
-          //   setRefresh(true)
           setRefreshList(true)
         }
       }
     } else if (to === `/list/delete/${listid}`) {
       await deleteList(listid)
         setRefresh(true)
-    //   setRefreshList(true)
     }
   }
 
