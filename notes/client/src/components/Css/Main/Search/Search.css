@@ -1,0 +1,29 @@
+.dashboardSearchWrapper{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.searchListWrapper{
+    /* border: 5px solid green; */
+    display: flex;
+    width: auto;
+    justify-content: center;
+}
+
+.searchListWrapper input{
+    width: 97.5%;
+    min-height: 35px;
+    font-size: 30px;
+    padding-left:20px;
+    border: 2px solid white;
+    outline: none;
+    background: transparent;
+    color: white;
+
+    transition: width 2s;
+}
+
+.searchListWrapper input::placeholder{
+    color: rgba(255, 255, 255, 0.452) ;
+}
