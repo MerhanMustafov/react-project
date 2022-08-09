@@ -20,6 +20,7 @@ function Main({ userStatus, setUserStatus }) {
   return (
     <main>
       <Routes>
+        <Route path="/" element={<GuestHome />} />
         <Route path="/ghome" element={<GuestHome />} />
         <Route path="/lhome" element={<LoggedHome />} />
         <Route
