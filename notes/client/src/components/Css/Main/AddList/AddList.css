@@ -15,12 +15,14 @@
     background: linear-gradient(to right, rgba(19, 178, 206, 0.616), rgba(1, 169, 199, 0.137));
     color: rgb(252, 238, 238);
     border: none;
+    white-space: nowrap;
     
 }
 .addList:disabled{
     background: gray;
 }
 #listI{
+    width: 100%;
     font-size: 20px;
     border: none;
     outline: none;
@@ -33,7 +35,7 @@
 .labelInputListImg{
     background: linear-gradient(to right, rgba(19, 178, 206, 0.616), rgba(1, 169, 199, 0.137));
     color: rgb(252, 238, 238);
-
+    white-space: nowrap;
     padding: 10px;
 }
 

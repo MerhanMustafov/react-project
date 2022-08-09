@@ -134,6 +134,13 @@ function checkboxHandler(e) {
 function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
+    const maleImg = require('../../../profileImages/male.jpg')
+    const femaleImg = require('../../../profileImages/female.jpg')
+    if(data.gender === 'male'){
+        localStorage.setItem('img', maleImg)
+    }else{
+        localStorage.setItem('img', femaleImg)
+    }
     localStorage.setItem('accessToken', data.accessToken)
 }
 
