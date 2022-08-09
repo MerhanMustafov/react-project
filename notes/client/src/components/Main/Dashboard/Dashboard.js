@@ -3,9 +3,9 @@ import { getAllLists } from '../../../Api/noteService'
 import { List } from './List'
 import { Search } from './Search/Search'
 import { Spinner } from '../Spinner/Spinner'
-import {AddList} from './AddList/AddList'
+import { AddList } from './AddList/AddList'
 
-function Dashboard() {
+function Dashboard({ setUserStatus }) {
   let key = 165156
   const [refresh, setRefresh] = useState(false)
 
@@ -13,21 +13,20 @@ function Dashboard() {
   const [arrayOfLists, setArrayOfLists] = useState([])
   const [waitingData, setWaitingData] = useState(false)
 
+
   useEffect(() => {
     async function getLists() {
-      const userId = localStorage.getItem('userId')
+    const userid = localStorage.getItem('userId')
       setWaitingData(true)
-      const lists = await getAllLists(userId)
+      const lists = await getAllLists(userid)
       setArrayOfLists(lists)
-      setRefresh(false)
       setTimeout(() => {
         setWaitingData(false)
       }, 150)
     }
     getLists()
-  }, [refresh === true])
-
- 
+    setRefresh(false)
+  }, [refresh])
 
   return (
     <div className="dashboardWrapper">
@@ -37,7 +36,7 @@ function Dashboard() {
         setRefresh={setRefresh}
       />
 
-      <AddList setRefresh={setRefresh}/>
+      <AddList setRefresh={setRefresh} />
 
       {waitingData ? (
         <Spinner />
@@ -53,4 +52,3 @@ function Dashboard() {
 }
 
 export { Dashboard }
-

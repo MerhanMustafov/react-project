@@ -2,22 +2,22 @@ import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
 
 function AddList(props) {
+      const userid = localStorage.getItem('userId')
   const { setRefresh } = props
   const [listname, setListName] = useState('')
   const [image, setImage] = useState()
 
   async function requestHandler(e, to) {
-    if (to === '/list/create') {
-      const ownerid = localStorage.getItem('userId')
+    if (to === `/list/create/${userid}`) {
       const listData = await createListRecord({
         listimg: image,
         listname: listname.trim(),
         notes: [],
-        ownerid,
-      })
+        ownerid: userid,
+      }, userid)
+      setRefresh(true)
       setListName('')
 
-      setRefresh(true)
     }
   }
   return (
@@ -26,7 +26,7 @@ function AddList(props) {
         <button
           className="addList"
           disabled={true ? listname.length === 0 : false}
-          onClick={(e) => requestHandler(e, '/list/create')}
+          onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
         >
           New List
         </button>

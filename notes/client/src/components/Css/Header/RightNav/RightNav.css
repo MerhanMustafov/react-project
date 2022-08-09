@@ -1,0 +1,25 @@
+.user-nav-area{
+    /* border: 2px solid blue;  */
+    grid-area: right;
+    display: flex;
+    width: 100%;
+}
+
+.user-nav-area ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.user-nav-area ul li{
+    background:  rgba(42, 42, 54, 0.5);
+}
+.user-nav-area ul li a{
+    display: flex;
+    flex-wrap: nowrap;
+    color:rgb(228, 228, 228);
+    text-decoration: none;
+    font-size: 25px;
+    padding: 5px 10px;
+    white-space: nowrap;
+}

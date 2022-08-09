@@ -1,8 +1,8 @@
 // const baseUrl = 'http://localhost:5151'
 const baseUrl = 'https://server-for-notes-app.herokuapp.com'
 
-async function createListRecord(listData) {
-  const endPoint = '/list/create'
+async function createListRecord(listData, userid) {
+  const endPoint = `/list/create/${userid}`
   const response = await fetch(baseUrl + endPoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -33,9 +33,9 @@ async function updateListTitle(listname, listid) {
   return response
 }
 
-async function deleteList(listid) {
+async function deleteList(listid, userid) {
   try {
-    const endPoint = `/list/delete/${listid}`
+    const endPoint = `/list/delete/${listid}/${userid}`
     const response = await fetch(baseUrl + endPoint, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

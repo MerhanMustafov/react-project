@@ -5,7 +5,8 @@
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
     height: 100%;
-    /* min-height: 1000px; */
+    /* min-width: 510px; */
+
     position: relative;
 }
 
