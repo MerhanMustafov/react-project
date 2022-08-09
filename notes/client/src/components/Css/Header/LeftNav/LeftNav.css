@@ -1,5 +1,5 @@
 .main-nav-area{
-    border: 2px solid green; 
+    /* border: 2px solid green;  */
     grid-area: left;
     display: flex;
 }

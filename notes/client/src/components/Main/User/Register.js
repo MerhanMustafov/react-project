@@ -25,7 +25,7 @@ function Register({setUserStatus}) {
 
         setLocalStorage(response)
         setUserStatus(localStorage.getItem('userId'))
-        navigate('/')
+        navigate('/lhome')
 
       }catch(err){
         const error = [err.message]

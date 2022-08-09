@@ -1,6 +1,6 @@
 .profile-area{
     grid-area: middle;
-    border: 2px solid white; 
+    /* border: 2px solid white;  */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,14 +10,14 @@
 .profile-img-Wrapper{
     width: 50px;
     height: 40px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 .profile-name-wrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .profile-name{
@@ -32,7 +32,7 @@
 
 .dropDownProfileIcon{
     display: block; 
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     font-size: 20px;
     color: white;
 }

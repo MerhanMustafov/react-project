@@ -1,9 +1,9 @@
-import { Nav } from './Nav.js'
-
-function Header({userStatus}) {
+import { Nav } from './Nav/Nav.js'
+function Header({userStatus,  setUserStatus}) {
+    
   return (
     <header>
-      <Nav userStatus={userStatus}/>
+      <Nav userStatus={userStatus} setUserStatus={setUserStatus} />
     </header>
   )
 }

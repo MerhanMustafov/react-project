@@ -14,6 +14,7 @@ import { SpinnerNOtesList } from '../Spinner/Spinner'
 
 function List(props) {
   let key = 654
+  const userid = localStorage.getItem('userId')
   const [refreshList, setRefreshList] = useState(false)
   const [addNoteBtnClicked, setAddNoteBtnClicked] = useState(false)
   const [spinnerNotes, setSpinnerNotes] = useState(false)
@@ -64,8 +65,8 @@ function List(props) {
           setRefreshList(true)
         }
       }
-    } else if (to === `/list/delete/${listid}`) {
-      await deleteList(listid)
+    } else if (to === `/list/delete/${listid}/${userid}`) {
+      await deleteList(listid, userid)
         setRefresh(true)
     }
   }
@@ -123,7 +124,7 @@ function List(props) {
                     <button
                       className="delete"
                       onClick={(e) =>
-                        requestHandler(e, `/list/delete/${listid}`)
+                        requestHandler(e, `/list/delete/${listid}/${userid}`)
                       }
                     >
                       Delete

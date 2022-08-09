@@ -3,7 +3,7 @@
 @import './MiddleNav//MiddleNav.css';
 
 nav{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 95%;
     margin: 7px auto;
     display: grid;

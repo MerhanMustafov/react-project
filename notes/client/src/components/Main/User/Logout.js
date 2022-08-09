@@ -1,10 +1,9 @@
-import * as userService from '../../../Api/userService'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-function Logout({ setUserStatus }) {
+function Logout({setUserStatus}) {
   const navigate = useNavigate()
-  userService.logout()
   useEffect(() => {
+    localStorage.clear()
     setUserStatus(localStorage.getItem('userId'))
     navigate('/login')
   }, [])

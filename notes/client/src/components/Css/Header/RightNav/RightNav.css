@@ -1,5 +1,5 @@
 .user-nav-area{
-    border: 2px solid blue; 
+    /* border: 2px solid blue;  */
     grid-area: right;
     display: flex;
     width: 100%;
