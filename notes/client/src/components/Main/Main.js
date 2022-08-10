@@ -6,8 +6,7 @@ import { Register } from './User/Register.js'
 
 import { Dashboard } from './Dashboard/Dashboard'
 import { UserProfile } from './Profile/UserProfile'
-import { GuestHome } from './Home/GuestHome'
-import { LoggedHome } from './Home/LoggedHome'
+import { Home } from './Home/Home'
 import { NotFound } from './NotFound'
 
 function Main({ userStatus, setUserStatus }) {
@@ -20,9 +19,7 @@ function Main({ userStatus, setUserStatus }) {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<GuestHome />} />
-        <Route path="/ghome" element={<GuestHome />} />
-        <Route path="/lhome" element={<LoggedHome />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/dashboard"
           element={<Dashboard setUserStatus={setUserStatus} />}

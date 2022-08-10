@@ -7,7 +7,7 @@ function Guest({ userStatus, setUserStatus }) {
       <div className="main-nav-area">
         <div className="logo-area">NoTes</div>
         <ul>
-          <li><Link to="/ghome">Home</Link></li>
+          <li><Link to="/">Home</Link></li>
         </ul>
       </div>
         <div className="user-nav-area">

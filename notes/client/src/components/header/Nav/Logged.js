@@ -8,6 +8,7 @@ function Logged({ userStatus, setUserStatus }) {
   const userid = localStorage.getItem('userId')
 
   async function chechUserStatus() {
+    
     const localStorageUserId = localStorage.getItem('userId')
     const user = await getUserById(localStorageUserId)
     if (!user) {
@@ -23,7 +24,7 @@ function Logged({ userStatus, setUserStatus }) {
         <div className="logo-area">NoTes</div>
         <ul>
           <li onClick={(e) => chechUserStatus()}>
-            <Link to="/lhome">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li onClick={(e) => chechUserStatus()}>
             <Link to="/dashboard" >Dashboard</Link>
