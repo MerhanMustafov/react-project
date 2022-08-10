@@ -17,6 +17,7 @@ function AddList(props) {
       }, userid)
       setRefresh(true)
       setListName('')
+      setImage('')
 
     }
   }
