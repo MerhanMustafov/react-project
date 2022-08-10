@@ -17,7 +17,7 @@ function Main({ userStatus, setUserStatus }) {
   const userid = localStorage.getItem('userId')
 
   return (
-    <main>
+    <main className="mainHome">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

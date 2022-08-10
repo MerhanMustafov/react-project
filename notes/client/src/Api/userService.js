@@ -13,6 +13,14 @@ async function getUserById(userId){
     }
 }
 
+async function getUserByName(username){
+    const endPoint = `/user/getuser/${username}`
+    // console.log(username)
+    // console.log(endPoint)
+    const response = await fetch(baseUrl + endPoint)
+    return await response.json()
+}
+
 async function register(userData){
     const endPoint = '/user/register'
     const response = await fetch(baseUrl + endPoint, {
@@ -42,4 +50,4 @@ async function login(userData){
 async function logout(){
     localStorage.clear()
 }
-export {register, login, logout, getUserById} 
+export {register, login, logout, getUserById, getUserByName} 
