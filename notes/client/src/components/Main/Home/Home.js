@@ -38,7 +38,7 @@ function Home() {
             />
             <div className="optionsW">
               {users.length > 0
-                ? users.map((u) => <DropDownUser {...u}/>)
+                ? users.map((u) => u._id === localStorage.getItem('userId') ? null : <DropDownUser {...u}/>)
                 : null}
               {/* <p>Hasdjasd</p> */}
             </div>
