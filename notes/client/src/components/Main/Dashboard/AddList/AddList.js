@@ -2,23 +2,25 @@ import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
 
 function AddList(props) {
-      const userid = localStorage.getItem('userId')
+  const userid = localStorage.getItem('userId')
   const { setRefresh } = props
   const [listname, setListName] = useState('')
-  const [image, setImage] = useState()
+  const [image, setImage] = useState('')
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
-      const listData = await createListRecord({
-        listimg: image,
-        listname: listname.trim(),
-        notes: [],
-        ownerid: userid,
-      }, userid)
-      setRefresh(true)
-      setListName('')
+      const listData = await createListRecord(
+        {
+          listimg: image,
+          listname: listname.trim(),
+          notes: [],
+          ownerid: userid,
+        },
+        userid,
+      )
       setImage('')
-
+      setListName('')
+      setRefresh(true)
     }
   }
   return (
@@ -41,7 +43,7 @@ function AddList(props) {
         <label
           htmlFor="uploadimg"
           className="labelInputListImg"
-          onChange={(e) => uploadImgHandler(e, setImage)}
+          onChange={(e) => set(e, setImage)}
         >
           Upload List Img
         </label>
@@ -49,7 +51,7 @@ function AddList(props) {
           type="file"
           id="uploadimg"
           name="uploadimg"
-          onChange={(e) => uploadImgHandler(e, setImage)}
+          onChange={(e) => set(e, setImage)}
         />
       </div>
     </div>
@@ -57,6 +59,13 @@ function AddList(props) {
 }
 
 export { AddList }
+
+function set(e, setImage){
+    uploadImgHandler(e, setImage)
+    document.getElementById('uploadimg').value = ''
+    document.querySelector('.labelInputListImg').value = ''
+
+}
 
 function uploadImgHandler(e, setImage) {
   const reader = new FileReader()
