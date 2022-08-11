@@ -4,9 +4,12 @@
 .dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
+    width: auto;
+    margin: 0 auto; 
     height: auto;
     min-height: 100vh;
     min-width: 270px;
+    max-width: 1300px;
     position: relative;
 }
 

@@ -36,7 +36,7 @@ function List(props) {
       } else {
         data = props.notes
       }
-      if (image.length > 0) {
+      if (image) {
         document.getElementById(listid).style.backgroundImage = `url(${image})`
       }
       setLists(data)
