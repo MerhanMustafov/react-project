@@ -7,6 +7,7 @@ import { AddList } from './AddList/AddList'
 
 function Dashboard({ setUserStatus }) {
   let key = 165156
+    const uid = localStorage.getItem('userId')
   const [refresh, setRefresh] = useState(false)
 
   const [addNoteBtn, setAddNoteBtn] = useState('')
@@ -34,6 +35,7 @@ function Dashboard({ setUserStatus }) {
         setArrayOfLists={setArrayOfLists}
         arrayOfLists={arrayOfLists}
         setRefresh={setRefresh}
+        uid={uid}
       />
 
       <AddList setRefresh={setRefresh} />
