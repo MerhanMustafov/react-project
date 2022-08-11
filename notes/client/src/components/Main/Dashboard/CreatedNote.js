@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { updateNoteRecord, deleteNote } from '../../../Api/noteService'
 import { SpinnerNOtesList } from '../Spinner/Spinner'
 function CreatedNote(props) {
-  const { setAddNoteBtn, setRefresh, setRefreshList, refreshList } = props
+  const { setAddNoteBtn, setRefresh, isOwner,setRefreshList, refreshList } = props
   const noteid = props.noteData._id
   const listid = props.noteData.listid
   const [error, setError] = useState('')
@@ -77,13 +77,14 @@ function CreatedNote(props) {
                 )
               }
             ></i>
-            <i
+            {isOwner ? <i
               className="fa-solid fa-pen-to-square"
               title="edit"
               onClick={() => {
                 editMode ? setEditMode(false) : setEditMode(true)
               }}
-            ></i>
+            ></i> : null}
+            
             {editMode ? (
               <i
                 className="fa-regular fa-floppy-disk"

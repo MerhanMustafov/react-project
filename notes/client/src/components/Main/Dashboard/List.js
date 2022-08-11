@@ -153,6 +153,7 @@ function List(props) {
                     refreshList={refreshList}
                     spinnerNotes={spinnerNotes}
                     noteData={noteData}
+                    isOwner={isOwner}
                   />
                 ))
               : null}
