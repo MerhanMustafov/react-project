@@ -7,14 +7,6 @@ function SearchNote(props){
     const {listid, notes, setNotes} = props
     const [allNotes, seatAllNotes] = useState([])
 
-
-    // if(allNotes.length !== notes.length){
-    //     getAllNoteRecords(listid).then(data => seatAllNotes(data))
-    // }
-
-
-      console.log('asdadas')
- 
   useEffect(() => {
      getAllNoteRecords(listid).then(data => seatAllNotes(data))
   }, [allNotes.length !== notes.length])

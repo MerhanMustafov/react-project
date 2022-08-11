@@ -5,7 +5,6 @@ function SearchList(props) {
   const { setArrayOfLists, arrayOfLists, setRefresh, uid } = props
   const [allLists, setAllLists] = useState([])
   const userId = uid
-
  
   useEffect(() => {
     getAllLists(userId).then((data) => setAllLists(data))
@@ -44,15 +43,3 @@ function SearchList(props) {
 }
 
 export { SearchList }
-
-{
-  /* <i
-className="fa-solid fa-magnifying-glass"
-onClick={(e) => match(null, 'icon')}
-></i> */
-}
-{
-  /* <div className="searchInputWrapper"> */
-}
-
-// onKeyDown={(e) => match(null, e.key)}
