@@ -46,16 +46,16 @@ function UserProfile() {
       </div>
       <div className="dashboardWrapper">
         <Search
-        setArrayOfLists={setArrayOfLists}
-        arrayOfLists={arrayOfLists}
-        uid={params.userid}
-        // setRefresh={setRefresh}
+            setArrayOfLists={setArrayOfLists}
+            arrayOfLists={arrayOfLists}
+            uid={params.userid}
+            setRefresh={setRefresh}
       />
         {/* {waitingData ? (
         <Spinner />
       ) : ( */}
         <div className="listsWrapper">
-          {userData?.lists.map((listData) => (
+          {arrayOfLists && arrayOfLists.map((listData) => (
             <List key={listData._id} setRefresh={setRefresh} {...listData} />
           ))}
         </div>

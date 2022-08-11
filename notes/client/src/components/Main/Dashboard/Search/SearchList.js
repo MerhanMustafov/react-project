@@ -6,13 +6,10 @@ function SearchList(props) {
   const [allLists, setAllLists] = useState([])
   const userId = uid
 
-  console.log(uid)
  
   useEffect(() => {
     getAllLists(userId).then((data) => setAllLists(data))
   }, [allLists.length !== arrayOfLists.length])
-
-
 
 
     function match(input) {
