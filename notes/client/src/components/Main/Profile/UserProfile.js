@@ -8,21 +8,18 @@ function UserProfile() {
     require('../../../profileImages/male.jpg'),
     require('../../../profileImages/female.jpg'),
   ]
+
+  
   const params = useParams()
   const [userData, setUserData] = useState()
-  if (userData?._id !== params.userid) {
-    getUserByIdWithLists(params.userid)
-      .then((res) => res.json())
-      .then((data) => setUserData(data))
-  }
-  
+
   useEffect(() => {
     getUserByIdWithLists(params.userid)
       .then((res) => res.json())
       .then((data) => setUserData(data))
-  }, [])
-  console.log('Profile page view', userData)
 
+  }, [params.userid])
+//   console.log('Profile page view', userData)
   return (
     <>
       <div className="userProfilePageWrapper">

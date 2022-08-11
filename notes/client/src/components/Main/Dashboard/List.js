@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { Note } from './Note'
 import { CreatedNote } from './CreatedNote'
-import {SearchNote} from './Search/SearchNote'
+import { SearchNote } from './Search/SearchNote'
 
 import {
   updateListTitle,
   deleteList,
   getOneList,
-  getAllLists
+  getAllLists,
 } from '../../../Api/noteService'
 
 import { SpinnerNOtesList } from '../Spinner/Spinner'
@@ -20,10 +20,12 @@ function List(props) {
   const [spinnerNotes, setSpinnerNotes] = useState(false)
   const [lstId, setLstId] = useState(null)
   const [lists, setLists] = useState([])
+  //   const [isOwner, setIsOwner] = useState(false)
   const { setRefresh } = props
   let listid = props._id
   let image = props.listimg
   const [title, setTitle] = useState()
+  let isOwner = userid === props.ownerid
 
   useEffect(() => {
     let data = null
@@ -41,10 +43,10 @@ function List(props) {
       setLstId(listid)
       setSpinnerNotes(false)
       setRefreshList(false)
-       const scrollMain = document
-            .getElementById(listid)
-            .querySelector('.scrollMain')
-        scrollMain.scrollTo(0, scrollMain.scrollHeight)
+      const scrollMain = document
+        .getElementById(listid)
+        .querySelector('.scrollMain')
+      scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
     // setTimeout(() => {
@@ -67,7 +69,7 @@ function List(props) {
       }
     } else if (to === `/list/delete/${listid}/${userid}`) {
       await deleteList(listid, userid)
-        setRefresh(true)
+      setRefresh(true)
     }
   }
 
@@ -83,7 +85,7 @@ function List(props) {
         />
       ) : null}
       <div className="listWrapper" id={listid}>
-        <SearchNote listid={listid} notes={lists} setNotes={setLists}/>
+        <SearchNote listid={listid} notes={lists} setNotes={setLists} />
         <div className="listInnerWrapper">
           <i
             className="fa-solid fa-arrows-left-right expandListBtn"
@@ -98,7 +100,7 @@ function List(props) {
               onChange={(e) => setTitle(e.target.value)}
               onKeyDown={(e) => requestHandler(e, `/list/update/${listid}`)}
             />
-            <div className="options">
+            {isOwner ? <div className="options">
               <div className="settings hide">
                 <i
                   className="fa-solid fa-pen"
@@ -137,7 +139,8 @@ function List(props) {
                 title="settings"
                 onClick={(e) => settingsBtnHandler(listid)}
               ></i>
-            </div>
+            </div> : null}
+            
           </header>
           <main className="scrollMain">
             {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null}
@@ -155,14 +158,15 @@ function List(props) {
               : null}
           </main>
           <footer>
-            <button
+            {isOwner ? <button
               className="add"
               onClick={(e) =>
                 addNoteBtnHandler(e, addNoteBtnClicked, setAddNoteBtnClicked)
               }
             >
               Add Note
-            </button>
+            </button> : null}
+            
           </footer>
         </div>
       </div>
