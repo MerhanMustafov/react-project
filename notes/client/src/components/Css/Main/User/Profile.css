@@ -1,0 +1,44 @@
+.userProfilePageWrapper{
+    margin: 20px 0;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.profileInfoSection{
+    /* border: 2px solid green; */
+    width: auto;
+    width: 10rem;
+}
+
+.profileInfoSection div{
+    /* border: 2px solid blue; */
+    display: flex;
+    gap: 20px;
+}
+
+.profileInfoSection div img{
+    border-radius: 20px ;
+    width: 100%;
+}
+.nameAreaWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profSName{
+    font-size: 2rem;
+    color: white;
+    white-space: nowrap;
+}
+.UserProfileListCount{
+    font-size: 3rem;
+    color: white;
+}
+
+
+@media screen and (max-width: 600px) {
+    .profileInfoSection div{
+        flex-direction: column;
+    }
+}

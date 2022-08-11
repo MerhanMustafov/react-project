@@ -1,0 +1,9 @@
+.userWrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px; 
+}
+
+.userWrapper img{
+    width: 70px;
+}

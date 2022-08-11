@@ -1,12 +1,12 @@
-@import url(./Home.css);
-@import url(./MyNotes.css);
 @import url(./Dashboard.css);
 @import url(./List.css);
 @import url(./CreateNote.css);
-@import url(./Spinner.css);
+@import url(./Spinner/Spinner.css);
+@import url(./Home/Home.css);
 
-@import url(./Login.css);
-@import url(./Register.css);
+@import url(./User/Login.css);
+@import url(./User/Register.css);
+@import url(./User/Profile.css);
 /* @import url(./Login.module.css);
 @import url(./Register.module.css); */
 

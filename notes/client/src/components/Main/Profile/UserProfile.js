@@ -1,10 +1,55 @@
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { getUserByIdWithLists } from '../../../Api/userService'
+import { List } from '../Dashboard/List'
 
-function UserProfile(){
+function UserProfile() {
+  const [maleImg, femaleImg] = [
+    require('../../../profileImages/male.jpg'),
+    require('../../../profileImages/female.jpg'),
+  ]
 
+  
+  const params = useParams()
+  const [userData, setUserData] = useState()
 
-    return(
-        <h1>UserProfile</h1>
-    );
+  useEffect(() => {
+    getUserByIdWithLists(params.userid)
+      .then((res) => res.json())
+      .then((data) => setUserData(data))
+
+  }, [params.userid])
+  return (
+    <>
+      <div className="userProfilePageWrapper">
+        <div className="profileInfoSection">
+          <div>
+            <img
+              src={userData?.gender === 'male' ? maleImg : femaleImg}
+              alt="prof img"
+            />
+            <div className="nameAreaWrapper">
+              <div className="profSName">{userData?.username}</div>
+              <div className="UserProfileListCount">
+                {userData?.lists.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="dashboardWrapper">
+        {/* {waitingData ? (
+        <Spinner />
+      ) : ( */}
+        <div className="listsWrapper">
+          {userData?.lists.map((listData) => (
+            <List key={listData._id} {...listData} />
+          ))}
+        </div>
+        {/* )} */}
+      </div>
+    </>
+  )
 }
 
-export {UserProfile}
+export { UserProfile }

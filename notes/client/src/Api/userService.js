@@ -12,6 +12,28 @@ async function getUserById(userId){
         }
     }
 }
+async function getUserByIdWithLists(userId){
+    if(userId){
+        const endPoint = `/user/getUserWithLists/${userId}`
+        const response = await fetch(baseUrl + endPoint)
+        try{
+            if(response.ok === false){
+                return null
+            }
+            return response
+
+        }catch (err) {
+            return err.message
+        }
+       
+    }
+}
+
+async function getUserByName(username){
+    const endPoint = `/user/getuser/${username}`
+    const response = await fetch(baseUrl + endPoint)
+    return await response.json()
+}
 
 async function register(userData){
     const endPoint = '/user/register'
@@ -42,4 +64,4 @@ async function login(userData){
 async function logout(){
     localStorage.clear()
 }
-export {register, login, logout, getUserById} 
+export {register, login, logout, getUserById, getUserByName, getUserByIdWithLists} 

@@ -1,6 +1,6 @@
-@import './LeftNav/LeftNav.css';
-@import './RightNav/RightNav.css';
-@import './MiddleNav//MiddleNav.css';
+@import './LeftNav.css';
+@import './RightNav.css';
+@import './MiddleNav.css';
 
 nav{
     /* border: 2px solid red; */
