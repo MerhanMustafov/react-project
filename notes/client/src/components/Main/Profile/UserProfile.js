@@ -10,7 +10,12 @@ function UserProfile() {
   ]
   const params = useParams()
   const [userData, setUserData] = useState()
-
+  if (userData?._id !== params.userid) {
+    getUserByIdWithLists(params.userid)
+      .then((res) => res.json())
+      .then((data) => setUserData(data))
+  }
+  
   useEffect(() => {
     getUserByIdWithLists(params.userid)
       .then((res) => res.json())
@@ -37,15 +42,15 @@ function UserProfile() {
         </div>
       </div>
       <div className="dashboardWrapper">
-          {/* {waitingData ? (
+        {/* {waitingData ? (
         <Spinner />
       ) : ( */}
-          <div className="listsWrapper">
-            {userData?.lists.map((listData) => (
-              <List key={listData._id} {...listData} />
-            ))}
-          </div>
-          {/* )} */}
+        <div className="listsWrapper">
+          {userData?.lists.map((listData) => (
+            <List key={listData._id} {...listData} />
+          ))}
+        </div>
+        {/* )} */}
       </div>
     </>
   )
