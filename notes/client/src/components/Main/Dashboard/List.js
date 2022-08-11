@@ -36,7 +36,7 @@ function List(props) {
       } else {
         data = props.notes
       }
-      if (image) {
+      if (image.length > 0) {
         document.getElementById(listid).style.backgroundImage = `url(${image})`
       }
       setLists(data)
@@ -51,7 +51,7 @@ function List(props) {
     update()
     // setTimeout(() => {
     // }, 1000)
-  }, [refreshList])
+  }, [refreshList, image])
 
   async function requestHandler(e, to) {
     if (to === `/list/update/${listid}`) {
@@ -84,7 +84,7 @@ function List(props) {
           setLstId={setLstId}
         />
       ) : null}
-      <div className="listWrapper" id={listid}>
+      <div className="listWrapper" id={listid} >
         <SearchNote listid={listid} notes={lists} setNotes={setLists} />
         <div className="listInnerWrapper">
           <i

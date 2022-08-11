@@ -5,7 +5,7 @@ function AddList(props) {
       const userid = localStorage.getItem('userId')
   const { setRefresh } = props
   const [listname, setListName] = useState('')
-  const [image, setImage] = useState()
+  const [image, setImage] = useState('')
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
@@ -15,9 +15,9 @@ function AddList(props) {
         notes: [],
         ownerid: userid,
       }, userid)
-      setRefresh(true)
-      setListName('')
       setImage('')
+      setListName('')
+      setRefresh(true)
 
     }
   }
@@ -49,6 +49,7 @@ function AddList(props) {
           type="file"
           id="uploadimg"
           name="uploadimg"
+          multiple
           onChange={(e) => uploadImgHandler(e, setImage)}
         />
       </div>
@@ -63,6 +64,8 @@ function uploadImgHandler(e, setImage) {
   reader.addEventListener('load', (e) => {
     const url = reader.result
     setImage(url)
+    document.getElementById('uploadimg').value = ''
+    document.querySelector('.labelInputListImg').value = ''
   })
   reader.readAsDataURL(e.target.files[0])
 }
