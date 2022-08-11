@@ -48,6 +48,7 @@ function UserProfile() {
         <Search
         setArrayOfLists={setArrayOfLists}
         arrayOfLists={arrayOfLists}
+        uid={params.userid}
         // setRefresh={setRefresh}
       />
         {/* {waitingData ? (

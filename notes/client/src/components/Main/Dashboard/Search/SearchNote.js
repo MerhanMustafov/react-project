@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {getAllNoteRecords} from '../../../../Api/noteService';
 
 
@@ -8,10 +8,18 @@ function SearchNote(props){
     const [allNotes, seatAllNotes] = useState([])
 
 
-    if(allNotes.length !== notes.length){
-        getAllNoteRecords(listid).then(data => seatAllNotes(data))
-    }
+    // if(allNotes.length !== notes.length){
+    //     getAllNoteRecords(listid).then(data => seatAllNotes(data))
+    // }
 
+
+      console.log('asdadas')
+ 
+  useEffect(() => {
+     getAllNoteRecords(listid).then(data => seatAllNotes(data))
+  }, [allNotes.length !== notes.length])
+    
+    
     function match(input){
         if(!input){
             setNotes(allNotes)
