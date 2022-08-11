@@ -1,6 +1,6 @@
 .listsWrapper {
   column-count: 3;
-  width: 100%;
+  width: 99%;
   height: auto;
   margin: 0 auto;
   border: 2px solid white;
@@ -9,7 +9,6 @@
 .expandBackgroundOn {
   position: fixed;
   top: 50%;
-
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
@@ -23,8 +22,6 @@
   flex-direction: column;
   position: relative;
   width: 75%;
-  /* width: 75%; */
-  /* height: auto; */
   min-height: 200px;
   margin: 5px auto 10px auto;
   padding: 30px;
@@ -48,9 +45,22 @@
 @media screen and (max-width: 1050px) {
   .listsWrapper {
     column-count: 1;
+    width: auto;
   }
   .listWrapper {
-    width: 89%;
+    width: 95%;
+    /* display: block; */
+    /* margin: 0 auto; */
+  }
+}
+@media screen and (max-width: 600px) {
+  .listWrapper {
+    width: 85%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .listWrapper {
+    width: auto;
   }
 }
 .expand {
