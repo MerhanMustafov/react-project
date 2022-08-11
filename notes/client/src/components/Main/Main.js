@@ -11,10 +11,13 @@ import { NotFound } from './NotFound'
 
 function Main({ userStatus, setUserStatus }) {
   const isUser = userStatus
-  console.log(isUser)
+  console.log(isUser, 'Main')
 
   const username = localStorage.getItem('username')
   const userid = localStorage.getItem('userId')
+
+  console.log(username, 'Main')
+  console.log(userid, 'Main')
 
   return (
     <main className="mainHome">
@@ -25,7 +28,7 @@ function Main({ userStatus, setUserStatus }) {
           element={<Dashboard setUserStatus={setUserStatus} />}
         />
         <Route
-          path={`/profile/${username}/${userid}`}
+          path={`/profile/:username/:userid`}
           element={<UserProfile setUserStatus={setUserStatus} />}
         />
         <Route

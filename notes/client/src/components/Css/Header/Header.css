@@ -1,4 +1,4 @@
-@import url(./Nav.css);
+@import url(./Nav/Nav.css);
 
 header{
     display: flex;

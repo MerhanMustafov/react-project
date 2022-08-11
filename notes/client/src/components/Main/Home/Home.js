@@ -36,9 +36,9 @@ function Home() {
               autoComplete='off'
               onChange={(e) => requestHandler(e)}
             />
-            <div className="optionsW">
+            <div className="optionsW" >
               {users.length > 0
-                ? users.map((u) => u._id === localStorage.getItem('userId') ? null : <DropDownUser {...u}/>)
+                ? users.map((u) => u._id === localStorage.getItem('userId') ? null : <DropDownUser key={u._id} {...u}/>)
                 : null}
               {/* <p>Hasdjasd</p> */}
             </div>
