@@ -1,18 +1,18 @@
 .userProfilePageWrapper{
     margin: 20px 0;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     justify-content: center;
     width: 100%;
 }
 .profileInfoSection{
-    border: 2px solid green;
+    /* border: 2px solid green; */
     width: auto;
     width: 10rem;
 }
 
 .profileInfoSection div{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
     gap: 20px;
 }

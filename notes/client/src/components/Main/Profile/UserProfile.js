@@ -19,7 +19,6 @@ function UserProfile() {
       .then((data) => setUserData(data))
 
   }, [params.userid])
-//   console.log('Profile page view', userData)
   return (
     <>
       <div className="userProfilePageWrapper">

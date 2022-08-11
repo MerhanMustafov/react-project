@@ -1,5 +1,5 @@
-const baseUrl = 'http://localhost:5151'
-// const baseUrl = 'https://server-for-notes-app.herokuapp.com'
+// const baseUrl = 'http://localhost:5151'
+const baseUrl = 'https://server-for-notes-app.herokuapp.com'
 
 async function getUserById(userId){
     if(userId){
@@ -31,8 +31,6 @@ async function getUserByIdWithLists(userId){
 
 async function getUserByName(username){
     const endPoint = `/user/getuser/${username}`
-    // console.log(username)
-    // console.log(endPoint)
     const response = await fetch(baseUrl + endPoint)
     return await response.json()
 }

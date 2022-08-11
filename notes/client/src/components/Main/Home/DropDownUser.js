@@ -5,9 +5,6 @@ function DropDownUser(props) {
     require('../../../profileImages/female.jpg'),
   ]
     const navigate = useNavigate()
-  // function x(e, id){
-  //     console.log(id)
-  // }
   return (
     <div
       className={`userWrapper ${props._id}`}

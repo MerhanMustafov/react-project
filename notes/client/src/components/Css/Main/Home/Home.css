@@ -2,7 +2,7 @@
 .mainHome{
     width: 100vw;
     height: 100vh;
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
 @media screen and (max-height: 200px) {
     .mainHome{
@@ -19,7 +19,7 @@
 .searchFriendBoxWrapper{
     display: flex;
     flex-direction: column;
-    border: 3px solid red;
+    /* border: 3px solid red; */
 }
 
 .searchFriendBoxLabel{
