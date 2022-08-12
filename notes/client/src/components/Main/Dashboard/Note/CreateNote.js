@@ -32,6 +32,7 @@ function CreateNote(props) {
             text: text.trim(),
             listid: listid,
             title: title.trim(),
+            comments: []
           }
           const note = await createNoteRecord(noteData)
           setAddNoteBtnClicked(false)
@@ -56,7 +57,7 @@ function CreateNote(props) {
       ) : ( */}
       <div className="onPopUpBackground">
         {/* id={listid} */}
-        <div className="noteW">
+        <div className="noteW CrNoteW">
           {error.length > 0 ? <div className="noteError">{error}</div> : null}
           <input
             type="text"
@@ -79,7 +80,7 @@ function CreateNote(props) {
           ></i>
 
           <i
-            className="fa-regular fa-floppy-disk"
+            className="fa-regular fa-floppy-disk saveOnCreateNote"
             title="save"
             onClick={(e) => requestHandler(e, '/note/create')}
           ></i>

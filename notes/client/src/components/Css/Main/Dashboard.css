@@ -61,12 +61,28 @@
     /* width: 50%; */
     /* height: 70%; */
     /* height: 100%; */
-    min-height: 500px;
+    min-height: 750px;
     position: relative;
     z-index: 5;
     opacity: 0.9;
     border-radius: 10px ;
     border: 3px solid rgba(128, 0, 0, 0.815);
+}
+.CrNoteW{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: auto;
+    /* border: 15px solid green; */
+    /* min-height: none; */
+    /* height: 50%; */
+
+}
+.saveOnCreateNote{
+    /* position: absolute; */
+    bottom: 5px;
 }
 .noteT{
 

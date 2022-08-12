@@ -81,6 +81,14 @@ async function getAllNoteRecords(listid) {
   }
 }
 
+
+async function getNoteById(noteid){
+    const endPoint = `/note/getNote/${noteid}`
+    const response = await fetch(baseUrl + endPoint)
+    if(response.ok){
+        return await response.json()
+    }
+}
 async function updateNoteRecord(newData, noteId) {
   const endPoint = `/note/update/${noteId}`
   try {
@@ -115,6 +123,24 @@ async function deleteNote(noteid, listid) {
   }
 }
 
+
+async function createComment(data, noteid){
+    const endPoint = `/comment/create/${noteid}`
+    try{
+        const response = await fetch(baseUrl + endPoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    })
+    if(response.ok){
+        return await response.json()
+    }
+
+    }catch (err) {
+        return err.message
+    }
+    
+}
 export {
   createListRecord,
   getAllLists,
@@ -123,6 +149,8 @@ export {
   deleteList,
   createNoteRecord,
   getAllNoteRecords,
+  getNoteById,
   updateNoteRecord,
   deleteNote,
+  createComment,
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { updateNoteRecord, deleteNote } from '../../../../Api/noteService'
+import { getUserById } from '../../../../Api/userService'
 import { SpinnerNOtesList } from '../../Spinner/Spinner'
 import {Comments} from '../Note/Comments'
 function CreatedNote(props) {
@@ -17,10 +18,16 @@ function CreatedNote(props) {
   const [editMode, setEditMode] = useState(false)
   const [text, setText] = useState('')
   const [title, setTitle] = useState('')
+  const [showComments, setShowComments] = useState(false)
+  const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() => {
     setText(props.noteData.text)
     setTitle(props.noteData.title)
+    const lsUserid = localStorage.getItem('userId')
+    if(lsUserid){
+        getUserById(lsUserid).then(res => res.json()).then(data => data.userId== lsUserid ? setIsLogged(true) : setIsLogged(false))
+    }
   }, [])
 
   async function requestHandler(e, to) {
@@ -84,6 +91,8 @@ function CreatedNote(props) {
                     listNoteclicked,
                     setListNoteClicked,
                     setEditMode,
+                    showComments, 
+                    setShowComments
                   )
                 }
               ></i>
@@ -104,9 +113,13 @@ function CreatedNote(props) {
                   onClick={(e) => requestHandler(e, `/note/update/${noteid}`)}
                 ></i>
               ) : null}
-              <i className="fa-regular fa-comment commentsIcon"></i>
+              {isLogged 
+              ?  <i className="fa-regular fa-comment commentsIcon" onClick={(e) => showComments ? setShowComments(false) : setShowComments(true)}></i>
+              : null}
+             
             </div>
-            <Comments />
+            {showComments ?  <Comments listid={listid} noteid={noteid} setShowComments={setShowComments} showComments={showComments}/> : null}
+           
             
             
           </div>
@@ -158,8 +171,9 @@ function CreatedNote(props) {
 
 export { CreatedNote }
 
-function closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode) {
+function closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode, showComments, setShowComments) {
   listNoteclicked ? setListNoteClicked(false) : setListNoteClicked(true)
+  if(showComments){setShowComments(false)}
   setEditMode(false)
 }
 
