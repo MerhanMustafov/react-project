@@ -1,6 +1,5 @@
-// const baseUrl = 'http://localhost:5151'
-const baseUrl = 'https://server-for-notes-app.herokuapp.com'
-
+const baseUrl = process.env.REACT_APP_BASEURL
+console.log(baseUrl)
 async function getUserById(userId){
     if(userId){
         const endPoint = `/user/get/${userId}`
