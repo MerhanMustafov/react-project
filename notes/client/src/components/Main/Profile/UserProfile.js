@@ -3,14 +3,10 @@ import { useParams } from 'react-router-dom'
 import { getUserByIdWithLists } from '../../../Api/userService'
 import { List } from '../Dashboard/List'
 import { Search } from '../Dashboard/Search/Search'
-
+import maleimg from '../../../profileImages/male.jpg'
+import femaleimg from '../../../profileImages/female.jpg'
 function UserProfile() {
-  const [maleImg, femaleImg] = [
-    require('../../../profileImages/male.jpg'),
-    require('../../../profileImages/female.jpg'),
-  ]
 
-  
   const params = useParams()
   const [userData, setUserData] = useState()
   const [arrayOfLists, setArrayOfLists] = useState([])
@@ -32,7 +28,7 @@ function UserProfile() {
         <div className="profileInfoSection">
           <div>
             <img
-              src={userData?.gender === 'male' ? maleImg : femaleImg}
+              src={userData?.gender === 'male' ? maleimg : femaleimg}
               alt="prof img"
             />
             <div className="nameAreaWrapper">
