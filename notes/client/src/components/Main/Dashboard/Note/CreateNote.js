@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { createNoteRecord } from '../../../Api/noteService'
-function Note(props) {
+import { createNoteRecord } from '../../../../Api/noteService'
+function CreateNote(props) {
   //   const {setWaitingData} = props
   //   const { setrefreshNotesList } = props
   //   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
@@ -90,7 +90,7 @@ function Note(props) {
   )
 }
 
-export { Note }
+export { CreateNote }
 
 function closeBtnHandler(setBtn) {
   setBtn(false)

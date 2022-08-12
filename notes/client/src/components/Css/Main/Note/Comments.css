@@ -1,0 +1,46 @@
+
+.commentsIcon{
+    position: absolute;
+    font-size: 30px;
+    bottom: 8px;
+    left: 6px;
+}
+.commentsWrapper{
+    overflow-y: auto;
+    width: auto;
+    max-height: 1000px;
+    padding: 20px;
+    border: 2px solid white;
+}
+.commentsInnerWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.commentsWrapper .commentBox{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid red;
+    font-size: 30px;
+    color: white;
+    margin: 20px;
+    max-height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.commentsWrapper::-webkit-scrollbar{
+    width: 5px;
+}
+.commentsWrapper::-webkit-scrollbar-thumb{
+    background: white;
+    border-radius:20px ;
+}
+.commentsWrapper::-webkit-scrollbar-track{
+    /* color: red; */
+    background: red;
+}
+
+
+.commentsInnerWrapper h1{
+    color: white;
+}

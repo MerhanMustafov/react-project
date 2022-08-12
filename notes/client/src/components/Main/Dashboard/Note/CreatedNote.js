@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react'
-import { updateNoteRecord, deleteNote } from '../../../Api/noteService'
-import { SpinnerNOtesList } from '../Spinner/Spinner'
+import { updateNoteRecord, deleteNote } from '../../../../Api/noteService'
+import { SpinnerNOtesList } from '../../Spinner/Spinner'
+import {Comments} from '../Note/Comments'
 function CreatedNote(props) {
-  const { setAddNoteBtn, setRefresh, isOwner,setRefreshList, refreshList } = props
+  const {
+    setAddNoteBtn,
+    setRefresh,
+    isOwner,
+    setRefreshList,
+    refreshList,
+  } = props
   const noteid = props.noteData._id
   const listid = props.noteData.listid
   const [error, setError] = useState('')
@@ -46,52 +53,62 @@ function CreatedNote(props) {
       {listNoteclicked ? (
         // id={addNoteBtn}
         <div className="onPopUpBackground">
-          <div className="noteW">
-            {error.length > 0 ? <div className="noteError">{error}</div> : null}
-            <input
-              type="text"
-              className="noteT"
-              name="noteTitle"
-              placeholder="note title"
-              defaultValue={props.noteData.title}
-              readOnly={true ? !editMode : false}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-              name="noteC"
-              id="noteC"
-              cols="30"
-              rows="10"
-              defaultValue={props.noteData.text}
-              readOnly={true ? !editMode : false}
-              onChange={(e) => setText(e.target.value)}
-            ></textarea>
-            <i
-              className="fa-solid fa-xmark"
-              title="close"
-              onClick={() =>
-                closeBtnHandler(
-                  listNoteclicked,
-                  setListNoteClicked,
-                  setEditMode,
-                )
-              }
-            ></i>
-            {isOwner ? <i
-              className="fa-solid fa-pen-to-square"
-              title="edit"
-              onClick={() => {
-                editMode ? setEditMode(false) : setEditMode(true)
-              }}
-            ></i> : null}
-            
-            {editMode ? (
+          <div className="iW">
+            <div className="noteW">
+              {error.length > 0 ? (
+                <div className="noteError">{error}</div>
+              ) : null}
+              <input
+                type="text"
+                className="noteT"
+                name="noteTitle"
+                placeholder="note title"
+                defaultValue={props.noteData.title}
+                readOnly={true ? !editMode : false}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <textarea
+                name="noteC"
+                id="noteC"
+                cols="30"
+                rows="10"
+                defaultValue={props.noteData.text}
+                readOnly={true ? !editMode : false}
+                onChange={(e) => setText(e.target.value)}
+              ></textarea>
               <i
-                className="fa-regular fa-floppy-disk"
-                title="save"
-                onClick={(e) => requestHandler(e, `/note/update/${noteid}`)}
+                className="fa-solid fa-xmark"
+                title="close"
+                onClick={() =>
+                  closeBtnHandler(
+                    listNoteclicked,
+                    setListNoteClicked,
+                    setEditMode,
+                  )
+                }
               ></i>
-            ) : null}
+              {isOwner ? (
+                <i
+                  className="fa-solid fa-pen-to-square"
+                  title="edit"
+                  onClick={() => {
+                    editMode ? setEditMode(false) : setEditMode(true)
+                  }}
+                ></i>
+              ) : null}
+
+              {editMode ? (
+                <i
+                  className="fa-regular fa-floppy-disk"
+                  title="save"
+                  onClick={(e) => requestHandler(e, `/note/update/${noteid}`)}
+                ></i>
+              ) : null}
+              <i className="fa-regular fa-comment commentsIcon"></i>
+            </div>
+            <Comments />
+            
+            
           </div>
         </div>
       ) : (
