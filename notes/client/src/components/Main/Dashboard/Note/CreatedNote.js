@@ -113,12 +113,11 @@ function CreatedNote(props) {
                   onClick={(e) => requestHandler(e, `/note/update/${noteid}`)}
                 ></i>
               ) : null}
-              {isLogged 
-              ?  <i className="fa-regular fa-comment commentsIcon" onClick={(e) => showComments ? setShowComments(false) : setShowComments(true)}></i>
-              : null}
+              
+              <i className="fa-regular fa-comment commentsIcon" onClick={(e) => showComments ? setShowComments(false) : setShowComments(true)}></i>
              
             </div>
-            {showComments ?  <Comments listid={listid} noteid={noteid} setShowComments={setShowComments} showComments={showComments}/> : null}
+            {showComments ?  <Comments setListNoteClicked={setListNoteClicked} isLogged={isLogged} listid={listid} noteid={noteid} setShowComments={setShowComments} showComments={showComments}/> : null}
            
             
             
@@ -135,7 +134,7 @@ function CreatedNote(props) {
             </div>
             <div className="listNoteDelBtn">
               <i
-                className="fa-solid fa-xmark"
+                className="fa-solid fa-xmark closeCreatedNote"
                 title="delete single note"
                 onClick={(e) => deleteBtnHandler(e, noteid)}
               ></i>
