@@ -1,11 +1,23 @@
 .addCommentForm{
     display: flex;
-    border: 5px solid rgb(4, 0, 255);
+    /* border: 5px solid rgb(4, 0, 255); */
     position: absolute;
     top: 35px;
     left: 50px;
     width: 90%;
     height: 400px;
+}
+#addCommentWindow::-webkit-scrollbar{
+    width: 10px;
+    /* background: red;  */
+}
+#addCommentWindow::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background: rgba(156, 156, 156, 0.418); 
+}
+#addCommentWindow::-webkit-scrollbar-track{
+    width: 5px;
+    background: rgb(255, 255, 255); 
 }
 #addCommentWindow{
     width: 100%;
@@ -25,4 +37,8 @@
     right: 20px;
     font-size: 23px;
     border-radius: 20px;
+}
+
+.saveComment{
+    z-index: 7;
 }

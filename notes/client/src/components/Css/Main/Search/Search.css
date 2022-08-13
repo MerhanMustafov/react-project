@@ -1,12 +1,10 @@
 @import './SearchNote.css';
 .dashboardSearchWrapper{
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 .searchListWrapper{
-    /* border: 5px solid green; */
     display: flex;
     width: auto;
     justify-content: center;

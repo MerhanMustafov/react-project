@@ -1,6 +1,6 @@
 // const baseUrl = process.env.REACT_APP_BASEURL
-const baseUrl = "http://localhost:5151"
-// const baseUrl = "https://server-for-notes-app.herokuapp.com"
+// const baseUrl = "http://localhost:5151"
+const baseUrl = "https://server-for-notes-app.herokuapp.com"
 
 async function createListRecord(listData, userid) {
   const endPoint = `/list/create/${userid}`
@@ -117,10 +117,10 @@ async function deleteNote(noteid, listid) {
     if (response.ok === false) {
       throw new Error('Error')
     }
-    return await response.json()
-  } catch (err) {
-    throw new Error(err.message)
-  }
+        return await response.json()
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
 
 
@@ -141,6 +141,24 @@ async function createComment(data, noteid){
     }
     
 }
+
+async function deleteComment(commentid, noteid){
+    const endPoint = `/comment/delete/commentid=${commentid}/noteid=${noteid}`
+    try{
+    const response = await fetch(baseUrl + endPoint, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    if (response.ok === false) {
+      throw new Error('Error')
+    }
+        return await response.json()
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+
 export {
   createListRecord,
   getAllLists,
@@ -153,4 +171,5 @@ export {
   updateNoteRecord,
   deleteNote,
   createComment,
+  deleteComment,
 }

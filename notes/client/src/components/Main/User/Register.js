@@ -18,7 +18,6 @@ function Register({setUserStatus}) {
       const userData = generateUserData({username, password, gender})
       try{
         const response = await api.register(userData)
-        console.log(response, 'Register user data')
         if(response.error){
             setErrors(response.error)
         }

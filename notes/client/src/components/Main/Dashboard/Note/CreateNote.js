@@ -51,12 +51,7 @@ function CreateNote(props) {
 
   return (
     <div>
-      {/* {isSaved ? ( */}
-      {/* // <div className="successfullySaved">Saved</div>
-        <div className="spinner">Saved</div>
-      ) : ( */}
       <div className="onPopUpBackground">
-        {/* id={listid} */}
         <div className="noteW CrNoteW">
           {error.length > 0 ? <div className="noteError">{error}</div> : null}
           <input
@@ -86,7 +81,6 @@ function CreateNote(props) {
           ></i>
         </div>
       </div>
-      {/* )} */}
     </div>
   )
 }
