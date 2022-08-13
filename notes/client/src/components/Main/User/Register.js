@@ -18,7 +18,6 @@ function Register({setUserStatus}) {
       const userData = generateUserData({username, password, gender})
       try{
         const response = await api.register(userData)
-        console.log(response, 'Register user data')
         if(response.error){
             setErrors(response.error)
         }
@@ -219,6 +218,7 @@ function setLocalStorage(data){
         localStorage.setItem('img', femaleImg)
     }
     localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('gender', data.gender)
 }
 
 function generateUserData(inputs){

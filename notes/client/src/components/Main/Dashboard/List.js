@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { Note } from './Note'
-import { CreatedNote } from './CreatedNote'
+import { CreateNote } from './Note/CreateNote'
+import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
 
 import {
@@ -76,7 +76,7 @@ function List(props) {
   return (
     <div className="expandBackground">
       {addNoteBtnClicked ? (
-        <Note
+        <CreateNote
           listid={listid}
           setAddNoteBtnClicked={setAddNoteBtnClicked}
           setSpinnerNotes={setSpinnerNotes}

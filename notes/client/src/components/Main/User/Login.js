@@ -142,6 +142,7 @@ function setLocalStorage(data){
         localStorage.setItem('img', femaleImg)
     }
     localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('gender', data.gender)
 }
 
 function generateUserData(inputs){

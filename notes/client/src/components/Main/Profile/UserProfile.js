@@ -47,15 +47,12 @@ function UserProfile() {
             uid={params.userid}
             setRefresh={setRefresh}
       />
-        {/* {waitingData ? (
-        <Spinner />
-      ) : ( */}
+      
         <div className="listsWrapper">
           {arrayOfLists && arrayOfLists.map((listData) => (
             <List key={listData._id} setRefresh={setRefresh} {...listData} />
           ))}
         </div>
-        {/* )} */}
       </div>
     </>
   )

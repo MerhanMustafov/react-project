@@ -1,14 +1,12 @@
 @import url(./Dashboard.css);
 @import url(./List.css);
-@import url(./CreateNote.css);
+@import url(./Note/Note.css);
 @import url(./Spinner/Spinner.css);
 @import url(./Home/Home.css);
 
 @import url(./User/Login.css);
 @import url(./User/Register.css);
 @import url(./User/Profile.css);
-/* @import url(./Login.module.css);
-@import url(./Register.module.css); */
 
 @import url(./NotFound.css);
 
@@ -18,6 +16,3 @@ main{
     margin: 0 auto;
 }
 
-main:disabled{
-    
-}
