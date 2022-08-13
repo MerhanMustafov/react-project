@@ -1,9 +1,10 @@
 .listsWrapper {
   column-count: 3;
-  width: auto;
+  /* width: auto; */
+  width: 98%;
   height: auto;
   margin: 0 auto;
-  border: 2px solid white;
+  /* border: 2px solid white; */
 }
 
 .expandBackgroundOn {
@@ -98,7 +99,8 @@
   border-top: 2px solid rgb(156, 156, 156);
   border-bottom: 2px solid rgb(156, 156, 156);
 }
-.listsWrapper main div{
+.listsWrapper .main div{
+
     /* position: relative; */
 }
 .expandListBtn {
@@ -123,7 +125,7 @@
   border: none;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.5);
-  font-size: 27px;
+  font-size: 23px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -160,7 +162,7 @@
   position: absolute;
   right: -7px;
   top: 10px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .options .hide {
@@ -201,7 +203,7 @@
 .listWrapper footer button {
   font-family: Kanit, 'Courier New', Courier, monospace;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   margin: 45px auto 5px 0;
   padding-left: 20px;
   color: black;
@@ -215,7 +217,7 @@
 
 .delConfirmWindow {
   visibility: hidden;
-  font-size: 20px;
+  font-size: 17px;
 
   position: absolute;
   color: white;
