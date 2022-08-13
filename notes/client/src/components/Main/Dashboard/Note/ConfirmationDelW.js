@@ -4,7 +4,7 @@ function ConfurmationDelW(props) {
     const {setRefreshComments} = props
     const commentid = props._id
     const noteid = props.noteid
-
+    
 
     async function requestHandler(e, to){
         if(to === `/comment/delete/commentid=${commentid}/noteid=${noteid}`){
