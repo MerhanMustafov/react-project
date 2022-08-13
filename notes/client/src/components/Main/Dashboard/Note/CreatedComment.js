@@ -6,7 +6,8 @@ import {ConfurmationDelW} from './ConfirmationDelW'
 function CreatedComment(props){
     const params = useParams()
     const navigate = useNavigate()
-    const {username, setListNoteClicked, _id, noteid, setRefreshComments} = props
+    const {username, setListNoteClicked, _id, noteid, setRefreshComments, ownerid} = props
+    const isAuthor = ownerid === localStorage.getItem('userId')
 
     async function userClickedHandler(e){
         const user = await getUserByName(username)
@@ -19,7 +20,8 @@ function CreatedComment(props){
     }
     return(
         <div className="CreatedCommentWrapper commentBox" id={props._id}>
-            <ConfurmationDelW {...props} setRefreshComments={setRefreshComments}/>
+            {isAuthor ? <ConfurmationDelW {...props} setRefreshComments={setRefreshComments}/> : null }
+            
             <div className="commentUserArea">
                     <img src={props.gender == 'male' ? maleimg : femaleimg} alt="" />
                     <div className="commentUsername" onClick={(e) => userClickedHandler(e)}>{props.username}</div>
