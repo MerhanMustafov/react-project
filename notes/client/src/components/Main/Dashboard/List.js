@@ -23,7 +23,8 @@ function List(props) {
   //   const [isOwner, setIsOwner] = useState(false)
   const { setRefresh } = props
   let listid = props._id
-  let image = props.listimg
+  let image = props.img_url
+//   let image = props.listimg
   const [title, setTitle] = useState()
   let isOwner = userid === props.ownerid
 
