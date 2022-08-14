@@ -1,0 +1,16 @@
+.r-box{
+    border: 2px solid red;
+}
+#registerImgInput{
+    display: none;
+}
+
+.registerImgLabel{
+    border:2px solid green ;
+    text-align: center;
+    background: transparent;
+}
+
+.registerImgLabel:hover{
+    background: rgb(0, 0, 0);
+}

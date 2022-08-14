@@ -5,7 +5,7 @@
 @import url(./Home/Home.css);
 
 @import url(./User/Login.css);
-@import url(./User/Register.css);
+@import url(./User/Register/Register.css);
 @import url(./User/Profile.css);
 
 @import url(./NotFound.css);
