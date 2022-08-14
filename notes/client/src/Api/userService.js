@@ -21,7 +21,7 @@ async function getUserByIdWithLists(userId){
             if(response.ok === false){
                 return null
             }
-            return response
+            return await response.json()
 
         }catch (err) {
             return err.message
@@ -33,7 +33,8 @@ async function getUserByIdWithLists(userId){
 async function getUserByName(username){
     const endPoint = `/user/getuser/${username}`
     const response = await fetch(baseUrl + endPoint)
-    return await response.json()
+    const data = await response.json()
+    return data
 }
 
 async function register(userData){

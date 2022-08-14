@@ -11,11 +11,8 @@ function UserProfile() {
   const [userData, setUserData] = useState()
   const [arrayOfLists, setArrayOfLists] = useState([])
   const [refresh, setRefresh] = useState(false)
-
   useEffect(() => {
-    getUserByIdWithLists(params.userid)
-      .then((res) => res.json())
-      .then((data) => set(data))
+    getUserByIdWithLists(params.userid).then((data) => set(data))
     function set(data){
         setUserData(data)
         setArrayOfLists(data.lists)
@@ -28,7 +25,7 @@ function UserProfile() {
         <div className="profileInfoSection">
           <div>
             <img
-              src={localStorage.getItem('img')}
+              src={userData && userData.profile_img_url}
               alt="prof img"
             />
             <div className="nameAreaWrapper">

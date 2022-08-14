@@ -35,7 +35,7 @@
     height: 40px;
 }
 .show-r-form{
-    height: 450px;
+    height: 550px;
 }
 
 #show-hide-btn{
@@ -62,21 +62,21 @@
 }
 .r-input-l{
     font-size: 28px;
-    margin: 0 0 7px 0;
+    margin: 0 0 9px 0;
     color: white;
 }
 .r-input{
     height: 25px;
     font-size: 20px;
     padding-left: 10px;
-    margin: 0 0 7px 0;
+    margin: 0 0 9px 0;
 }
 .gender-wapper{
     display: flex;
     justify-content: space-between;
     width: 90%;
     width: 40%;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
 }
 .gender-label{
     font-size: 25px;
