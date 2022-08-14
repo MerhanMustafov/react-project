@@ -23,7 +23,7 @@ function Comments(props) {
 
         <div className="commentsInnerWrapper">
             {comments.length > 0 ? 
-             comments.map(c => <CreatedComment setRefreshComments={setRefreshComments} {...c} setListNoteClicked={setListNoteClicked}/>)
+             comments.map(c => <CreatedComment key={c._id} setRefreshComments={setRefreshComments} {...c} setListNoteClicked={setListNoteClicked}/>)
              : <div className="commentEmpty">There is no comments yet !</div> }
         </div>
     </div>
