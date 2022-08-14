@@ -11,7 +11,7 @@ function AddList(props) {
     if (to === `/list/create/${userid}`) {
       const listData = await createListRecord(
         {
-          listimg: image,
+          rowImg: image,
           listname: listname.trim(),
           notes: [],
           ownerid: userid,

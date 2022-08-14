@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import { getUserByIdWithLists } from '../../../Api/userService'
 import { List } from '../Dashboard/List'
 import { Search } from '../Dashboard/Search/Search'
-import maleimg from '../../../profileImages/male.jpg'
-import femaleimg from '../../../profileImages/female.jpg'
+// import maleimg from '../../../profileImages/male.jpg'
+// import femaleimg from '../../../profileImages/female.jpg'
 function UserProfile() {
 
   const params = useParams()
@@ -28,7 +28,7 @@ function UserProfile() {
         <div className="profileInfoSection">
           <div>
             <img
-              src={userData?.gender === 'male' ? maleimg : femaleimg}
+              src={localStorage.getItem('img')}
               alt="prof img"
             />
             <div className="nameAreaWrapper">
