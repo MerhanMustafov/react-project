@@ -1,7 +1,8 @@
 .commentDelBtn{
+    grid-area: delete;
     position: relative;
-    right: 3px;
-    top: 3px;
+    /* right: 3px; */
+    /* top: 3px; */
 
 }
 
@@ -39,7 +40,7 @@
 }
 
 .deleteCommentIcon{
-    width: max-content;
-    position: absolute;
-    right: 10px;
+    /* width: max-content; */
+    /* position: absolute; */
+    /* right: 10px; */
 }
