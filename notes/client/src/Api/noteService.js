@@ -142,6 +142,21 @@ async function createComment(data, noteid){
     
 }
 
+async function updateComment(data, commentid){
+    const endPoint = `/comment/update/${commentid}`
+    try{
+        const response = await fetch(baseUrl + endPoint, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        return await response.json()
+    }catch (err) {
+        return err.message
+    }
+
+}
+
 async function deleteComment(commentid, noteid){
     const endPoint = `/comment/delete/commentid=${commentid}/noteid=${noteid}`
     try{
@@ -171,5 +186,6 @@ export {
   updateNoteRecord,
   deleteNote,
   createComment,
+  updateComment,
   deleteComment,
 }

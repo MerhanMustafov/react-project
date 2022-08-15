@@ -1,0 +1,27 @@
+.risizeBtnTop{
+     position: absolute;
+    top: 0px;
+    right: 4%;
+     background: transparent;
+    padding: 10px; 
+    color: rgba(255, 255, 255, 0.185);
+}
+.risizeBtnTop:hover{
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+.risizeBtnBottom{
+     position: absolute;
+    bottom: 0px;
+    right: 4%;
+     background: transparent;
+    padding: 10px; 
+    color: rgba(255, 255, 255, 0.185);
+}
+
+.risizeBtnBottom:hover{
+    color: rgba(255, 255, 255, 0.7);
+}

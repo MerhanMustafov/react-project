@@ -1,0 +1,91 @@
+@import './AddComment.css';
+@import './DeleteComment.css';
+@import './CommentResizeBtn.css';
+@import './ComentArea.css';
+@import './CommentUserArea.css';
+@import './EditComment.css';
+.commentsIcon{
+    position: absolute;
+    font-size: 30px;
+    bottom: 8px;
+    left: 6px;
+}
+.commentsWrapper{
+    position: relative;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+    border: 2px solid white;
+    background-image: url(../../../../../../public/images/dashboard-view-img.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+.addCommentIcon{
+    color: white;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 35px;
+}
+.commentsInnerWrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    min-height: 450px;
+    width: auto;
+    border: 2px solid green;
+}
+.commentsWrapper .commentBox{
+    display: grid;
+    grid-template-columns: 100px auto 40px;
+    grid-template-areas: 'user comment delete';
+    /* border: 5px solid red; */
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+    color: white;
+    
+}
+.commentsWrapper .commentBox::-webkit-scrollbar{
+    width: 10px;
+    background: transparent;
+}
+.commentsWrapper .commentBox::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background: white;
+}
+.commentsWrapper .commentBox::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+
+
+.commentsWrapper::-webkit-scrollbar{
+    width: 5px;
+}
+.commentsWrapper::-webkit-scrollbar-thumb{
+    background: white;
+    border-radius:20px ;
+}
+.commentsWrapper::-webkit-scrollbar-track{
+    background: red;
+}
+
+
+
+
+
+.commentEmpty{
+    color: white;
+    font-size: 30px;
+    padding: 20px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#addCommentWindow{
+    z-index: 5;
+}
+

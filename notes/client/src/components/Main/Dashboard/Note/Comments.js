@@ -14,7 +14,9 @@ function Comments(props) {
     }, [refreshComments])
   return (
     <div className="commentsWrapper" >
-            
+            {isLogged 
+                ? <i className="fa-solid fa-comment-dots addCommentIcon" onClick={(e) => addCommentWindow ? setAddCommentWindow(false) : setAddCommentWindow(true)}></i>
+                : null}
             
             {addCommentWindow ? <CreateComment noteid={noteid} setAddCommentWindow={setAddCommentWindow} setRefreshComments={setRefreshComments}/> : null}
             

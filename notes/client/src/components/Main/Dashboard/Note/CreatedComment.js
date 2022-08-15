@@ -3,18 +3,36 @@ import femaleimg from '../../../../profileImages/female.jpg'
 import {useNavigate, useParams} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import {getUserByName} from '../../../../Api/userService'
+import {updateComment} from '../../../../Api/noteService'
 import {ConfurmationDelW} from './ConfirmationDelW'
 function CreatedComment(props){
     const params = useParams()
     const navigate = useNavigate()
-    const {username, setListNoteClicked, _id, noteid, setRefreshComments, ownerid, isLogged, setAddCommentWindow, addCommentWindow} = props
+    const {username, setListNoteClicked, _id, noteid, setRefreshComments, ownerid, isLogged, setAddCommentWindow, addCommentWindow, comment} = props
     const isAuthor = ownerid === localStorage.getItem('userId')
 
+
     const [userData, setUserData] = useState()
+    const [newComment, setNewComment] = useState('')
+    console.log(newComment)
 
     useEffect(() => {
         getUserByName(username).then(data => setUserData(data[0]))
     }, [])
+
+    async function requestHandler(e, to) {
+        if(to === `/comment/update/${_id}`){
+            if(newComment.length > 0 && newComment !== comment){
+                try{
+                    const res = await updateComment({comment: newComment.trim()}, _id)
+                    console.log(res)
+                }catch(err){
+                    console.log(err)
+                }
+            }
+        }
+    }
+
     async function userClickedHandler(e){
         const user = await getUserByName(username)
         if(params.userid === user[0]._id){
@@ -38,6 +56,7 @@ function CreatedComment(props){
                     onClick={(e) => showHide(e, _id)}
                     ></i>
                     <ConfurmationDelW {...props} setRefreshComments={setRefreshComments}/>
+                <i title="save changes" className="fa-regular fa-floppy-disk editComment" onClick={(e) => requestHandler(e, `/comment/update/${_id}`)}></i>
                 </div>
                 
                </>
@@ -49,12 +68,11 @@ function CreatedComment(props){
                     <div className="commentUsername" onClick={(e) => userClickedHandler(e)}>{props.username}</div>
                 </div>
             <div className="commentcontentWrapper">
-                {/* <i class="fa-solid fa-maximize"></i> */}
                 {/* <i class="fa-solid fa-window-minimize minimizeButton" onClick={(e) => minimaze(e, _id)}></i> */}
                 {/* <i class="fa-solid fa-down-left-and-up-right-to-center minimazeButtonMiddle"></i> */}
-                <i class="fa-solid fa-maximize risizeBtnTop" onClick={(e) => resizeBtn(e, _id)}></i>
-                <i class="fa-solid fa-maximize risizeBtnBottom" onClick={(e) => resizeBtn(e, _id)}></i>
-                <textarea className="createdCommentContent" onClick={(e) => maximize(e, _id)} readOnly={isAuthor ? false : true}>{props.comment}</textarea>
+                <i className="fa-solid fa-maximize risizeBtnTop" onClick={(e) => resizeBtn(e, _id)}></i>
+                <i className="fa-solid fa-maximize risizeBtnBottom" onClick={(e) => resizeBtn(e, _id)}></i>
+                <textarea className="createdCommentContent" onChange={(e) => setNewComment(e.target.value)} onClick={(e) => maximize(e, _id)} readOnly={isAuthor ? false : true} defaultValue={props.comment}></textarea>
                     
             </div>            
         </div>
