@@ -15,7 +15,7 @@
     overflow-y: auto;
     width: auto;
     height: auto;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     background-image: url(../../../../../../public/images/dashboard-view-img.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -34,15 +34,19 @@
     margin: 50px;
     min-height: 450px;
     width: auto;
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
 .commentsWrapper .commentBox{
     display: grid;
     grid-template-columns: 100px auto 40px;
     grid-template-areas: 'user comment delete';
     /* border: 5px solid red; */
-    border-top: 2px solid red;
-    border-bottom: 2px solid red;
+    margin: 20px 0 0 0 ;
+    border-radius: 20px;
+    border-top: 10px solid red;
+    border-bottom: 3px solid red;
+    border-left: 0.1px solid red;
+    border-right: 0.1px solid red;
     color: white;
     
 }

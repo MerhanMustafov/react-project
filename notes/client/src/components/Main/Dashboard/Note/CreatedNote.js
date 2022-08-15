@@ -3,6 +3,9 @@ import { updateNoteRecord, deleteNote } from '../../../../Api/noteService'
 import { getUserById } from '../../../../Api/userService'
 import { SpinnerNOtesList } from '../../Spinner/Spinner'
 import {Comments} from '../Note/Comments'
+
+
+import {Spinner} from '../../Spinner/Spinner'
 function CreatedNote(props) {
   const {
     setAddNoteBtn,

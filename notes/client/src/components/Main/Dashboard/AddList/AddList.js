@@ -1,14 +1,20 @@
 import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
+import { Spinner } from '../../Spinner/Spinner'
 
 function AddList(props) {
   const userid = localStorage.getItem('userId')
   const { setRefresh } = props
   const [listname, setListName] = useState('')
   const [image, setImage] = useState('')
+  
+  const [waitingAddListData, setWaitingAddListData] = useState(false)
+
+
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
+        setWaitingAddListData(true)
       const listData = await createListRecord(
         {
           rowImg: image,
@@ -21,50 +27,51 @@ function AddList(props) {
       setImage('')
       setListName('')
       setRefresh(true)
+      setWaitingAddListData(false)
     }
   }
   return (
-    <div className="addListWrapper">
-      <div className="addListInnerWrapper">
-        <button
-          className="addList"
-          disabled={true ? listname.length === 0 : false}
-          onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
-        >
-          New List
-        </button>
-        <input
-          type="text"
-          id="listI"
-          placeholder="Type List Title..."
-          value={'' ? listname.length > 0 : listname}
-          onChange={(e) => setListName(e.target.value)}
-        />
-        <label
-          htmlFor="uploadimg"
-          className="labelInputListImg"
-          onChange={(e) => set(e, setImage)}
-        >
-          Upload List Img
-        </label>
-        <input
-          type="file"
-          id="uploadimg"
-          name="uploadimg"
-          onChange={(e) => set(e, setImage)}
-        />
+      <div className="addListWrapper">
+        <div className="addListInnerWrapper">
+          <button
+            className="addList"
+            disabled={true ? listname.length === 0 : false}
+            onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
+          >
+       { waitingAddListData ? <Spinner /> :  'New List'}
+           
+          </button>
+          <input
+            type="text"
+            id="listI"
+            placeholder="Type List Title..."
+            value={'' ? listname.length > 0 : listname}
+            onChange={(e) => setListName(e.target.value)}
+          />
+          <label
+            htmlFor="uploadimg"
+            className="labelInputListImg"
+            onChange={(e) => set(e, setImage)}
+          >
+            Upload List Img
+          </label>
+          <input
+            type="file"
+            id="uploadimg"
+            name="uploadimg"
+            onChange={(e) => set(e, setImage)}
+          />
+        </div>
       </div>
-    </div>
   )
 }
 
 export { AddList }
 
-function set(e, setImage){
-    uploadImgHandler(e, setImage)
-    document.getElementById('uploadimg').value = ''
-    document.querySelector('.labelInputListImg').value = ''
-
+function set(e, setImage) {
+  uploadImgHandler(e, setImage)
+  document.getElementById('uploadimg').value = ''
+  document.querySelector('.labelInputListImg').value = ''
 }
 
 function uploadImgHandler(e, setImage) {

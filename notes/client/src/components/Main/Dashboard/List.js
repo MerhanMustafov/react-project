@@ -3,6 +3,8 @@ import { CreateNote } from './Note/CreateNote'
 import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
 
+import {Spinner} from '../Spinner/Spinner'
+
 import {
   updateListTitle,
   deleteList,
@@ -20,8 +22,9 @@ function List(props) {
   const [spinnerNotes, setSpinnerNotes] = useState(false)
   const [lstId, setLstId] = useState(null)
   const [lists, setLists] = useState([])
+
   //   const [isOwner, setIsOwner] = useState(false)
-  const { setRefresh } = props
+  const { setRefresh, setWaitingData } = props
   let listid = props._id
   let image = props.list_img_url
 //   let image = props.listimg
@@ -50,8 +53,6 @@ function List(props) {
       scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
-    // setTimeout(() => {
-    // }, 1000)
   }, [refreshList, image])
 
   async function requestHandler(e, to) {
@@ -59,6 +60,9 @@ function List(props) {
       if (e.key == 'Enter') {
         if (title.length > 0) {
           const listname = title
+        //   setWaitingData(true)
+
+
           const updated = await updateListTitle(listname, listid)
           editBtnHandler(null, listid, setTitle, 'update')
           document
@@ -169,6 +173,7 @@ function List(props) {
               Add Note
             </button> : null}
             
+        
           </footer>
         </div>
       </div>

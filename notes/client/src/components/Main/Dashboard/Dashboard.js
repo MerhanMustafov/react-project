@@ -12,18 +12,13 @@ function Dashboard({ setUserStatus }) {
 
   const [addNoteBtn, setAddNoteBtn] = useState('')
   const [arrayOfLists, setArrayOfLists] = useState([])
-  const [waitingData, setWaitingData] = useState(false)
 
 
   useEffect(() => {
     async function getLists() {
     const userid = localStorage.getItem('userId')
-      setWaitingData(true)
       const lists = await getAllLists(userid)
       setArrayOfLists(lists)
-      setTimeout(() => {
-        setWaitingData(false)
-      }, 150)
     }
     getLists()
     setRefresh(false)
@@ -38,17 +33,14 @@ function Dashboard({ setUserStatus }) {
         uid={uid}
       />
 
-      <AddList setRefresh={setRefresh} />
+      <AddList setRefresh={setRefresh}  />
 
-      {waitingData ? (
-        <Spinner />
-      ) : (
         <div className="listsWrapper">
+    
           {arrayOfLists.map((listData) => (
             <List key={listData._id} setRefresh={setRefresh} {...listData} />
           ))}
         </div>
-      )}
     </div>
   )
 }
