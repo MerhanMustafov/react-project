@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { CreateNote } from './Note/CreateNote'
 import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
-
-import {Spinner} from '../Spinner/Spinner'
+import {NoteListSpinner} from '../Spinner/Spinner'
 
 import {
   updateListTitle,
@@ -12,17 +11,17 @@ import {
   getAllLists,
 } from '../../../Api/noteService'
 
-import { SpinnerNOtesList } from '../Spinner/Spinner'
 
 function List(props) {
   let key = 654
   const userid = localStorage.getItem('userId')
   const [refreshList, setRefreshList] = useState(false)
   const [addNoteBtnClicked, setAddNoteBtnClicked] = useState(false)
-  const [spinnerNotes, setSpinnerNotes] = useState(false)
   const [lstId, setLstId] = useState(null)
   const [lists, setLists] = useState([])
+  const [waitinfDeleteList, setWaitindDelete] = useState(false)
 
+  const [spinnerNotes, setSpinnerNotes] = useState(false)
   //   const [isOwner, setIsOwner] = useState(false)
   const { setRefresh, setWaitingData } = props
   let listid = props._id
@@ -73,7 +72,9 @@ function List(props) {
         }
       }
     } else if (to === `/list/delete/${listid}/${userid}`) {
+        setWaitindDelete(true)
       await deleteList(listid, userid)
+      setWaitindDelete(false)
       setRefresh(true)
     }
   }
@@ -118,8 +119,11 @@ function List(props) {
                   onClick={(e) => deleteBtnHandler(e, listid)}
                 ></i>
                 <div className="delConfirmWindow hideDelW">
-                  Are you sure ?
-                  <div className="btnsWrapper">
+                  
+                {waitinfDeleteList ? <NoteListSpinner/> : 
+                <>
+                'Are you sure ?'
+                <div className="btnsWrapper">
                     <button
                       className="cancel"
                       onClick={(e) => {
@@ -137,6 +141,9 @@ function List(props) {
                       Delete
                     </button>
                   </div>
+                  </>}
+
+                  
                 </div>
               </div>
               <i
@@ -148,7 +155,9 @@ function List(props) {
             
           </header>
           <main className="scrollMain">
-            {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null}
+            {/* {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null} */}
+            
+            {/* {true ? <s className="spn" /> : null} */}
             {lists.length > 0
               ? lists.map((noteData) => (
                   <CreatedNote

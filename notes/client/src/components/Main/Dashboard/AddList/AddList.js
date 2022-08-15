@@ -1,6 +1,6 @@
 import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
-import { Spinner } from '../../Spinner/Spinner'
+import { AddListSpinner } from '../../Spinner/Spinner'
 
 function AddList(props) {
   const userid = localStorage.getItem('userId')
@@ -38,7 +38,8 @@ function AddList(props) {
             disabled={true ? listname.length === 0 : false}
             onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
           >
-       { waitingAddListData ? <Spinner /> :  'New List'}
+       { waitingAddListData ? <AddListSpinner /> :  'New List'}
+       {/* { true ? <AddListSpinner /> :  'New List'} */}
            
           </button>
           <input

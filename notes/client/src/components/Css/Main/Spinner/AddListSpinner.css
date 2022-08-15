@@ -1,0 +1,25 @@
+
+.addListSpinner{
+    position: relative;
+    margin: 0 auto;
+    border-top: 10px solid rgb(255, 255, 255);
+    border-right: 10px solid rgba(255, 255, 255, 0.774);
+    border-bottom: 10px solid rgba(252, 252, 252, 0.493);
+    border-left: 10px solid rgba(255, 255, 255, 0.055);
+   
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+    z-index: 50;
+
+    animation: AddListSpinner 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+
+@keyframes AddListSpinner {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+    
+}
