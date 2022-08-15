@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { createNoteRecord } from '../../../Api/noteService'
-function Note(props) {
+import { createNoteRecord } from '../../../../Api/noteService'
+function CreateNote(props) {
   //   const {setWaitingData} = props
   //   const { setrefreshNotesList } = props
   //   const { addNoteBtn, setAddNoteBtn } = props.noteBtn
@@ -32,6 +32,7 @@ function Note(props) {
             text: text.trim(),
             listid: listid,
             title: title.trim(),
+            comments: []
           }
           const note = await createNoteRecord(noteData)
           setAddNoteBtnClicked(false)
@@ -50,13 +51,8 @@ function Note(props) {
 
   return (
     <div>
-      {/* {isSaved ? ( */}
-      {/* // <div className="successfullySaved">Saved</div>
-        <div className="spinner">Saved</div>
-      ) : ( */}
       <div className="onPopUpBackground">
-        {/* id={listid} */}
-        <div className="noteW">
+        <div className="noteW CrNoteW">
           {error.length > 0 ? <div className="noteError">{error}</div> : null}
           <input
             type="text"
@@ -79,18 +75,17 @@ function Note(props) {
           ></i>
 
           <i
-            className="fa-regular fa-floppy-disk"
+            className="fa-regular fa-floppy-disk saveOnCreateNote"
             title="save"
             onClick={(e) => requestHandler(e, '/note/create')}
           ></i>
         </div>
       </div>
-      {/* )} */}
     </div>
   )
 }
 
-export { Note }
+export { CreateNote }
 
 function closeBtnHandler(setBtn) {
   setBtn(false)

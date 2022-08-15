@@ -1,5 +1,6 @@
-// const baseUrl = 'http://localhost:5151'
-const baseUrl = 'https://server-for-notes-app.herokuapp.com'
+// const baseUrl = process.env.REACT_APP_BASEURL
+// const baseUrl = "http://localhost:5151"
+const baseUrl = "https://server-for-notes-app.herokuapp.com"
 
 async function createListRecord(listData, userid) {
   const endPoint = `/list/create/${userid}`
@@ -80,6 +81,14 @@ async function getAllNoteRecords(listid) {
   }
 }
 
+
+async function getNoteById(noteid){
+    const endPoint = `/note/getNote/${noteid}`
+    const response = await fetch(baseUrl + endPoint)
+    if(response.ok){
+        return await response.json()
+    }
+}
 async function updateNoteRecord(newData, noteId) {
   const endPoint = `/note/update/${noteId}`
   try {
@@ -108,11 +117,62 @@ async function deleteNote(noteid, listid) {
     if (response.ok === false) {
       throw new Error('Error')
     }
-    return await response.json()
-  } catch (err) {
-    throw new Error(err.message)
-  }
+        return await response.json()
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
+
+
+async function createComment(data, noteid){
+    const endPoint = `/comment/create/${noteid}`
+    try{
+        const response = await fetch(baseUrl + endPoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    })
+    if(response.ok){
+        return await response.json()
+    }
+
+    }catch (err) {
+        return err.message
+    }
+    
+}
+
+async function updateComment(data, commentid){
+    const endPoint = `/comment/update/${commentid}`
+    try{
+        const response = await fetch(baseUrl + endPoint, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        return await response.json()
+    }catch (err) {
+        return err.message
+    }
+
+}
+
+async function deleteComment(commentid, noteid){
+    const endPoint = `/comment/delete/commentid=${commentid}/noteid=${noteid}`
+    try{
+    const response = await fetch(baseUrl + endPoint, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    if (response.ok === false) {
+      throw new Error('Error')
+    }
+        return await response.json()
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
 
 export {
   createListRecord,
@@ -122,6 +182,10 @@ export {
   deleteList,
   createNoteRecord,
   getAllNoteRecords,
+  getNoteById,
   updateNoteRecord,
   deleteNote,
+  createComment,
+  updateComment,
+  deleteComment,
 }

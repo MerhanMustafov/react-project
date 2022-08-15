@@ -4,10 +4,12 @@
 .dashboardWrapper{
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
+    width: auto;
+    margin: 0 auto; 
     height: auto;
     min-height: 100vh;
-    min-width: 510px;
-
+    min-width: 270px;
+    max-width: 1300px;
     position: relative;
 }
 
@@ -16,30 +18,77 @@
 /* ADD NOTE BTN /SHEET */
 
 .onPopUpBackground{
+    overflow-y: auto;
    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
+    width: 100%;
+    height: 100%;
     z-index: 20;
     background: rgba(0, 0, 0, 0.8);
     /* opacity: 0.5; */
 }
+.onPopUpBackground::-webkit-scrollbar{
+    display: none;
+
+}
+.iW{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    left: 50%;
+    /* bottom: 50px; */
+    transform: translate(-50%);
+    width: 95%;
+    /* max-height: 1000px; */
+    min-height: 80%;
+
+    /* height: auto; */
+    /* border: 5px solid blue; */
+
+}
+
 .noteW{
     display: flex;
     flex-direction: column;
-    border:2px solid rgb(0, 0, 0);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 70%;
+    flex: 1 0 auto;
+    /* border:2px solid rgb(0, 0, 0); */
+    /* min-height: 500px; */
+    min-height: 70%;
+    height: auto;
+    position: relative;
     z-index: 5;
     opacity: 0.9;
     border-radius: 10px ;
     border: 3px solid rgba(128, 0, 0, 0.815);
+}
+.CrNoteW{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+
+}
+@media screen and (max-width: 1300px){
+    .noteW{
+        /* min-height: none; */
+        /* min-height: unset; */
+        /* height: 100%; */
+        /* max-height: 600px; */
+        /* background: rgb(0, 0, 0); */
+    }
+    .iW{
+        /* min-height: 70%; */
+    }
+}
+.saveOnCreateNote{
+    /* position: absolute; */
+    bottom: 5px;
 }
 .noteT{
 
@@ -58,10 +107,11 @@
 
 }
 #noteC{
-    /* background: transparent; */
+    background: rgb(202, 202, 202);
+    flex: 1 0 auto;
 border-radius: inherit;
     font-size: 25px;
-    padding: 35px;
+    padding: 45px;
     width: auto;
     height: 100%;
     resize: none;

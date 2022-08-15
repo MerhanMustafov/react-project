@@ -1,0 +1,45 @@
+.commentDelBtn{
+    grid-area: delete;
+    position: relative;
+    font-size: 30px;
+}
+
+.delCommentConfirmWindow
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 40px;
+    z-index: 3;
+    top: 10px;
+    visibility: hidden;
+    text-align: center;
+    width: 0px;
+    height: 0;
+    border: 2px solid white;
+    overflow: hidden;
+    transition: width 2s, height 2s,visibility 2s;
+    background: black;
+    border: 1px solid transparent;
+}
+
+.showDelConfWindow{
+    visibility: visible;
+    width: 250px;
+    height: 75px;
+    transition: width 2s visibility 2s;
+}
+
+.buttonsWrapper{
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.deleteCommentIcon{
+    color: rgba(255, 255, 255, 0.288);
+}
+.deleteCommentIcon:hover{
+    color: rgba(255, 255, 255, 0.7);
+}

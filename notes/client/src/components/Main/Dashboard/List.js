@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { Note } from './Note'
-import { CreatedNote } from './CreatedNote'
+import { CreateNote } from './Note/CreateNote'
+import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
 
 import {
@@ -23,7 +23,8 @@ function List(props) {
   //   const [isOwner, setIsOwner] = useState(false)
   const { setRefresh } = props
   let listid = props._id
-  let image = props.listimg
+  let image = props.list_img_url
+//   let image = props.listimg
   const [title, setTitle] = useState()
   let isOwner = userid === props.ownerid
 
@@ -51,7 +52,7 @@ function List(props) {
     update()
     // setTimeout(() => {
     // }, 1000)
-  }, [refreshList])
+  }, [refreshList, image])
 
   async function requestHandler(e, to) {
     if (to === `/list/update/${listid}`) {
@@ -76,7 +77,7 @@ function List(props) {
   return (
     <div className="expandBackground">
       {addNoteBtnClicked ? (
-        <Note
+        <CreateNote
           listid={listid}
           setAddNoteBtnClicked={setAddNoteBtnClicked}
           setSpinnerNotes={setSpinnerNotes}
@@ -84,7 +85,7 @@ function List(props) {
           setLstId={setLstId}
         />
       ) : null}
-      <div className="listWrapper" id={listid}>
+      <div className="listWrapper" id={listid} >
         <SearchNote listid={listid} notes={lists} setNotes={setLists} />
         <div className="listInnerWrapper">
           <i

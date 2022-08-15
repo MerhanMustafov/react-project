@@ -1,0 +1,25 @@
+.commentUserArea{
+    grid-area: user;
+}
+.commentUserArea img{
+    display: block;
+    margin: 10px auto 0 auto;
+
+    width: 50px;
+    border-radius: 50px;
+}
+
+
+.commentUsername{
+    text-align: center;
+    margin: 5px auto 0 10px ;
+    font-size: 2rem;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* .commentBox img{
+    width: 100%;
+} */

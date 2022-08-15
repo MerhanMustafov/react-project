@@ -134,14 +134,20 @@ function checkboxHandler(e) {
 function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
-    const maleImg = require('../../../profileImages/male.jpg')
-    const femaleImg = require('../../../profileImages/female.jpg')
-    if(data.gender === 'male'){
-        localStorage.setItem('img', maleImg)
+    if(data.profile_img_url.length > 0){
+        localStorage.setItem('img', data.profile_img_url)
     }else{
-        localStorage.setItem('img', femaleImg)
+        const maleImg = require('../../../profileImages/male.jpg')
+        const femaleImg = require('../../../profileImages/female.jpg')
+        if(data.gender === 'male'){
+            localStorage.setItem('img', maleImg)
+        }else{
+            localStorage.setItem('img', femaleImg)
+        }
     }
+    
     localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('gender', data.gender)
 }
 
 function generateUserData(inputs){

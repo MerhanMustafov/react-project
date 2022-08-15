@@ -9,16 +9,15 @@ function Register({setUserStatus}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
-//   const [img, setImg] = useState('')
+  const [img, setImg] = useState('')
   const [gender, setGender] = useState(null)
 
   async function registerUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
-      const userData = generateUserData({username, password, gender})
+      const userData = generateUserData({username, password, gender, rowImg: img})
       try{
         const response = await api.register(userData)
-        console.log(response, 'Register user data')
         if(response.error){
             setErrors(response.error)
         }
@@ -93,20 +92,19 @@ function Register({setUserStatus}) {
             onChange={(e) => setRepeatPassword(e.target.value)}
           />
         </div>
-        {/* <div className="r-box">
-          <label htmlFor="img" className="r-input-l">
-            Profile Image
+        <div className="r-box">
+          <label htmlFor="registerImgInput" className="r-input-l registerImgLabel" onChange={(e) => uploadImg(e, setImg)}>
+            Upload Profile Image
           </label>
           <input
             type="file"
-            id="img"
+            id="registerImgInput"
             className="r-input"
             name="img"
             placeholder="Image URL"
-            // onChange={(e) => setImg(e.target.value)}
-            // onChange={(e) => uploadImg(e, setImg)}
+            onChange={(e) => uploadImg(e, setImg)}
           />
-        </div> */}
+        </div>
         <div className="gender-wapper">
           <div className="F-wrapper">
             <label htmlFor="F" className="gender-label">
@@ -154,14 +152,14 @@ function Register({setUserStatus}) {
 }
 export { Register }
 
-// function uploadImg(e, setImg){
-//     const reader = new FileReader()
-//     reader.addEventListener('load', (e) => {
-//         const url = reader.result
-//         setImg(url)
-//     })
-//     reader.readAsDataURL(e.target.files[0])
-//   }
+function uploadImg(e, setImg){
+    const reader = new FileReader()
+    reader.addEventListener('load', (e) => {
+        const url = reader.result
+        setImg(url)
+    })
+    reader.readAsDataURL(e.target.files[0])
+  }
 
 function checkforErrors(setErrors, inputs) {
   let err = []
@@ -211,21 +209,26 @@ function checkboxHandler(e) {
 function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
-    const maleImg = require('../../../profileImages/male.jpg')
-    const femaleImg = require('../../../profileImages/female.jpg')
-    if(data.gender === 'male'){
-        localStorage.setItem('img', maleImg)
+    if(data.profile_img_url.length > 0){
+        localStorage.setItem('img', data.profile_img_url)
     }else{
-        localStorage.setItem('img', femaleImg)
+        const maleImg = require('../../../profileImages/male.jpg')
+        const femaleImg = require('../../../profileImages/female.jpg')
+        if(data.gender === 'male'){
+            localStorage.setItem('img', maleImg)
+        }else{
+            localStorage.setItem('img', femaleImg)
+        }
     }
     localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('gender', data.gender)
 }
 
 function generateUserData(inputs){
     return  {
         username: inputs.username.trim(),
         password: inputs.password.trim(),
-        // img: inputs.img.trim(),
+        rowImg: inputs.rowImg.trim(),
         gender: inputs.gender.trim(),
       }
 }

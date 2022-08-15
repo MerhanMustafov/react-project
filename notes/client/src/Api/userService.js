@@ -1,5 +1,6 @@
-// const baseUrl = 'http://localhost:5151'
-const baseUrl = 'https://server-for-notes-app.herokuapp.com'
+// const baseUrl = process.env.REACT_APP_BASEURL
+// const baseUrl = "http://localhost:5151"
+const baseUrl = "https://server-for-notes-app.herokuapp.com"
 
 async function getUserById(userId){
     if(userId){
@@ -20,7 +21,7 @@ async function getUserByIdWithLists(userId){
             if(response.ok === false){
                 return null
             }
-            return response
+            return await response.json()
 
         }catch (err) {
             return err.message
@@ -32,7 +33,8 @@ async function getUserByIdWithLists(userId){
 async function getUserByName(username){
     const endPoint = `/user/getuser/${username}`
     const response = await fetch(baseUrl + endPoint)
-    return await response.json()
+    const data = await response.json()
+    return data
 }
 
 async function register(userData){

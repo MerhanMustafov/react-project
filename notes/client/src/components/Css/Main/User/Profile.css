@@ -30,6 +30,7 @@
     font-size: 2rem;
     color: white;
     white-space: nowrap;
+    cursor: pointer;
 }
 .UserProfileListCount{
     font-size: 3rem;
