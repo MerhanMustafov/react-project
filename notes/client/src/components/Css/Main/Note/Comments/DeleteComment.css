@@ -1,8 +1,7 @@
 .commentDelBtn{
+    grid-area: delete;
     position: relative;
-    right: 3px;
-    top: 3px;
-
+    font-size: 30px;
 }
 
 .delCommentConfirmWindow
@@ -11,6 +10,7 @@
     flex-direction: column;
     position: absolute;
     right: 40px;
+    z-index: 3;
     top: 10px;
     visibility: hidden;
     text-align: center;
@@ -35,11 +35,11 @@
     justify-content:center;
     gap: 10px;
     padding: 10px;
-    /* border: 2px solid red; */
 }
 
 .deleteCommentIcon{
-    width: max-content;
-    position: absolute;
-    right: 10px;
+    color: rgba(255, 255, 255, 0.288);
+}
+.deleteCommentIcon:hover{
+    color: rgba(255, 255, 255, 0.7);
 }

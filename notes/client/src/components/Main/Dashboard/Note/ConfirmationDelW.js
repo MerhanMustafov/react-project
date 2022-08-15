@@ -16,14 +16,6 @@ function ConfurmationDelW(props) {
 
   return (
     <>
-      <div className="commentDelBtn"  >
-        <i
-          className="fa-solid fa-xmark deleteCommentIcon"
-          title="delete single comment"
-          onClick={(e) => showHide(e, commentid)}
-        ></i>
-      </div>
-
       <div className="delCommentConfirmWindow"  >
         Are you sure ?
         <div className="buttonsWrapper">

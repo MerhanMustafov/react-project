@@ -43,7 +43,7 @@
     left: 50%;
     /* bottom: 50px; */
     transform: translate(-50%);
-    width: 85%;
+    width: 95%;
     /* max-height: 1000px; */
     min-height: 80%;
 
@@ -51,12 +51,14 @@
     /* border: 5px solid blue; */
 
 }
+
 .noteW{
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
     /* border:2px solid rgb(0, 0, 0); */
-    min-height: 500px;
+    /* min-height: 500px; */
+    min-height: 70%;
     height: auto;
     position: relative;
     z-index: 5;
@@ -105,7 +107,7 @@
 
 }
 #noteC{
-    /* background: transparent; */
+    background: rgb(202, 202, 202);
     flex: 1 0 auto;
 border-radius: inherit;
     font-size: 25px;

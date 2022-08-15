@@ -1,4 +1,4 @@
-@import './Comments.css';
+@import './Comments/Comments.css';
 .listWrapper main .listNoteWrapper {
   margin: 1px 0 50px 0;
   background: rgba(255, 255, 255, 0.5);

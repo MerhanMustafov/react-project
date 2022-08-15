@@ -60,7 +60,7 @@ function CreatedNote(props) {
       {listNoteclicked ? (
         // id={addNoteBtn}
         <div className="onPopUpBackground">
-          <div className="iW">
+          <div className="iW iWExpand">
             <div className="noteW">
               {error.length > 0 ? (
                 <div className="noteError">{error}</div>
