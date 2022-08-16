@@ -18,6 +18,9 @@
     padding: 40px  30px 20px 30px;
     width: calc(90% - 50px);
     /* border: 5px solid rgb(0, 130, 140); */
+    /* outline: none; */
+    background: rgba(255, 255, 255, 0.6);
+
     border-bottom-left-radius: 20px;
 }
 
@@ -27,5 +30,5 @@
     word-break: break-all;
     hyphens: auto;
     overflow-y: auto;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
 }

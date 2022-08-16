@@ -5,10 +5,19 @@ function Spinner(){
         <div className="spinner"></div>
     );
 }
-function SpinnerNOtesList(){
+function AddListSpinner(){
     return (
-        <div className="spinnerNotesList"></div>
+        <div className="addListSpinner"></div>
+    );
+}
+function NoteListSpinner(){
+    return (
+        <div className="noteListSpinner"></div>
     );
 }
 
-export {Spinner, SpinnerNOtesList}
+export {
+    Spinner,
+    AddListSpinner ,   
+    NoteListSpinner,
+}

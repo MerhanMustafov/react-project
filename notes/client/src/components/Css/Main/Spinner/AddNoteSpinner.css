@@ -1,28 +1,23 @@
-
-@import './AddListSpinner.css';
-@import './AddNoteSpinner.css';
-.spinner{
-    /* position: fixed; */
+.noteListSpinner{
     position: relative;
+    /* bottom: 150px; */
+    /* right: 120px; */
     margin: 0 auto;
     border-top: 10px solid rgb(255, 255, 255);
     border-right: 10px solid rgba(255, 255, 255, 0.616);
     border-bottom: 10px solid rgba(255, 255, 255, 0.158);
     border-left: 10px solid rgba(255, 255, 255, 0.158);
     border-radius: 100%;
-    width: 1px;
-    height: 1px;
+    width: 20px;
+    height: 20px;
     z-index: 50;
-    /* top: 50%; */
-    /* left: 50%; */
-    transform: translate(-50%, -50%);
-    animation: spinner 1s;
+    animation: noteListSpinner 1.1s;
     animation-iteration-count: infinite;
     animation-timing-function: ease;
 }
 
 
-@keyframes spinner {
+@keyframes noteListSpinner {
     0%{transform: rotate(0deg);}
     100%{transform: rotate(360deg);}
     

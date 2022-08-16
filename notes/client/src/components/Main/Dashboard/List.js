@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { CreateNote } from './Note/CreateNote'
 import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
+import {NoteListSpinner} from '../Spinner/Spinner'
 
 import {
   updateListTitle,
@@ -10,18 +11,19 @@ import {
   getAllLists,
 } from '../../../Api/noteService'
 
-import { SpinnerNOtesList } from '../Spinner/Spinner'
 
 function List(props) {
   let key = 654
   const userid = localStorage.getItem('userId')
   const [refreshList, setRefreshList] = useState(false)
   const [addNoteBtnClicked, setAddNoteBtnClicked] = useState(false)
-  const [spinnerNotes, setSpinnerNotes] = useState(false)
   const [lstId, setLstId] = useState(null)
   const [lists, setLists] = useState([])
+  const [waitinfDeleteList, setWaitindDelete] = useState(false)
+
+  const [spinnerNotes, setSpinnerNotes] = useState(false)
   //   const [isOwner, setIsOwner] = useState(false)
-  const { setRefresh } = props
+  const { setRefresh, setWaitingData } = props
   let listid = props._id
   let image = props.list_img_url
 //   let image = props.listimg
@@ -50,8 +52,6 @@ function List(props) {
       scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
-    // setTimeout(() => {
-    // }, 1000)
   }, [refreshList, image])
 
   async function requestHandler(e, to) {
@@ -59,6 +59,9 @@ function List(props) {
       if (e.key == 'Enter') {
         if (title.length > 0) {
           const listname = title
+        //   setWaitingData(true)
+
+
           const updated = await updateListTitle(listname, listid)
           editBtnHandler(null, listid, setTitle, 'update')
           document
@@ -69,7 +72,9 @@ function List(props) {
         }
       }
     } else if (to === `/list/delete/${listid}/${userid}`) {
+        setWaitindDelete(true)
       await deleteList(listid, userid)
+      setWaitindDelete(false)
       setRefresh(true)
     }
   }
@@ -114,8 +119,11 @@ function List(props) {
                   onClick={(e) => deleteBtnHandler(e, listid)}
                 ></i>
                 <div className="delConfirmWindow hideDelW">
-                  Are you sure ?
-                  <div className="btnsWrapper">
+                  
+                {waitinfDeleteList ? <NoteListSpinner/> : 
+                <>
+                Are you sure ?
+                <div className="btnsWrapper">
                     <button
                       className="cancel"
                       onClick={(e) => {
@@ -133,6 +141,9 @@ function List(props) {
                       Delete
                     </button>
                   </div>
+                  </>}
+
+                  
                 </div>
               </div>
               <i
@@ -144,7 +155,9 @@ function List(props) {
             
           </header>
           <main className="scrollMain">
-            {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null}
+            {/* {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null} */}
+            
+            {/* {true ? <s className="spn" /> : null} */}
             {lists.length > 0
               ? lists.map((noteData) => (
                   <CreatedNote
@@ -169,6 +182,7 @@ function List(props) {
               Add Note
             </button> : null}
             
+        
           </footer>
         </div>
       </div>
