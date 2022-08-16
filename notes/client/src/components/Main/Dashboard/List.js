@@ -122,7 +122,7 @@ function List(props) {
                   
                 {waitinfDeleteList ? <NoteListSpinner/> : 
                 <>
-                'Are you sure ?'
+                Are you sure ?
                 <div className="btnsWrapper">
                     <button
                       className="cancel"
