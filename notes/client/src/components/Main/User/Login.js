@@ -11,6 +11,10 @@ function Login({setUserStatus}) {
 
     const filled = username.length >= 3 && password.length >= 5
 
+    useEffect(() => {
+        localStorage.clear()
+    }, [localStorage.getItem('userId')])
+
   async function loginUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
