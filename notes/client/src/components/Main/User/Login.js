@@ -22,7 +22,7 @@ function Login({setUserStatus}) {
         }
 
         setLocalStorage(response)
-        setUserStatus(localStorage.getItem('userId'))
+        setUserStatus( response.userId)
         navigate('/')
 
       }catch(err){

@@ -1,20 +1,20 @@
 
 @import './AddListSpinner.css';
 @import './AddNoteSpinner.css';
-.spinner{
-    /* position: fixed; */
-    position: relative;
+.appSpinner{
+    position: fixed;
+    /* position: relative; */
     margin: 0 auto;
     border-top: 10px solid rgb(255, 255, 255);
     border-right: 10px solid rgba(255, 255, 255, 0.616);
     border-bottom: 10px solid rgba(255, 255, 255, 0.158);
     border-left: 10px solid rgba(255, 255, 255, 0.158);
     border-radius: 100%;
-    width: 1px;
-    height: 1px;
+    width: 100px;
+    height: 100px;
     z-index: 50;
-    /* top: 50%; */
-    /* left: 50%; */
+    top: 30%;
+    left: 50%;
     transform: translate(-50%, -50%);
     animation: spinner 1s;
     animation-iteration-count: infinite;

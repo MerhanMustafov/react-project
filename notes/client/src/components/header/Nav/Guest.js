@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 
-function Guest({ userStatus, setUserStatus }) {
+function GuestNav() {
 
   return (
     <nav>
@@ -24,4 +24,4 @@ function Guest({ userStatus, setUserStatus }) {
   )
 }
 
-export {Guest}
+export {GuestNav}

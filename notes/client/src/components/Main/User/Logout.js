@@ -4,7 +4,7 @@ function Logout({setUserStatus}) {
   const navigate = useNavigate()
   useEffect(() => {
     localStorage.clear()
-    setUserStatus(localStorage.getItem('userId'))
+    setUserStatus('')
     navigate('/login')
   }, [])
 }
