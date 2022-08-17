@@ -13,7 +13,7 @@
 .registerForm{
     font-family: 'Courier New', Courier, monospace;
     margin: 0 auto;
-    width: 500px;
+    width: auto;
     height: 40px;
     overflow: hidden;
     transition: height 2s;
@@ -32,9 +32,11 @@
     /* padding-bottom: 10px; */
 }
 .hide-r-form{
+    max-width: 500px;
     height: 40px;
 }
 .show-r-form{
+     max-width: 500px;
     height: 550px;
 }
 
@@ -58,6 +60,7 @@
     display: flex;
     flex-direction: column;
     width: 90%;
+    max-width: 500px;
     margin: 0 auto;
 }
 .r-input-l{
