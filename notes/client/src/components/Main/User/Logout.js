@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-function Logout({setUserStatus}) {
+function Logout({setIsAuth}) {
   const navigate = useNavigate()
   useEffect(() => {
     localStorage.clear()
-    setUserStatus(localStorage.getItem('userId'))
+    setIsAuth(false)
     navigate('/login')
   }, [])
 }

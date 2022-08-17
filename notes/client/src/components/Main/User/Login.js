@@ -2,7 +2,7 @@ import * as api from '../../../Api/userService'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Login({setUserStatus}) {
+function Login({setIsAuth}) {
     const navigate = useNavigate()
     let errKey = 0
   const [errors, setErrors] = useState([])
@@ -10,6 +10,10 @@ function Login({setUserStatus}) {
   const [password, setPassword] = useState('')
 
     const filled = username.length >= 3 && password.length >= 5
+
+    useEffect(() => {
+        localStorage.clear()
+    }, [localStorage.getItem('accessToken')])
 
   async function loginUser(e) {
     e.preventDefault()
@@ -22,7 +26,7 @@ function Login({setUserStatus}) {
         }
 
         setLocalStorage(response)
-        setUserStatus(localStorage.getItem('userId'))
+        setIsAuth( true)
         navigate('/')
 
       }catch(err){

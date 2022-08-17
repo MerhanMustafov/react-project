@@ -5,7 +5,7 @@ import { Search } from './Search/Search'
 import { Spinner } from '../Spinner/Spinner'
 import { AddList } from './AddList/AddList'
 
-function Dashboard({ setUserStatus }) {
+function Dashboard() {
   let key = 165156
     const uid = localStorage.getItem('userId')
   const [refresh, setRefresh] = useState(false)

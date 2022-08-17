@@ -1,8 +1,8 @@
 
 
-function Spinner(){
+function AppSpinner(){
     return (
-        <div className="spinner"></div>
+        <div className="appSpinner"></div>
     );
 }
 function AddListSpinner(){
@@ -17,7 +17,7 @@ function NoteListSpinner(){
 }
 
 export {
-    Spinner,
+    AppSpinner,
     AddListSpinner ,   
     NoteListSpinner,
 }
