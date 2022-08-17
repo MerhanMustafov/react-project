@@ -18,7 +18,7 @@
   height: 100%;
 }
 .listWrapper {
-    /* border: 2px solid blue; */
+  /* border: 2px solid blue; */
   display: inline-block;
   flex-direction: column;
   position: relative;
@@ -49,7 +49,7 @@
     width: auto;
   }
   .listWrapper {
-    width: 95%;
+    width: 90%;
     /* display: block; */
     /* margin: 0 auto; */
   }
@@ -67,16 +67,17 @@
 .expand {
   position: fixed;
   z-index: 10;
-  top: 50%;
+  top: 100px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -80px);
   column-span: all;
   width: 70%;
   height: 80%;
+  max-width: 1500px;
+  max-height: 1000px;
   margin: 0 auto;
 }
 .listInnerWrapper {
-    
   display: flex;
   flex-direction: column;
   /* width: 70%; */
@@ -99,9 +100,8 @@
   border-top: 2px solid rgb(156, 156, 156);
   border-bottom: 2px solid rgb(156, 156, 156);
 }
-.listsWrapper .main div{
-
-    /* position: relative; */
+.listsWrapper .main div {
+  /* position: relative; */
 }
 .expandListBtn {
   position: absolute;
@@ -133,8 +133,8 @@
   padding: 0 0 0 15px;
   cursor: pointer;
 }
-.listNoteTitle{
-    cursor: pointer;
+.listNoteTitle {
+  cursor: pointer;
 }
 .titleInputReady {
   animation: inputReady 3s infinite;
