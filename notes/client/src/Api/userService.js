@@ -64,6 +64,20 @@ async function login(userData) {
 async function logout() {
   localStorage.clear()
 }
+
+async function verifyUser(accessToken){
+    const endPoint = `/user/verify/${accessToken}`
+    try{
+        const response = await fetch(baseUrl + endPoint)
+        if(response.status === 401){
+            const {error} = await response.json()
+            throw new Error(error)
+        }
+        return await response.json()
+    }catch(err){
+        throw new Error(err.message)
+    }
+}
 export {
   register,
   login,
@@ -71,4 +85,5 @@ export {
   getUserById,
   getUserByName,
   getUserByIdWithLists,
+  verifyUser
 }

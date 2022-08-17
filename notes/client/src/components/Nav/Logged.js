@@ -1,5 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { getUserById } from '../../../Api/userService'
+import { Link } from 'react-router-dom'
 
 function LoggedNav() {
   const userImg = localStorage.getItem('img')

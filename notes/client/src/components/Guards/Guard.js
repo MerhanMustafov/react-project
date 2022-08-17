@@ -1,38 +1,27 @@
-import { Navigate, Outlet, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { getUserById, getUserByName } from '../../Api/userService'
-import { render } from '@testing-library/react'
-
-function Logged(props) {
-    const navigate = useNavigate()
-    // function x(){
-    //     navigate('/logout')
-    // }
-
-    console.log(localStorage.getItem('userId') === props.userStatus)
-  return (
-    <>
-      {localStorage.getItem('userId') === props.userStatus ? (
-        <Outlet />
-      ) : (
-        // x()
-        <Navigate to="/login"/>
-      )}
-    </>
-  )
+import { Navigate, Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { verifyUser } from '../../Api/userService'
+function LoggedGuard(props) {
+   useEffect(() => {
+    async function verify() {
+      const accesstoken = localStorage.getItem('accessToken')
+      if (accesstoken) {
+        try {
+          const response = await verifyUser(accesstoken)
+          props.setIsAuth(true)
+        } catch (err) {
+          props.setIsAuth(false)
+        }
+      } else {
+        props.setIsAuth(false)
+      }
+    }
+    verify()
+  })
+  return <>{props.isAuth ? <Outlet /> : <Navigate to="/login" />}</>
 }
-function Guest(props) {
-  return (
-    <>
-      {props.userStatus == '' ||
-      localStorage.getItem('userId') == null ||
-      localStorage.getItem('userId') !== props.userStatus ? (
-        <Outlet />
-      ) : (
-        <Navigate to="/" />
-      )}
-    </>
-  )
+function GuestGuard(props) {
+  return <>{!props.isAuth ? <Outlet /> : <Navigate to="/" />}</>
 }
 
-export { Logged, Guest }
+export { LoggedGuard, GuestGuard }

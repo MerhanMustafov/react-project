@@ -1,15 +1,14 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import './components/Css/Global.css'
 
-import { getUserById } from './Api/userService'
+import { verifyUser } from './Api/userService'
 
-import { GuestNav } from './components/header/Nav/Guest'
-import { LoggedNav } from './components/header/Nav/Logged'
+// NAVIGATION
+import { GuestNav } from './components/Nav/Guest'
+import { LoggedNav } from './components/Nav/Logged'
 
-// import { Main } from './components/Main/Main.js'
-
+// MAIN
 import { Login } from './components/Main/User/Login'
 import { Logout } from './components/Main/User/Logout'
 import { Register } from './components/Main/User/Register'
@@ -18,95 +17,65 @@ import { Dashboard } from './components/Main/Dashboard/Dashboard'
 import { UserProfile } from './components/Main/Profile/UserProfile'
 import { Home } from './components/Main/Home/Home'
 import { NotFound } from './components/Main/NotFound'
-import { Logged, Guest } from './components/Guards/Guard'
+import { LoggedGuard, GuestGuard } from './components/Guards/Guard'
 
 import { AppSpinner } from './components/Main/Spinner/Spinner'
 
 function App() {
-  const [userStatus, setUserStatus] = useState(null)
-  const navigate = useNavigate()
-    console.log(userStatus)
-  useEffect(() => {
-    async function getUser() {
-    const userid = localStorage.getItem('userId')
-    if(userid){
-      const user = await (await getUserById(userid)).json()
-        if(user.userId === userid){
-            setUserStatus(user.userId)
+  const [isAuth, setIsAuth] = useState(null)
 
-        }else{
-            setUserStatus('')
-            // navigate('/logout')
+  useEffect(() => {
+    async function verify() {
+      const accesstoken = localStorage.getItem('accessToken')
+      if (accesstoken) {
+        try {
+          const response = await verifyUser(accesstoken)
+          setIsAuth(true)
+        } catch (err) {
+          setIsAuth(false)
         }
-    }else{
-        setUserStatus('')
-            // navigate('/logout')
+      } else {
+        setIsAuth(false)
+      }
     }
-    //   setUserStatus(user.userId)
-    }
-      getUser()
+    verify()
   }, [])
 
   return (
     <div className="App">
-      {userStatus === null ? (
+      {isAuth === null ? (
         <AppSpinner />
       ) : (
         <>
-          <header>
-            {localStorage.getItem('userId') === userStatus? (
-              <LoggedNav
-                userStatus={userStatus}
-                setUserStatus={setUserStatus}
-              />
-            ) : (
-              <GuestNav
-                userStatus={userStatus}
-                setUserStatus={setUserStatus}
-              />
-            )}
-          </header>
+          <header>{isAuth ? <LoggedNav /> : <GuestNav />}</header>
           <main className="mainHome">
             <Routes>
               <Route path="/" element={<Home />} />
 
               <Route
-                element={
-                  <Logged
-                    userStatus={userStatus}
-                    setUserStatus={setUserStatus}
-                  />
-                }
+                element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}
               >
-                <Route
-                  path="/dashboard"
-                  element={<Dashboard setUserStatus={setUserStatus} />}
-                />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route
                   path={`/profile/:username/:userid`}
-                  element={<UserProfile setUserStatus={setUserStatus} />}
+                  element={<UserProfile />}
                 />
                 <Route
                   path="/logout"
-                  element={<Logout setUserStatus={setUserStatus} />}
+                  element={<Logout setIsAuth={setIsAuth} />}
                 ></Route>
               </Route>
 
               <Route
-                element={
-                  <Guest
-                    userStatus={userStatus}
-                    setUserStatus={setUserStatus}
-                  />
-                }
+                element={<GuestGuard isAuth={isAuth} setIsAuth={setIsAuth} />}
               >
                 <Route
                   path="/login"
-                  element={<Login setUserStatus={setUserStatus} />}
+                  element={<Login setIsAuth={setIsAuth} />}
                 ></Route>
                 <Route
                   path="/register"
-                  element={<Register setUserStatus={setUserStatus} />}
+                  element={<Register setIsAuth={setIsAuth} />}
                 />
               </Route>
 

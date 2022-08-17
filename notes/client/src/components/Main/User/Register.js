@@ -1,7 +1,7 @@
 import * as api from '../../../Api/userService'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-function Register({setUserStatus}) {
+function Register({setIsAuth}) {
     
     const navigate = useNavigate()
   let errKey = 0
@@ -23,7 +23,7 @@ function Register({setUserStatus}) {
         }
 
         setLocalStorage(response)
-        setUserStatus( response.userId)
+        setIsAuth( true)
         navigate('/')
 
       }catch(err){
