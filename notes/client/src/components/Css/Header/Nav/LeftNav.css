@@ -3,6 +3,20 @@
     grid-area: left;
     display: flex;
 }
+.main-nav-area .logo-area{
+     border: 2px solid white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    display: flex;
+    margin: 0 30px 0 0;
+    color: rgba(255,255,255);
+    font-weight: 600;
+}
+/* @media screen and (max-width: 650px) {
+    .main-nav-area .logo-area{
+        display: none;
+    }
+} */
 
 .main-nav-area ul{
     display: flex;

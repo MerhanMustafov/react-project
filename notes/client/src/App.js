@@ -47,8 +47,8 @@ function App() {
         <AppSpinner />
       ) : (
         <>
-          <header>{isAuth ? <LoggedNav /> : <GuestNav />}</header>
-          <main className="mainHome">
+          <header className="pageHeader">{isAuth ? <LoggedNav /> : <GuestNav />}</header>
+          <main className="pageHome">
             <Routes>
               <Route path="/" element={<Home />} />
 

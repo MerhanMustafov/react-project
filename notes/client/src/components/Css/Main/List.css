@@ -61,7 +61,7 @@
 }
 @media screen and (max-width: 450px) {
   .listWrapper {
-    width: auto;
+    width: 75%;
   }
 }
 .expand {
