@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './components/Css/Global.css'
 
-import { verifyUser } from './Api/userService'
+import { verifyUser, getUserById } from './Api/userService'
 
 // NAVIGATION
 import { GuestNav } from './components/Nav/Guest'
@@ -27,13 +27,13 @@ function App() {
   useEffect(() => {
     async function verify() {
       const accesstoken = localStorage.getItem('accessToken')
-      if (accesstoken) {
-        try {
-          const response = await verifyUser(accesstoken)
-          setIsAuth(true)
-        } catch (err) {
-          setIsAuth(false)
-        }
+      const userid = localStorage.getItem('userId')
+      if (accesstoken && userid) {
+        Promise.all([verifyUser(accesstoken), getUserById(userid)])
+          .then(([token, user]) => {
+            setIsAuth(true)
+          })
+          .catch((err) => setIsAuth(false))
       } else {
         setIsAuth(false)
       }
@@ -47,7 +47,9 @@ function App() {
         <AppSpinner />
       ) : (
         <>
-          <header className="pageHeader">{isAuth ? <LoggedNav /> : <GuestNav />}</header>
+          <header className="pageHeader">
+            {isAuth ? <LoggedNav /> : <GuestNav />}
+          </header>
           <main className="pageHome">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -56,10 +58,18 @@ function App() {
                 element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}
               >
                 <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+
+              <Route
+                element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}
+              >
                 <Route
                   path={`/profile/:username/:userid`}
                   element={<UserProfile />}
                 />
+              </Route>
+
+              <Route element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}>
                 <Route
                   path="/logout"
                   element={<Logout setIsAuth={setIsAuth} />}

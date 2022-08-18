@@ -29,7 +29,7 @@ function CreatedNote(props) {
     setTitle(props.noteData.title)
     const lsUserid = localStorage.getItem('userId')
     if(lsUserid){
-        getUserById(lsUserid).then(res => res.json()).then(data => data.userId== lsUserid ? setIsLogged(true) : setIsLogged(false))
+        getUserById(lsUserid).then(data => data.userId== lsUserid ? setIsLogged(true) : setIsLogged(false))
     }
   }, [])
 
