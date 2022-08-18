@@ -9,6 +9,7 @@
     font-size: 30px;
     bottom: 8px;
     left: 6px;
+    color: rgba(255, 255, 255, 0.5);
 }
 .commentsWrapper{
     position: relative;
@@ -22,7 +23,7 @@
     background-size: 100% 100%;
 }
 .addCommentIcon{
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
     position: absolute;
     top: 5px;
     left: 5px;
