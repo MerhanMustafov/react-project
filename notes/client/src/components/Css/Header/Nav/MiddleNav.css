@@ -36,11 +36,11 @@
     font-size: 15px;
     color: white;
 }
-@media screen and (max-width: 650px) {
+/* @media screen and (max-width: 650px) {
     .profile-area{
         display: none;
     }
-}
+} */
 .profileImg{
     width: 100%;
     height: 100%;

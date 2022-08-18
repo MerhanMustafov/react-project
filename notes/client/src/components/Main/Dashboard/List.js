@@ -97,7 +97,7 @@ function List(props) {
             className="fa-solid fa-arrows-left-right expandListBtn"
             onClick={(e) => expandList(e, listid)}
           ></i>
-          <header>
+          <header className="listHeader">
             <input
               className="title"
               name="listname"

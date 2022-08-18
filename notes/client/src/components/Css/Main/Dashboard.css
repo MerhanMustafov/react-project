@@ -74,18 +74,7 @@
     width: 70%;
 
 }
-@media screen and (max-width: 1300px){
-    .noteW{
-        /* min-height: none; */
-        /* min-height: unset; */
-        /* height: 100%; */
-        /* max-height: 600px; */
-        /* background: rgb(0, 0, 0); */
-    }
-    .iW{
-        /* min-height: 70%; */
-    }
-}
+
 .saveOnCreateNote{
     /* position: absolute; */
     bottom: 5px;

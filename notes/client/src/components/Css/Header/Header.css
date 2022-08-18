@@ -1,9 +1,17 @@
 @import url(./Nav/Nav.css);
 
-header{
+.pageHeader{
     display: flex;
-    width: 95%;
-    max-width: 1900px;
+    width: 95vw;
+    max-width: 3000px;
+    margin: 0 auto;
+    /* border: 5px solid black; */
+    min-width: max-content;
+}
+.listHeader{
+    display: flex;
+    width: 95vw;
+    max-width: 3000px;
     margin: 0 auto;
     /* border: 5px solid black; */
 }

@@ -18,7 +18,6 @@ function UserProfile() {
         setUserData(data)
         setArrayOfLists(data.lists)
         setRefresh(false)
-        console.log(data, 'USERDATA')
     }
   }, [params.userid, refresh])
   return (

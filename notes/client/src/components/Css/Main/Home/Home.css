@@ -1,7 +1,8 @@
 @import './DropDownUser.css';
-.mainHome{
-    width: 100vw;
+.pageHome{
+    width: 95vw;
     height: 100vh;
+    min-width: 280px;
     /* border: 2px solid green; */
 }
 @media screen and (max-height: 200px) {

@@ -141,6 +141,7 @@ function Register({setIsAuth}) {
               password,
               repeatPassword,
               gender,
+              img
             })
           }
         >
@@ -167,11 +168,13 @@ function checkforErrors(setErrors, inputs) {
     inputs.password.length > 0 &&
     inputs.repeatPassword.length > 0 &&
     inputs.username.length > 0 &&
+    inputs.img.length > 0 &&
     inputs.gender !== null
 
   const passMatch = inputs.password === inputs.repeatPassword
   const passLength = inputs.password.length >= 5
   const userLength = inputs.username.length >= 3
+  const imgPresent = inputs.img.length > 0
   const genderchecked = inputs.gender !== null
   if (!allFilled) {
     err.push('all required fields should be filled!')
@@ -184,6 +187,9 @@ function checkforErrors(setErrors, inputs) {
   }
   if (!passLength) {
     err.push('password should be at least 5 characters long!')
+  }
+  if (!imgPresent) {
+    err.push('upload an image!')
   }
   if (!genderchecked) {
     err.push('should choose gender!')

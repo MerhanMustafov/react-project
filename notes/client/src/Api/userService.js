@@ -7,9 +7,13 @@ async function getUserById(userId) {
     const endPoint = `/user/get/${userId}`
     try {
       const response = await fetch(baseUrl + endPoint)
-        return response
+      if(response.ok == false){
+        await response.json()
+        throw new Error(response.error)
+      }
+        return await response.json()
     } catch (err) {
-        throw new Error(err)
+        throw new Error(err.message)
     }
   }
 }
