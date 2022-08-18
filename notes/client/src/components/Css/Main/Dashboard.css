@@ -28,7 +28,7 @@
     width: 100%;
     height: 100%;
     z-index: 20;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0);
     /* opacity: 0.5; */
 }
 .onPopUpBackground::-webkit-scrollbar{
@@ -96,9 +96,15 @@
 
 }
 #noteC{
-    background: rgb(202, 202, 202);
+    /* background: rgb(202, 202, 202); */
+    background: url(../../../../public/images/dashboard-view-img.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background: rgba(0,0,0); */
+    color: white;
     flex: 1 0 auto;
-border-radius: inherit;
+    border-radius: inherit;
     font-size: 25px;
     padding: 45px;
     width: auto;
@@ -106,9 +112,6 @@ border-radius: inherit;
     resize: none;
     border: none;
     outline: none;
-    /* position: fixed; */
-
-    /* z-index: 5; */
 }
 
 #noteC::-webkit-scrollbar{ 
@@ -159,12 +162,14 @@ border-radius: inherit;
     right: 5px;
     top: 50px;
     font-size: 27px;
+    color: rgba(255, 255, 255, 0.5);
 }
 .fa-floppy-disk{
     position: absolute;
     right: 10px;
     bottom: 10px;
     font-size: 30px;
+    color: rgba(255, 255, 255, 0.5);
 }
 ::selection{
     background: rgb(38, 190, 0);
