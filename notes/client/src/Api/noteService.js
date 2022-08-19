@@ -1,7 +1,6 @@
 const baseUrl = process.env.REACT_APP_SERVER_BASE_URL
-// const baseUrl = "http://localhost:5151"
-// const baseUrl = "https://server-for-notes-app.herokuapp.com"
-console.log(baseUrl)
+
+
 async function createListRecord(listData, userid) {
   const endPoint = `/list/create/${userid}`
   const response = await fetch(baseUrl + endPoint, {
