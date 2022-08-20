@@ -1,6 +1,7 @@
 import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
 import { AddListSpinner } from '../../Spinner/Spinner'
+import {socket} from '../../../../socket'
 
 function AddList(props) {
   const userid = localStorage.getItem('userId')
@@ -26,10 +27,15 @@ function AddList(props) {
       )
       setImage('')
       setListName('')
-      setRefresh(true)
+      socket.emit('server-refresh-all', true)
+      
       setWaitingAddListData(false)
     }
   }
+
+  socket.on('client-refresh-all', (refresh) => {
+    setRefresh(true)
+  })
   return (
       <div className="addListWrapper">
         <div className="addListInnerWrapper">

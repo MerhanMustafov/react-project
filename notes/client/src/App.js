@@ -21,6 +21,8 @@ import { LoggedGuard, GuestGuard } from './components/Guards/Guard'
 
 import { AppSpinner } from './components/Main/Spinner/Spinner'
 
+
+
 function App() {
   const [isAuth, setIsAuth] = useState(null)
 

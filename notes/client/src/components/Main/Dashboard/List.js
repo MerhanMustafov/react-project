@@ -4,6 +4,7 @@ import { CreatedNote } from './Note/CreatedNote'
 import { SearchNote } from './Search/SearchNote'
 import {NoteListSpinner} from '../Spinner/Spinner'
 
+
 import {
   updateListTitle,
   deleteList,
@@ -11,6 +12,7 @@ import {
   getAllLists,
 } from '../../../Api/noteService'
 
+import {socket} from '../../../socket'
 
 function List(props) {
   let key = 654
@@ -45,13 +47,13 @@ function List(props) {
       setLists(data)
       setLstId(listid)
       setSpinnerNotes(false)
-      setRefreshList(false)
       const scrollMain = document
         .getElementById(listid)
         .querySelector('.scrollMain')
       scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
+      setRefreshList(false)
   }, [refreshList, image])
 
   async function requestHandler(e, to) {
@@ -63,22 +65,31 @@ function List(props) {
 
 
           const updated = await updateListTitle(listname, listid)
+        socket.emit('server-refresh-all', true)
           editBtnHandler(null, listid, setTitle, 'update')
           document
             .getElementById(listid)
             .querySelector('.title')
             .classList.remove('titleInputReady')
-          setRefreshList(true)
+        
+        // socket.emit('server-refresh-list-title-all', true)
+          
         }
       }
     } else if (to === `/list/delete/${listid}/${userid}`) {
         setWaitindDelete(true)
       await deleteList(listid, userid)
       setWaitindDelete(false)
-      setRefresh(true)
+      socket.emit('server-refresh-all', true)
     }
   }
 
+    socket.on('client-refresh-all', (refresh) => {
+    setRefresh(true)
+  })
+//     socket.on('client-refresh-list-title-all', (refresh) => {
+//     setRefresh(true)
+//   })
   return (
     <div className="expandBackground">
       {addNoteBtnClicked ? (

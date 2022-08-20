@@ -3,7 +3,7 @@ import { updateNoteRecord, deleteNote } from '../../../../Api/noteService'
 import { getUserById } from '../../../../Api/userService'
 import { SpinnerNOtesList } from '../../Spinner/Spinner'
 import {Comments} from '../Note/Comments'
-
+import {socket} from '../../../../socket'
 
 import {Spinner} from '../../Spinner/Spinner'
 function CreatedNote(props) {
@@ -47,17 +47,20 @@ function CreatedNote(props) {
       } else {
         const newData = { title, text }
         await updateNoteRecord(newData, props.noteData._id)
-        // setRefresh(true)
-        setRefreshList(true)
+        socket.emit('server-refresh-all', true)
         closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
       }
     } else if (to === `/note/delete/noteid=${noteid}/listid=${listid}`) {
       const modifiedList = await deleteNote(noteid, listid)
       deleteBtnHandler(null, noteid)
-      setRefreshList(true)
+      socket.emit('server-refresh-all', true)
+      
     }
   }
 
+    socket.on('client-refresh-all', (refresh) => {
+        setRefreshList(true)
+    })
   return (
     <div>
       {listNoteclicked ? (
