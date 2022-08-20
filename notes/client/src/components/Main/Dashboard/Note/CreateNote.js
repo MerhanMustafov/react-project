@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createNoteRecord } from '../../../../Api/noteService'
+import {socket} from '../../../../socket'
 function CreateNote(props) {
   //   const {setWaitingData} = props
   //   const { setrefreshNotesList } = props
@@ -37,7 +38,8 @@ function CreateNote(props) {
           const note = await createNoteRecord(noteData)
           setAddNoteBtnClicked(false)
           setLstId(note.listid)
-          setRefreshList(true)
+          socket.emit('server-refresh-all', true)
+          
           
         } catch (err) {
           setError(err.message)
@@ -48,6 +50,10 @@ function CreateNote(props) {
       }
     }
   }
+
+  socket.on('client-refresh-all', (refresh) => {
+    setRefreshList(true)
+  })
 
   return (
     <div>

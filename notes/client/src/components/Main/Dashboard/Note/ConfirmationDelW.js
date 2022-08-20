@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react'
-import {deleteComment} from '../../../../Api/noteService'
+import { deleteComment } from '../../../../Api/noteService'
+import { socket } from '../../../../socket'
 function ConfurmationDelW(props) {
-    const {setRefreshComments} = props
-    const commentid = props._id
-    const noteid = props.noteid
-    
+  const { setRefreshComments } = props
+  const commentid = props._id
+  const noteid = props.noteid
 
-    async function requestHandler(e, to){
-        if(to === `/comment/delete/commentid=${commentid}/noteid=${noteid}`){
-            const deleted = await deleteComment(commentid, noteid)
-            setRefreshComments(true)
-            showHide(null,commentid)
-        }
+  async function requestHandler(e, to) {
+    if (to === `/comment/delete/commentid=${commentid}/noteid=${noteid}`) {
+      const deleted = await deleteComment(commentid, noteid)
+      socket.emit('server-refresh-all', true)
+
+      showHide(null, commentid)
     }
+  }
+
+  socket.on('client-refresh-all', (refresh) => {
+    setRefreshComments(refresh)
+  })
 
   return (
     <>
-      <div className="delCommentConfirmWindow"  >
+      <div className="delCommentConfirmWindow">
         Are you sure ?
         <div className="buttonsWrapper">
-          <button
-            className="cancelBtn"
-            onClick={(e) => showHide(e, commentid)}
-          >
+          <button className="cancelBtn" onClick={(e) => showHide(e, commentid)}>
             Cancel
           </button>
           <button
@@ -37,20 +39,20 @@ function ConfurmationDelW(props) {
             Delete
           </button>
         </div>
-      </div> 
-      
+      </div>
     </>
   )
 }
 
 export { ConfurmationDelW }
 
-
-function showHide(e, commentid){
-    const el = document.getElementById(commentid).querySelector('.delCommentConfirmWindow')
-    if(el.classList.contains('showDelConfWindow')){
-        el.classList.remove('showDelConfWindow')
-    }else{
-        el.classList.add('showDelConfWindow') 
-    }
+function showHide(e, commentid) {
+  const el = document
+    .getElementById(commentid)
+    .querySelector('.delCommentConfirmWindow')
+  if (el.classList.contains('showDelConfWindow')) {
+    el.classList.remove('showDelConfWindow')
+  } else {
+    el.classList.add('showDelConfWindow')
+  }
 }
