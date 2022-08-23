@@ -1,18 +1,17 @@
 const baseUrl = process.env.REACT_APP_SERVER_BASE_URL
 
-
 async function getUserById(userId) {
   if (userId) {
     const endPoint = `/user/get/${userId}`
     try {
       const response = await fetch(baseUrl + endPoint)
-      if(response.ok == false){
+      if (response.ok == false) {
         await response.json()
         throw new Error(response.error)
       }
-        return await response.json()
+      return await response.json()
     } catch (err) {
-        throw new Error(err.message)
+      throw new Error(err.message)
     }
   }
 }
@@ -33,23 +32,35 @@ async function getUserByIdWithLists(userId) {
 
 async function getUserByName(username) {
   const endPoint = `/user/getuser/${username}`
-  const response = await fetch(baseUrl + endPoint)
-  const data = await response.json()
-  return data
+  try {
+    const response = await fetch(baseUrl + endPoint)
+    if(response.ok == false){
+        await response.json()
+        throw new Error(response.error)
+    }
+    return await response.json()
+  } catch (err) {
+    throw new Error(err.message)
+  }
 }
 
 async function register(userData) {
   const endPoint = '/user/register'
-  const response = await fetch(baseUrl + endPoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(userData),
-  })
-  if (response.ok == false) {
-    const errorMessage = await response.json()
-    throw new Error(errorMessage.error)
+  try {
+    const response = await fetch(baseUrl + endPoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData),
+    })
+    if (response.ok == false) {
+      await response.json()
+      throw new Error(response.error)
+    }
+
+    return await response.json()
+  } catch (err) {
+    throw new Error(err.message)
   }
-  return response.json()
 }
 async function login(userData) {
   const endPoint = '/user/login'
@@ -68,18 +79,18 @@ async function logout() {
   localStorage.clear()
 }
 
-async function verifyUser(accessToken){
-    const endPoint = `/user/verify/${accessToken}`
-    try{
-        const response = await fetch(baseUrl + endPoint)
-        if(response.status === 401){
-            const {error} = await response.json()
-            throw new Error(error)
-        }
-        return await response.json()
-    }catch(err){
-        throw new Error(err.message)
+async function verifyUser(accessToken) {
+  const endPoint = `/user/verify/${accessToken}`
+  try {
+    const response = await fetch(baseUrl + endPoint)
+    if (response.status === 401) {
+      const { error } = await response.json()
+      throw new Error(error)
     }
+    return await response.json()
+  } catch (err) {
+    throw new Error(err.message)
+  }
 }
 export {
   register,
@@ -88,5 +99,5 @@ export {
   getUserById,
   getUserByName,
   getUserByIdWithLists,
-  verifyUser
+  verifyUser,
 }

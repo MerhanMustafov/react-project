@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllLists } from '../../../../Api/noteApi'
+import { getAllLists } from '../../../../Api/listApi'
 
 function SearchList(props) {
   const { setArrayOfLists, arrayOfLists, setRefresh, uid } = props

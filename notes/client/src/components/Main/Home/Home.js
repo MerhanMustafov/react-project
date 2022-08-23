@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getUserByName } from '../../../Api/userService'
+import { getUserByName } from '../../../Api/userApi'
 import {DropDownUser} from './DropDownUser'
 function Home() {
 //   const [name, setName] = useState('')

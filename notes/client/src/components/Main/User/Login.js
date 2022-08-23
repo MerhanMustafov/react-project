@@ -1,4 +1,4 @@
-import * as api from '../../../Api/userService'
+import * as api from '../../../Api/userApi'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -94,36 +94,7 @@ function Login({setIsAuth}) {
 export { Login }
 
 
-function checkforErrors(setErrors, inputs) {
-  let err = []
-//   const allFilled =
-    // inputs.username.length > 0 &&
-    // inputs.password.length > 0 
 
-//   const passLength = inputs.password.length >= 5
-//   const userLength = inputs.username.length >= 3
-//   const genderchecked = inputs.gender !== null
-//   if (!allFilled) {
-//     err.push('all required fields should be filled!')
-//   }
-//   if (!passMatch) {
-//     err.push('passwords do not match!')
-//   }
-//   if (!userLength) {
-//     err.push('username should be at least 3 characters long!')
-//   }
-//   if (!passLength) {
-//     err.push('password should be at least 5 characters long!')
-//   }
-//   if (!genderchecked) {
-//     err.push('should choose gender!')
-//   } else {
-//     if (allFilled && passMatch && userLength && genderchecked && passLength) {
-//       err = []
-//     }
-//   }
-  setErrors(err)
-}
 
 function checkboxHandler(e) {
   if (e.target.checked) {
@@ -138,8 +109,8 @@ function checkboxHandler(e) {
 function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
-    if(data.profile_img_url.length > 0){
-        localStorage.setItem('img', data.profile_img_url)
+    if(data.cld_profile_img_url.length > 0){
+        localStorage.setItem('img', data.cld_profile_img_url)
     }else{
         const maleImg = require('../../../profileImages/male.jpg')
         const femaleImg = require('../../../profileImages/female.jpg')

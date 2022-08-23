@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { updateNoteRecord, deleteNote } from '../../../../Api/noteApi'
 import { getUserById } from '../../../../Api/userApi'
 import { SpinnerNOtesList } from '../../Spinner/Spinner'
-import {Comments} from '../Note/Comments'
-import {socket} from '../../../../socket'
+import { Comments } from '../Note/Comments'
+import { socket } from '../../../../socket'
 
-import {Spinner} from '../../Spinner/Spinner'
+import { Spinner } from '../../Spinner/Spinner'
 function CreatedNote(props) {
   const {
     setAddNoteBtn,
@@ -28,8 +28,10 @@ function CreatedNote(props) {
     setText(props.noteData.text)
     setTitle(props.noteData.title)
     const lsUserid = localStorage.getItem('userId')
-    if(lsUserid){
-        getUserById(lsUserid).then(data => data.userId== lsUserid ? setIsLogged(true) : setIsLogged(false))
+    if (lsUserid) {
+      getUserById(lsUserid).then((data) =>
+        data.userId == lsUserid ? setIsLogged(true) : setIsLogged(false),
+      )
     }
   }, [])
 
@@ -45,22 +47,35 @@ function CreatedNote(props) {
           setError('')
         }, 5000)
       } else {
-        const newData = { title, text }
-        await updateNoteRecord(newData, props.noteData._id)
-        socket.emit('server-refresh-all', true)
-        closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
+        try {
+          const newData = { title, text }
+          await updateNoteRecord(newData, props.noteData._id)
+          socket.emit('server-refresh-all', true)
+          closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode)
+        } catch (err) {
+          setError(err.message)
+          setTimeout(() => {
+            setError('')
+          }, 5000)
+        }
       }
     } else if (to === `/note/delete/noteid=${noteid}/listid=${listid}`) {
-      const modifiedList = await deleteNote(noteid, listid)
-      deleteBtnHandler(null, noteid)
-      socket.emit('server-refresh-all', true)
-      
+      try {
+        const modifiedList = await deleteNote(noteid, listid)
+        deleteBtnHandler(null, noteid)
+        socket.emit('server-refresh-all', true)
+      } catch (err) {
+        setError(err.message)
+        setTimeout(() => {
+          setError('')
+        }, 5000)
+      }
     }
   }
 
-    socket.on('client-refresh-all', (refresh) => {
-        setRefreshList(true)
-    })
+  socket.on('client-refresh-all', (refresh) => {
+    setRefreshList(true)
+  })
   return (
     <div>
       {listNoteclicked ? (
@@ -97,8 +112,8 @@ function CreatedNote(props) {
                     listNoteclicked,
                     setListNoteClicked,
                     setEditMode,
-                    showComments, 
-                    setShowComments
+                    showComments,
+                    setShowComments,
                   )
                 }
               ></i>
@@ -119,14 +134,24 @@ function CreatedNote(props) {
                   onClick={(e) => requestHandler(e, `/note/update/${noteid}`)}
                 ></i>
               ) : null}
-              
-              <i className="fa-regular fa-comment commentsIcon" onClick={(e) => showComments ? setShowComments(false) : setShowComments(true)}></i>
-             
+
+              <i
+                className="fa-regular fa-comment commentsIcon"
+                onClick={(e) =>
+                  showComments ? setShowComments(false) : setShowComments(true)
+                }
+              ></i>
             </div>
-            {showComments ?  <Comments setListNoteClicked={setListNoteClicked} isLogged={isLogged} listid={listid} noteid={noteid} setShowComments={setShowComments} showComments={showComments}/> : null}
-           
-            
-            
+            {showComments ? (
+              <Comments
+                setListNoteClicked={setListNoteClicked}
+                isLogged={isLogged}
+                listid={listid}
+                noteid={noteid}
+                setShowComments={setShowComments}
+                showComments={showComments}
+              />
+            ) : null}
           </div>
         </div>
       ) : (
@@ -176,9 +201,17 @@ function CreatedNote(props) {
 
 export { CreatedNote }
 
-function closeBtnHandler(listNoteclicked, setListNoteClicked, setEditMode, showComments, setShowComments) {
+function closeBtnHandler(
+  listNoteclicked,
+  setListNoteClicked,
+  setEditMode,
+  showComments,
+  setShowComments,
+) {
   listNoteclicked ? setListNoteClicked(false) : setListNoteClicked(true)
-  if(showComments){setShowComments(false)}
+  if (showComments) {
+    setShowComments(false)
+  }
   setEditMode(false)
 }
 

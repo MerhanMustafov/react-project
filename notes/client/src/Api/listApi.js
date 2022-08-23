@@ -21,7 +21,7 @@ async function createListRecord(listData, userid) {
 async function getAllLists(userId) {
   const endPoint = `/list/getAllUsersList/${userId}`
   try {
-    const response = (await fetch(baseUrl + endPoint)).json()
+    const response = await fetch(baseUrl + endPoint)
     if (response.ok == false) {
       await response.json()
       throw new Error(response.error)

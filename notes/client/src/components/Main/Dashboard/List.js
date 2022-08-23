@@ -10,7 +10,7 @@ import {
   deleteList,
   getOneList,
   getAllLists,
-} from '../../../Api/noteApi'
+} from '../../../Api/listApi'
 
 import {socket} from '../../../socket'
 
@@ -27,17 +27,17 @@ function List(props) {
   //   const [isOwner, setIsOwner] = useState(false)
   const { setRefresh, setWaitingData } = props
   let listid = props._id
-  let image = props.list_img_url
-//   let image = props.listimg
+//   let image = props.list_img_url
+  let image = props.cld_list_img_url
   const [title, setTitle] = useState()
   let isOwner = userid === props.ownerid
 
   useEffect(() => {
-    let data = null
+    let data = []
     async function update() {
       if (lstId) {
         const singleList = await getOneList(lstId)
-        data = singleList[0].notes
+        data = singleList[0] && singleList[0].notes
       } else {
         data = props.notes
       }
@@ -48,9 +48,9 @@ function List(props) {
       setLstId(listid)
       setSpinnerNotes(false)
       const scrollMain = document
-        .getElementById(listid)
-        .querySelector('.scrollMain')
-      scrollMain.scrollTo(0, scrollMain.scrollHeight)
+        ?.getElementById(listid)
+        ?.querySelector('.scrollMain')
+      scrollMain && scrollMain.scrollTo(0, scrollMain.scrollHeight)
     }
     update()
       setRefreshList(false)
@@ -169,7 +169,7 @@ function List(props) {
             {/* {spinnerNotes ? <SpinnerNOtesList className="spn" /> : null} */}
             
             {/* {true ? <s className="spn" /> : null} */}
-            {lists.length > 0
+            {lists && lists.length > 0
               ? lists.map((noteData) => (
                   <CreatedNote
                     key={++key}

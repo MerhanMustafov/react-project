@@ -9,7 +9,7 @@ function SearchNote(props){
 
   useEffect(() => {
      getAllNoteRecords(listid).then(data => seatAllNotes(data))
-  }, [allNotes.length !== notes.length])
+  }, [allNotes?.length !== notes?.length])
     
     
     function match(input){

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import {socket} from '../../../../socket'
+import { socket } from '../../../../socket'
 
-const { createComment } = require('../../../../Api/noteApi')
+const { createComment } = require('../../../../Api/commentApi')
 function CreateComment(props) {
   const username = localStorage.getItem('username')
   const gender = localStorage.getItem('gender')
@@ -14,10 +14,17 @@ function CreateComment(props) {
     e.preventDefault()
     if (to === `/comment/create/${noteid}`) {
       if (comment.length > 10) {
-        const data = { comment, noteid, username, gender, ownerid }
-        const response = await createComment(data, noteid)
-        socket.emit('server-refresh-all', true)
-        setAddCommentWindow(false)
+        try {
+          const data = { comment, noteid, username, gender, ownerid }
+          const response = await createComment(data, noteid)
+          socket.emit('server-refresh-all', true)
+          setAddCommentWindow(false)
+        } catch (err) {
+          setErrors(err.message)
+          setTimeout(() => {
+            setErrors('')
+          }, 3000)
+        }
       } else {
         setErrors('comment should be at least 10 characters long !')
         setTimeout(() => {

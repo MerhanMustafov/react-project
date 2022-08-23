@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { getUserByIdWithLists } from '../../../Api/userService'
+import { getUserByIdWithLists } from '../../../Api/userApi'
 import { List } from '../Dashboard/List'
 import { Search } from '../Dashboard/Search/Search'
 
@@ -25,7 +25,7 @@ function UserProfile() {
         <div className="profileInfoSection">
           <div>
             <img
-              src={userData && userData.profile_img_url}
+              src={userData && userData.cld_profile_img_url}
               alt="Profile Image"
             />
             <div className="nameAreaWrapper">

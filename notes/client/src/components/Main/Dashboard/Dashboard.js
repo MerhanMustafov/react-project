@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllLists } from '../../../Api/noteApi'
+import { getAllLists } from '../../../Api/listApi'
 import { List } from './List'
 import { Search } from './Search/Search'
 import { Spinner } from '../Spinner/Spinner'
@@ -25,7 +25,8 @@ function Dashboard() {
     }
     getLists()
     setRefresh(false)
-  }, [refresh])
+    setRefreshListArea(false)
+  }, [refresh, refreshListArea])
 
   return (
     <div className="dashboardWrapper">
