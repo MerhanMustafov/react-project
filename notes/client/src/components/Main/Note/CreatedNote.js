@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { updateNoteRecord, deleteNote } from '../../../../Api/noteApi'
-import { getUserById } from '../../../../Api/userApi'
-import { SpinnerNOtesList } from '../../Spinner/Spinner'
-import {Comments} from '../Note/Comments'
-import {socket} from '../../../../socket'
+import { updateNoteRecord, deleteNote } from '../../../Api/noteApi'
+import { getUserById } from '../../../Api/userApi'
+import {Comments} from '../Comment/Comments'
+import {socket} from '../../../socket'
 
-import {Spinner} from '../../Spinner/Spinner'
+// import { SpinnerNOtesList } from '../../Spinner/Spinner'
+// import {Spinner} from '../../Spinner/Spinner'
 function CreatedNote(props) {
   const {
     setAddNoteBtn,

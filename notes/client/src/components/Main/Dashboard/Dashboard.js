@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllLists } from '../../../Api/noteService'
+import { getAllLists } from '../../../Api/noteApi'
 import { List } from './List'
 import { Search } from './Search/Search'
 import { Spinner } from '../Spinner/Spinner'

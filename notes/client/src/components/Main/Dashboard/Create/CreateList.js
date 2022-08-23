@@ -1,4 +1,4 @@
-import { createListRecord } from '../../../../Api/noteService'
+import { createListRecord } from '../../../../Api/noteApi'
 import { useState } from 'react'
 import { AddListSpinner } from '../../Spinner/Spinner'
 import { socket } from '../../../../socket'

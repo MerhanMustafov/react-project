@@ -2,7 +2,7 @@ import { SearchNote } from '../Search/SearchNote'
 import { useState, useEffect } from 'react'
 import { socket } from '../../../../socket'
 import { AddListSpinner } from '../../Spinner/Spinner'
-import { createListRecord } from '../../../../Api/noteService'
+import { createListRecord } from '../../../../Api/noteApi'
 function ListSample(props) {
   const userid = localStorage.getItem('userId')
   const {setRefreshListArea} = props

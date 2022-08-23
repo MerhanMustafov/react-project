@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { deleteComment } from '../../../../Api/noteService'
+import { deleteComment } from '../../../../Api/noteApi'
 import { socket } from '../../../../socket'
 function ConfurmationDelW(props) {
   const { setRefreshComments } = props

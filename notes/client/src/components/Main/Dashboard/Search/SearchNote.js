@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import {getAllNoteRecords} from '../../../../Api/noteService';
+import {getAllNoteRecords} from '../../../../Api/noteApi';
 
 
 function SearchNote(props){

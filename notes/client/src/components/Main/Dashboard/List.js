@@ -10,7 +10,7 @@ import {
   deleteList,
   getOneList,
   getAllLists,
-} from '../../../Api/noteService'
+} from '../../../Api/noteApi'
 
 import {socket} from '../../../socket'
 

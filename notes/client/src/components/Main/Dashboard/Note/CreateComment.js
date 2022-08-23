@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import {socket} from '../../../../socket'
 
-const { createComment } = require('../../../../Api/noteService')
+const { createComment } = require('../../../../Api/noteApi')
 function CreateComment(props) {
   const username = localStorage.getItem('username')
   const gender = localStorage.getItem('gender')

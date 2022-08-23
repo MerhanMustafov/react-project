@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {CreateComment} from './CreateComment'
 import {CreatedComment} from './CreatedComment'
-import {getNoteById} from '../../../../Api/noteService'
+import {getNoteById} from '../../../../Api/noteApi'
 function Comments(props) {
     const {listid, noteid, showComments, setShowComments, isLogged, setListNoteClicked} = props
     const [addCommentWindow, setAddCommentWindow] = useState(false)
