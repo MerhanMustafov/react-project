@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { verifyUser, getUserById } from '../../Api/userService'
+import { verifyUser, getUserById } from '../../Api/userApi'
 function LoggedGuard(props) {
 
   useEffect(() => {

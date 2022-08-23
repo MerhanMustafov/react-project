@@ -1,4 +1,4 @@
-import * as api from '../../../Api/userService'
+import * as api from '../../../Api/userApi'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 function Register({setIsAuth}) {
@@ -15,20 +15,17 @@ function Register({setIsAuth}) {
   async function registerUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
-      const userData = generateUserData({username, password, gender, rowImg: img})
+      const userData = generateUserData({username, password, gender, uploadedImg: img})
       try{
         const response = await api.register(userData)
-        if(response.error){
-            setErrors(response.error)
-        }
-
+        
         setLocalStorage(response)
-        setIsAuth( true)
+        setIsAuth(true)
         navigate('/')
 
       }catch(err){
-        const error = [err.message]
-        setErrors(error)
+        const error = [...err.message]
+        setErrors(err.message)
       }
     }
   }
@@ -215,8 +212,8 @@ function checkboxHandler(e) {
 function setLocalStorage(data){
     localStorage.setItem('userId', data.userId)
     localStorage.setItem('username', data.username)
-    if(data.profile_img_url.length > 0){
-        localStorage.setItem('img', data.profile_img_url)
+    if(data.cld_profile_img_url.length > 0){
+        localStorage.setItem('img', data.cld_profile_img_url)
     }else{
         const maleImg = require('../../../profileImages/male.jpg')
         const femaleImg = require('../../../profileImages/female.jpg')
@@ -234,7 +231,7 @@ function generateUserData(inputs){
     return  {
         username: inputs.username.trim(),
         password: inputs.password.trim(),
-        rowImg: inputs.rowImg.trim(),
+        uploadedImg: inputs.uploadedImg.trim(),
         gender: inputs.gender.trim(),
       }
 }

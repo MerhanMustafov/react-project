@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { createNoteRecord } from '../../../../Api/noteApi'
-import {socket} from '../../../../socket'
+import { createNoteRecord } from '../../../Api/noteApi'
+import {socket} from '../../../socket'
 function CreateNote(props) {
   //   const {setWaitingData} = props
   //   const { setrefreshNotesList } = props
@@ -30,6 +30,7 @@ function CreateNote(props) {
         try {
           setSpinnerNotes(true)
           const noteData = {
+            ownerid: localStorage.getItem('userId'),
             text: text.trim(),
             listid: listid,
             title: title.trim(),

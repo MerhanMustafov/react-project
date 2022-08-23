@@ -1,44 +1,22 @@
-import { createListRecord } from '../../../../Api/noteService'
-import { useState } from 'react'
-import { AddListSpinner } from '../../Spinner/Spinner'
-import { socket } from '../../../../socket'
 import {ListSample} from './ListSample'
 
 function CreateList(props) {
   const userid = localStorage.getItem('userId')
   const { setRefreshListArea } = props
-  const [listname, setListName] = useState('')
-  const [image, setImage] = useState('')
+  
 
-  const [waitingAddListData, setWaitingAddListData] = useState(false)
 
-  async function requestHandler(e, to) {
-    if (to === `/list/create/${userid}`) {
-      setWaitingAddListData(true)
-      const listData = await createListRecord(
-        {
-          rowImg: image,
-          listname: listname.trim(),
-          notes: [],
-          ownerid: userid,
-        },
-        userid,
-      )
-      setImage('')
-      setListName('')
-      socket.emit('server-refresh-all', true)
-
-      setWaitingAddListData(false)
-    }
-  }
-
-  socket.on('client-refresh-all', (refresh) => {
-    setRefreshListArea(true)
-  })
   return (
     <div className="createListWrapperExtend hide">
         <ListSample setRefreshListArea={setRefreshListArea}/>
-      {/* <div className="createListWrapper">
+      
+    </div>
+  )
+}
+
+export { CreateList }
+
+{/* <div className="createListWrapper">
         <i className="fa-solid fa-xmark createListCloseIcon" onClick={(e) => display(e, 'createListWrapperExtend')}></i>
         <div className="createListInnerWrapper">
           
@@ -71,33 +49,3 @@ function CreateList(props) {
           </button>
         </div>
       </div> */}
-    </div>
-  )
-}
-
-export { CreateList }
-
-function set(e, setImage) {
-  uploadImgHandler(e, setImage)
-  document.getElementById('uploadimg').value = ''
-  document.querySelector('.labelInputListImg').value = ''
-}
-
-function uploadImgHandler(e, setImage) {
-  const reader = new FileReader()
-  reader.addEventListener('load', (e) => {
-    const url = reader.result
-    setImage(url)
-  })
-  reader.readAsDataURL(e.target.files[0])
-}
-
-
-
-// function display(e, selector){
-//     const htmlEl = document.querySelector(`.${selector}`)
-//     console.log(htmlEl)
-//     if(htmlEl.classList.contains('show')){
-//         htmlEl.classList.remove('show')
-//     }else{htmlEl.classList.add('show')}
-// }

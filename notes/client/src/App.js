@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './components/Css/Global.css'
 
-import { verifyUser, getUserById } from './Api/userService'
+import { verifyUser, getUserById } from './Api/userApi'
 
 // NAVIGATION
 import { GuestNav } from './components/Nav/Guest'

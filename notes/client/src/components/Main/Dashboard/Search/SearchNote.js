@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import {getAllNoteRecords} from '../../../../Api/noteService';
+import {getAllNoteRecords} from '../../../../Api/noteApi';
 
 
 function SearchNote(props){
@@ -9,7 +9,7 @@ function SearchNote(props){
 
   useEffect(() => {
      getAllNoteRecords(listid).then(data => seatAllNotes(data))
-  }, [allNotes.length !== notes.length])
+  }, [allNotes?.length !== notes?.length])
     
     
     function match(input){

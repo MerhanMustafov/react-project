@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { deleteComment } from '../../../../Api/noteService'
+import { deleteComment } from '../../../../Api/commentApi'
 import { socket } from '../../../../socket'
 function ConfurmationDelW(props) {
   const { setRefreshComments } = props
@@ -8,10 +8,13 @@ function ConfurmationDelW(props) {
 
   async function requestHandler(e, to) {
     if (to === `/comment/delete/commentid=${commentid}/noteid=${noteid}`) {
-      const deleted = await deleteComment(commentid, noteid)
-      socket.emit('server-refresh-all', true)
-
-      showHide(null, commentid)
+      try {
+        const deleted = await deleteComment(commentid, noteid)
+        socket.emit('server-refresh-all', true)
+        showHide(null, commentid)
+      } catch (err) {
+        console.log(err.message)
+      }
     }
   }
 

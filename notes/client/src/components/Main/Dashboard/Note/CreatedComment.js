@@ -2,8 +2,8 @@ import maleimg from '../../../../profileImages/male.jpg'
 import femaleimg from '../../../../profileImages/female.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getUserByName } from '../../../../Api/userService'
-import { updateComment } from '../../../../Api/noteService'
+import { getUserByName } from '../../../../Api/userApi'
+import { updateComment } from '../../../../Api/commentApi'
 import { ConfurmationDelW } from './ConfirmationDelW'
 
 import {socket} from '../../../../socket'
@@ -93,7 +93,7 @@ function CreatedComment(props) {
       ) : null}
 
       <div className="commentUserArea">
-        <img src={userData && userData.profile_img_url} alt="" />
+        <img src={userData && userData.cld_profile_img_url} alt="" />
         <div className="commentUsername" onClick={(e) => userClickedHandler(e)}>
           {props.username}
         </div>
