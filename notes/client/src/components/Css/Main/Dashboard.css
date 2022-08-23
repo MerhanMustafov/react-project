@@ -1,7 +1,7 @@
 @import './Search/Search.css';
-@import './AddList//AddList.css';
 
-.dashboardWrapper{
+/* .dashboardWrapper{
+    border: 2px solid green; 
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
     width: auto;
@@ -11,13 +11,14 @@
     min-width: 270px;
     max-width: 1300px;
     position: relative;
-}
+} */
 
 
 
 /* ADD NOTE BTN /SHEET */
 
 .onPopUpBackground{
+    /* border: 2px solid blue; */
     overflow-y: auto;
    position: fixed;
     top: 50%;
@@ -36,6 +37,7 @@
 
 }
 .iW{
+    /* border: 2px solid blue; */
     position: absolute;
     display: flex;
     flex-direction: column;

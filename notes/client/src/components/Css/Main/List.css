@@ -1,12 +1,22 @@
 .listsWrapper {
-  column-count: 3;
-  /* width: auto; */
-  width: 98%;
-  height: auto;
-  margin: 0 auto;
-  /* border: 2px solid white; */
-}
+    /* border: 2px solid rgb(255, 0, 64); */
 
+  /* column-count: 3; */
+  /* width: auto; */
+  /* height: auto; */
+  margin: 20px auto;
+  padding:20px; 
+}
+.listsInnerWrapper{
+    /* border: 2px solid blue; */
+    column-count: 3;
+  /* width: auto; */
+  /* width: 98%; */
+  width: auto;
+  height: auto;
+  margin: 20px auto;
+  padding:20px; 
+}
 .expandBackgroundOn {
   position: fixed;
   top: 50%;
@@ -34,37 +44,8 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
-@media screen and (max-width: 1300px) {
-  .listsWrapper {
-    column-count: 2;
-  }
-  .listWrapper {
-    width: 85%;
-  }
-}
-@media screen and (max-width: 1050px) {
-  .listsWrapper {
-    column-count: 1;
-    width: auto;
-  }
-  .listWrapper {
-    width: 90%;
-    /* display: block; */
-    /* margin: 0 auto; */
-  }
-}
-@media screen and (max-width: 600px) {
-  .listWrapper {
-    width: 85%;
-  }
-}
-@media screen and (max-width: 450px) {
-  .listWrapper {
-    width: 75%;
-  }
-}
 .expand {
+    display: block;
   position: fixed;
   z-index: 10;
   top: 100px;
@@ -77,6 +58,17 @@
   max-height: 1000px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 1300px) {
+  .listsInnerWrapper {
+    column-count: 2;
+  }
+  .listWrapper {
+    width: 85%;
+  }
+}
+
+
 .listInnerWrapper {
   display: flex;
   flex-direction: column;
@@ -258,4 +250,33 @@
   background: rgba(9, 255, 0, 0.61);
   padding: 3px;
   color: white;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .listsInnerWrapper {
+    column-count: 1;
+    width: auto;
+  }
+  .listWrapper {
+    width: 90%;
+    height: 45%;
+    /* display: block; */
+    /* margin: 0 auto; */
+  }
+}
+@media screen and (max-width: 600px) {
+  .listWrapper {
+    width: 85%;
+    height: 45%;
+  }
+  /* .expand{
+    width: 80%;
+    height: 40%;
+  } */
+}
+@media screen and (max-width: 450px) {
+  .listWrapper {
+    width: 75%;
+  }
 }

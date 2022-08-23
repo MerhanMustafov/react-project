@@ -1,0 +1,16 @@
+@import url(./Buttons.css);
+.menuWrapper{
+    /* border: 2px solid pink; */
+}
+.dashboardMenuIcon{
+    color: white;
+    font-size: 35px;
+}
+.menuInnerWrapper{
+    /* border: 10px solid black; */
+    display: flex;
+    /* align-items: center; */
+    width: auto;
+    position: relative;
+}
+
