@@ -1,3 +1,6 @@
+@import url(./Dashboard/middle.css);
+
+
 @import url(./Dashboard.css);
 @import url(./List.css);
 @import url(./Note/Note.css);
@@ -15,4 +18,5 @@ main{
     max-width: 1366px;
     margin: 0 auto;
 }
+
 

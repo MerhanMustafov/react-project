@@ -3,12 +3,15 @@ import { getAllLists } from '../../../Api/noteService'
 import { List } from './List'
 import { Search } from './Search/Search'
 import { Spinner } from '../Spinner/Spinner'
-import { AddList } from './AddList/AddList'
-
+// import { CreateList } from './CreateList/CreateList'
+import {Menu} from './Header/Menu'
 function Dashboard() {
   let key = 165156
     const uid = localStorage.getItem('userId')
   const [refresh, setRefresh] = useState(false)
+  const [refreshListArea, setRefreshListArea] = useState(false)
+  
+//   const [refreshDashboard, setRefresh] = useState(false)
 
   const [addNoteBtn, setAddNoteBtn] = useState('')
   const [arrayOfLists, setArrayOfLists] = useState([])
@@ -26,23 +29,29 @@ function Dashboard() {
 
   return (
     <div className="dashboardWrapper">
-      <Search
+    <div className="dashboardHeaderArea">
+        <Menu setRefreshListArea={setRefreshListArea}/>
+      
+      {/* <AddList setRefresh={setRefresh}  /> */}
+    </div>
+
+        <div className="listsWrapper">
+            <Search
         setArrayOfLists={setArrayOfLists}
         arrayOfLists={arrayOfLists}
         setRefresh={setRefresh}
         uid={uid}
       />
-
-      <AddList setRefresh={setRefresh}  />
-
-        <div className="listsWrapper">
-    
+      <div className="listsInnerWrapper">
           {arrayOfLists.map((listData) => (
             <List key={listData._id} setRefresh={setRefresh} {...listData} />
           ))}
         </div>
     </div>
+    </div>
   )
 }
 
 export { Dashboard }
+
+

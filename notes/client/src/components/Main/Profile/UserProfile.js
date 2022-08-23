@@ -7,17 +7,16 @@ import { Search } from '../Dashboard/Search/Search'
 import maleimg from '../../../profileImages/male.jpg'
 import femaleimg from '../../../profileImages/female.jpg'
 function UserProfile() {
-
   const params = useParams()
   const [userData, setUserData] = useState()
   const [arrayOfLists, setArrayOfLists] = useState([])
   const [refresh, setRefresh] = useState(false)
   useEffect(() => {
     getUserByIdWithLists(params.userid).then((data) => set(data))
-    function set(data){
-        setUserData(data)
-        setArrayOfLists(data.lists)
-        setRefresh(false)
+    function set(data) {
+      setUserData(data)
+      setArrayOfLists(data.lists)
+      setRefresh(false)
     }
   }, [params.userid, refresh])
   return (
@@ -40,16 +39,23 @@ function UserProfile() {
       </div>
       <div className="dashboardWrapper">
         <Search
-            setArrayOfLists={setArrayOfLists}
-            arrayOfLists={arrayOfLists}
-            uid={params.userid}
-            setRefresh={setRefresh}
-      />
-      
+          setArrayOfLists={setArrayOfLists}
+          arrayOfLists={arrayOfLists}
+          uid={params.userid}
+          setRefresh={setRefresh}
+        />
+
         <div className="listsWrapper">
-          {arrayOfLists && arrayOfLists.map((listData) => (
-            <List key={listData._id} setRefresh={setRefresh} {...listData} />
-          ))}
+          <div className="listsInnerWrapper">
+            {arrayOfLists &&
+              arrayOfLists.map((listData) => (
+                <List
+                  key={listData._id}
+                  setRefresh={setRefresh}
+                  {...listData}
+                />
+              ))}
+          </div>
         </div>
       </div>
     </>

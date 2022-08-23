@@ -1,12 +1,39 @@
-.addListWrapper{
-    /* border: 2px solid red ; */
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 15px ;
+@import url(./SampleList.css);
+.createListWrapperExtend{
+    background: rgba(88, 88, 88, 0.904);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+
 }
-.addListInnerWrapper{
+.createListWrapperExtend.hide{
+    display: none;
+}
+.createListWrapperExtend.show{
+    display: block;
+}
+.createListWrapper{
+    border: 2px solid rgb(4, 0, 255) ;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 50%;
+    padding: 40px 20px;
+}
+.createListCloseIcon{
+    position: relative;
+    right: 0;
+    top: 0;
+}
+.createListInnerWrapper{
     /* border: 2px solid red ; */
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     font-size: 20px;
 }
 

@@ -1,21 +1,20 @@
 import { createListRecord } from '../../../../Api/noteService'
 import { useState } from 'react'
 import { AddListSpinner } from '../../Spinner/Spinner'
-import {socket} from '../../../../socket'
+import { socket } from '../../../../socket'
+import {ListSample} from './ListSample'
 
-function AddList(props) {
+function CreateList(props) {
   const userid = localStorage.getItem('userId')
-  const { setRefresh } = props
+  const { setRefreshListArea } = props
   const [listname, setListName] = useState('')
   const [image, setImage] = useState('')
-  
+
   const [waitingAddListData, setWaitingAddListData] = useState(false)
-
-
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
-        setWaitingAddListData(true)
+      setWaitingAddListData(true)
       const listData = await createListRecord(
         {
           rowImg: image,
@@ -28,26 +27,21 @@ function AddList(props) {
       setImage('')
       setListName('')
       socket.emit('server-refresh-all', true)
-      
+
       setWaitingAddListData(false)
     }
   }
 
   socket.on('client-refresh-all', (refresh) => {
-    setRefresh(true)
+    setRefreshListArea(true)
   })
   return (
-      <div className="addListWrapper">
-        <div className="addListInnerWrapper">
-          <button
-            className="addList"
-            disabled={true ? listname.length === 0 : false}
-            onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
-          >
-       { waitingAddListData ? <AddListSpinner /> :  'New List'}
-       {/* { true ? <AddListSpinner /> :  'New List'} */}
-           
-          </button>
+    <div className="createListWrapperExtend hide">
+        <ListSample setRefreshListArea={setRefreshListArea}/>
+      {/* <div className="createListWrapper">
+        <i className="fa-solid fa-xmark createListCloseIcon" onClick={(e) => display(e, 'createListWrapperExtend')}></i>
+        <div className="createListInnerWrapper">
+          
           <input
             type="text"
             id="listI"
@@ -68,12 +62,20 @@ function AddList(props) {
             name="uploadimg"
             onChange={(e) => set(e, setImage)}
           />
+          <button
+            className="addList"
+            disabled={true ? listname.length === 0 : false}
+            onClick={(e) => requestHandler(e, `/list/create/${userid}`)}
+          >
+            {waitingAddListData ? <AddListSpinner /> : 'New List'}
+          </button>
         </div>
-      </div>
+      </div> */}
+    </div>
   )
 }
 
-export { AddList }
+export { CreateList }
 
 function set(e, setImage) {
   uploadImgHandler(e, setImage)
@@ -89,3 +91,13 @@ function uploadImgHandler(e, setImage) {
   })
   reader.readAsDataURL(e.target.files[0])
 }
+
+
+
+// function display(e, selector){
+//     const htmlEl = document.querySelector(`.${selector}`)
+//     console.log(htmlEl)
+//     if(htmlEl.classList.contains('show')){
+//         htmlEl.classList.remove('show')
+//     }else{htmlEl.classList.add('show')}
+// }

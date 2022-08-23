@@ -1,0 +1,37 @@
+.dashboardMenuButtonsWrapper{
+    display: flex;
+    padding: 0;
+    /* border: 2px solid white; */
+    position: absolute;
+    left: 35px;
+    top: 0px;
+    /* flex-direction: column; */
+}
+
+.dashboardMenuButtonsWrapper.hide{
+    display: none;
+}
+.dashboardMenuButtonsWrapper.show{
+    display: flex;
+}
+@media screen and (max-width: 600px) {
+    .dashboardMenuButtonsWrapper.show{
+        flex-direction: column;
+    }
+}
+
+
+
+
+.menuCreateListBtn, .menuCreateSectionBtn{
+    font-family: 'Courier New', Courier, monospace;
+    background: rgb(0, 0, 0);
+    padding: 5px;
+    font-size: 21px;
+    white-space: nowrap;
+    margin: 0 10px 0 10px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+}

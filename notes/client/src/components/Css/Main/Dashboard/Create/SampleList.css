@@ -1,0 +1,191 @@
+
+.sampleListWrapper {
+  /* border: 2px solid blue; */
+  display: block;
+  flex-direction: column;
+  position: relative;
+  width: 70%;
+  height: 80%;
+  /* min-height: 60%; */
+  margin: 5px auto 10px auto;
+  padding: 30px;
+  border-radius: 10px;
+  /* background-image: url(../../../../public/images/wallpaperflarNeonCircle.jpg); */
+  background: linear-gradient(to right, rgba(0, 0, 0), rgb(0, 0, 0));
+  box-shadow: inset 0px 20px 50px 0px #000000;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .sampleListWrapper {
+    width: 85%;
+    height: 45%;
+  }
+}
+@media screen and (max-width: 600px) {
+    .sampleListWrapper{
+        width: 80%;
+        height: 45%;
+    }
+}
+.sampleSearchNoteWrapper{
+    /* border: 2px solid red; */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    gap: 7px;
+    top: 7px;
+    left: 9px;
+    width: 80%;
+}
+
+.sampleSearchNoteIcon{
+    font-size: 15px;
+    color: white;
+}
+
+.sampleListHeader{
+    display: flex;
+    width: 95vw;
+    max-width: 3000px;
+    margin: 0 auto;
+    /* border: 5px solid black; */
+}
+
+
+.samplelistInnerWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* width: 70%; */
+  height: 100%;
+  /* height: inherit; */
+  /* border: 5px solid red; */
+}
+
+
+.sampleListWrapper main {
+  overflow: auto;
+  /* min-height: 250px; */
+  flex: 1 0 auto;
+  /* height: 20rem; */
+  /* min-height: 350px; */
+  /* max-height: 310px; */
+  border-top: 2px solid rgb(156, 156, 156);
+  border-bottom: 2px solid rgb(156, 156, 156);
+}
+
+.sampleExpandListBtn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: white;
+}
+.sampleListWrapper header {
+  position: relative;
+  display: flex;
+  width: 90%;
+  max-width: 1900px;
+  margin: 0 auto;
+}
+.sampleListWrapper .sampleTitle {
+  font-family: Kanit;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 23px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0px auto 20px 0;
+  padding: 0 0 0 15px;
+  cursor: pointer;
+}
+.sampleAddImage{
+    position: absolute;
+    right: 50px;
+    top: 0px;
+    font-size: 30px;
+    color: white;
+     color: rgba(255, 255, 255, 0.747);
+}
+.sampleListWrapper .sampleTitle::placeholder{
+    color: rgba(54, 54, 54, 0.651);
+}
+.listNoteTitle {
+  cursor: pointer;
+}
+
+.sampleOptions {
+  position: absolute;
+  right: -7px;
+  top: 10px;
+  font-size: 20px;
+}
+
+
+
+.fa-gear,
+.fa-pen,
+.fa-trash {
+  color: rgba(255, 255, 255, 0.897);
+}
+
+.sampleListWrapper main::-webkit-scrollbar {
+  width: 10px;
+}
+.sampleListWrapper main::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.sampleListWrapper main::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.479);
+  border-radius: 200px;
+}
+.sampleListWrapper footer {
+  position: relative;
+  display: flex;
+  width: 90%;
+  max-width: 1900px;
+  margin: 0 auto;
+}
+.sampleListWrapper footer button {
+  font-family: Kanit, 'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 45px auto 5px 0;
+  padding-left: 20px;
+  color: black;
+  /* background: rgba(255, 255, 255, 0.5); */
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  width: 87%;
+  border: none;
+  text-align: left;
+}
+
+#sampleUploadimg{
+    display: none;
+}
+
+
+.sampleError{
+    position: absolute;
+    z-index: 2;
+    /* right: 50%; */
+    left: 5%;
+    /* transform: translate(-50%); */
+    bottom: 40px;
+    /* margin: 0 auto; */
+    background: rgb(248, 247, 247);
+    padding:2px ;
+    font-size: 17px;
+    color: rgb(255, 0, 0);
+    font-family: 'Courier New', Courier, monospace;
+}
