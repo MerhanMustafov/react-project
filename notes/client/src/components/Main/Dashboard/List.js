@@ -42,7 +42,9 @@ function List(props) {
         data = props.notes
       }
       if (image) {
-        document.getElementById(listid).style.backgroundImage = `url(${image})`
+        const htmlEl = document.getElementById(listid)
+        if(htmlEl){htmlEl.style.backgroundImage = `url(${image})`}
+        
       }
       setLists(data)
       setLstId(listid)
