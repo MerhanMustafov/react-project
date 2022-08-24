@@ -90,7 +90,7 @@ function ListSample(props) {
               </label>
             </div>
 
-            <i class="fa-solid fa-image sampleAddImage" onClick={(e) => displayImg(e, '.imgOptionWrapper')}></i>
+            <i className="fa-solid fa-image sampleAddImage" onClick={(e) => displayImg(e, '.imgOptionWrapper')}></i>
           </div>
         </div>
       </div>

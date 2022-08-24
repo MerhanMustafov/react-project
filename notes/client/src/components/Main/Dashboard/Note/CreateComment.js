@@ -4,6 +4,7 @@ import { socket } from '../../../../socket'
 const { createComment } = require('../../../../Api/commentApi')
 function CreateComment(props) {
   const username = localStorage.getItem('username')
+  const creatorImage = localStorage.getItem('img')
   const gender = localStorage.getItem('gender')
   const ownerid = localStorage.getItem('userId')
   const { noteid, setAddCommentWindow, setRefreshComments } = props
@@ -15,7 +16,7 @@ function CreateComment(props) {
     if (to === `/comment/create/${noteid}`) {
       if (comment.length > 10) {
         try {
-          const data = { comment, noteid, username, gender, ownerid }
+          const data = { comment, noteid, username, gender, ownerid, ownerimg:creatorImage,}
           const response = await createComment(data, noteid)
           socket.emit('server-refresh-all', true)
           setAddCommentWindow(false)

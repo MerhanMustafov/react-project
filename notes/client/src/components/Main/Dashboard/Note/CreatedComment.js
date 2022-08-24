@@ -18,6 +18,7 @@ function CreatedComment(props) {
     noteid,
     setRefreshComments,
     ownerid,
+    ownerimg,
     isLogged,
     setAddCommentWindow,
     addCommentWindow,
@@ -26,10 +27,15 @@ function CreatedComment(props) {
   const isAuthor = ownerid === localStorage.getItem('userId')
 
   const [userData, setUserData] = useState()
+  const [userImg, setUserImg] = useState(null)
   const [newComment, setNewComment] = useState('')
 
   useEffect(() => {
-    getUserByName(username).then((data) => setUserData(data[0]))
+    getUserByName(username).then((data) => {
+        setUserData(data[0])
+        const image = setImage(data)
+        setUserImg(image)
+        })
   }, [])
 
   async function requestHandler(e, to) {
@@ -61,7 +67,7 @@ function CreatedComment(props) {
 
 
   return (
-    <div className="CreatedCommentWrapper commentBox" id={props._id}>
+    <div className={`CreatedCommentWrapper commentBox ${isAuthor ? 'authorsCommentBox' : null}`} id={props._id}>
       {isLogged ? (
         <i
           className="fa-solid fa-comment-dots addCommentIcon"
@@ -93,7 +99,7 @@ function CreatedComment(props) {
       ) : null}
 
       <div className="commentUserArea">
-        <img src={userData && userData.cld_profile_img_url} alt="" />
+        <img src={ownerimg} alt="user image" />
         <div className="commentUsername" onClick={(e) => userClickedHandler(e)}>
           {props.username}
         </div>
@@ -101,10 +107,12 @@ function CreatedComment(props) {
       <div className="commentcontentWrapper">
         {/* <i class="fa-solid fa-window-minimize minimizeButton" onClick={(e) => minimaze(e, _id)}></i> */}
         {/* <i class="fa-solid fa-down-left-and-up-right-to-center minimazeButtonMiddle"></i> */}
+        <div className="commentcontentInnerWrapper">
         <i
           className="fa-solid fa-maximize risizeBtnTop"
           onClick={(e) => resizeBtn(e, _id)}
         ></i>
+
         <i
           className="fa-solid fa-maximize risizeBtnBottom"
           onClick={(e) => resizeBtn(e, _id)}
@@ -116,12 +124,28 @@ function CreatedComment(props) {
           readOnly={isAuthor ? false : true}
           defaultValue={props.comment}
         ></textarea>
+        </div>
       </div>
     </div>
   )
 }
 
 export { CreatedComment }
+
+function setImage(data) {
+  if (data.cld_profile_img_url) {
+    return data.cld_profile_img_url
+  } else if (data.profile_img_web_link) {
+    return data.profile_img_web_link
+  } else {
+    if (data.gender == 'male') {
+      return data.default_image_male
+    } else if (data.gender == 'female') {
+      return data.default_image_female
+    }
+  }
+}
+
 
 function showHide(e, commentid) {
   const el = document

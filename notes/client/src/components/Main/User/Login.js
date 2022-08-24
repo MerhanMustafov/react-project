@@ -2,34 +2,33 @@ import * as api from '../../../Api/userApi'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Login({setIsAuth}) {
-    const navigate = useNavigate()
-    let errKey = 0
+function Login({ setIsAuth }) {
+  const navigate = useNavigate()
+  let errKey = 0
   const [errors, setErrors] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-    const filled = username.length >= 3 && password.length >= 5
+  const filled = username.length >= 3 && password.length >= 5
 
-    useEffect(() => {
-        localStorage.clear()
-    }, [localStorage.getItem('accessToken')])
+  useEffect(() => {
+    localStorage.clear()
+  }, [localStorage.getItem('accessToken')])
 
   async function loginUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
-      const userData = generateUserData({username, password})
-      try{
+      const userData = generateUserData({ username, password })
+      try {
         const response = await api.login(userData)
-        if(response.error){
-            setErrors(response.error)
+        if (response.error) {
+          setErrors(response.error)
         }
 
         setLocalStorage(response)
-        setIsAuth( true)
+        setIsAuth(true)
         navigate('/')
-
-      }catch(err){
+      } catch (err) {
         const error = [err.message]
         setErrors(error)
       }
@@ -50,7 +49,7 @@ function Login({setIsAuth}) {
             Log in <i className="fa-solid fa-chevron-down"></i>
           </label>
         </div>
-         {errors.length > 0 ? (
+        {errors.length > 0 ? (
           <div className="errors">
             {errors.map((e) => (
               <p key={++errKey}>{e}</p>
@@ -58,7 +57,7 @@ function Login({setIsAuth}) {
           </div>
         ) : null}
         <div className="l-box">
-          <label htmlFor="username" className="l-input-l" >
+          <label htmlFor="username" className="l-input-l">
             Username
           </label>
           <input
@@ -83,8 +82,13 @@ function Login({setIsAuth}) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        
-        <button type="submit" className="login-btn"  onClick={() => setErrors([])}  disabled={true ? !filled : false}>
+
+        <button
+          type="submit"
+          className="login-btn"
+          onClick={() => setErrors([])}
+          disabled={true ? !filled : false}
+        >
           Log in
         </button>
       </form>
@@ -92,9 +96,6 @@ function Login({setIsAuth}) {
   )
 }
 export { Login }
-
-
-
 
 function checkboxHandler(e) {
   if (e.target.checked) {
@@ -106,28 +107,32 @@ function checkboxHandler(e) {
   }
 }
 
-function setLocalStorage(data){
-    localStorage.setItem('userId', data.userId)
-    localStorage.setItem('username', data.username)
-    if(data.cld_profile_img_url.length > 0){
-        localStorage.setItem('img', data.cld_profile_img_url)
-    }else{
-        const maleImg = require('../../../profileImages/male.jpg')
-        const femaleImg = require('../../../profileImages/female.jpg')
-        if(data.gender === 'male'){
-            localStorage.setItem('img', maleImg)
-        }else{
-            localStorage.setItem('img', femaleImg)
-        }
+function setLocalStorage(data) {
+  const img = setImage(data)
+  localStorage.setItem('img', img)
+  localStorage.setItem('userId', data.userId)
+  localStorage.setItem('username', data.username)
+
+  localStorage.setItem('accessToken', data.accessToken)
+  localStorage.setItem('gender', data.gender)
+}
+function setImage(data) {
+  if (data.cld_profile_img_url) {
+    return data.cld_profile_img_url
+  } else if (data.profile_img_web_link) {
+    return data.profile_img_web_link
+  } else {
+    if (data.gender == 'male') {
+      return data.default_image_male
+    } else if (data.gender == 'female') {
+      return data.default_image_female
     }
-    
-    localStorage.setItem('accessToken', data.accessToken)
-    localStorage.setItem('gender', data.gender)
+  }
 }
 
-function generateUserData(inputs){
-    return  {
-        username: inputs.username.trim(),
-        password: inputs.password.trim()
-      }
+function generateUserData(inputs) {
+  return {
+    username: inputs.username.trim(),
+    password: inputs.password.trim(),
+  }
 }
