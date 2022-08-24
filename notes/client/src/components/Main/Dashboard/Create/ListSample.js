@@ -10,9 +10,7 @@ function ListSample(props) {
   const [uploadedImg, setUploadedImg] = useState(null)
   const [linkImg, setLinkImg] = useState(null)
   const [errors, setErrors] = useState('')
-
   const [waitingAddListData, setWaitingAddListData] = useState(false)
-
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
       if (listname.length > 0) {
@@ -21,6 +19,7 @@ function ListSample(props) {
           const listData = await createListRecord(
             {
               uploadedImg,
+              linkImg,
               listname: listname.trim(),
               notes: [],
               ownerid: userid,
@@ -28,6 +27,7 @@ function ListSample(props) {
             userid,
           )
           setUploadedImg(null)
+          setLinkImg(null)
           setListName('')
           socket.emit('server-refresh-all', true)
 
@@ -52,23 +52,48 @@ function ListSample(props) {
     setRefreshListArea(true)
   })
 
-  
   return (
     <div className="sampleListWrapper">
-      <label
-        htmlFor="sampleUploadimg"
-        className="sampleLabelInputListImg"
-        onChange={(e) => set(e, setUploadedImg)}
-      >
-        <i className="fa-solid fa-images sampleAddImage"></i>
-      </label>
       <input
         type="file"
         id="sampleUploadimg"
         name="uploadimg"
-        onChange={(e) => set(e, setUploadedImg)}
+        onChange={(e) => set(e, setUploadedImg, setLinkImg, null)}
       />
+      <div className="sampleOptions">
+        <i className="fa-solid fa-gear" title="settings" onClick={(e) => displayImg(e, '.optionsWrapper')}></i>
 
+        <div className="optionsWrapper hide">
+          {/* <i className="fa-solid fa-images sampleAddImage"></i> */}
+
+          <div className="optionsInnerwrapper">
+            <div className="imgOptionWrapper hide">
+              <div className="wrap hide">
+                <i
+                  className="fa-solid fa-magnifying-glass setIcon"
+                  onClick={(e) => set(e, setUploadedImg, setLinkImg, 'link')}
+                ></i>
+
+                <div className="sampleImgLinkWrapper hide">
+                  <input type="text" className="inputLink" />
+                </div>
+              </div>
+
+              <i className="fa-solid fa-link imgIconLink" onClick={(e) => displayImg(e, '.wrap')}></i>
+
+              <label
+                htmlFor="sampleUploadimg"
+                className="sampleLabelInputListImg"
+                onChange={(e) => set(e, setUploadedImg, setLinkImg, null)}
+              >
+                <i className="fa-solid fa-upload imgIconUpload"></i>
+              </label>
+            </div>
+
+            <i class="fa-solid fa-image sampleAddImage" onClick={(e) => displayImg(e, '.imgOptionWrapper')}></i>
+          </div>
+        </div>
+      </div>
       <div className="sampleSearchNoteWrapper">
         <i className="fa-solid fa-magnifying-glass sampleSearchNoteIcon"></i>
       </div>
@@ -89,10 +114,6 @@ function ListSample(props) {
             // defaultValue={listname}
             onChange={(e) => setListName(e.target.value)}
           />
-
-          <div className="sampleOptions">
-            <i className="fa-solid fa-gear" title="settings"></i>
-          </div>
         </header>
         <main className="scrollMain"></main>
         <footer>
@@ -113,20 +134,35 @@ function ListSample(props) {
 
 export { ListSample }
 
-function set(e, setImage) {
-  uploadImgHandler(e, setImage)
+function set(e, setUpload, setLink, link) {
+  if (link === 'link') {
+    const linkUrl = document.querySelector('.inputLink').value
+    if (linkUrl) {
+      document.querySelector(
+        '.sampleListWrapper',
+      ).style.backgroundImage = `url(${linkUrl})`
+      setLink(linkUrl)
+      setUpload(null)
+      displayImg(e, '.wrap')
+    }
+  } else {
+    uploadImgHandler(e, setUpload, setLink)
+    
+  }
   document.getElementById('sampleUploadimg').value = ''
   document.querySelector('.sampleLabelInputListImg').value = ''
+  document.querySelector('.inputLink').value = ''
 }
 
-function uploadImgHandler(e, setImage) {
+function uploadImgHandler(e, setUpload, setLink) {
   const reader = new FileReader()
   reader.addEventListener('load', (e) => {
     const url = reader.result
     document.querySelector(
       '.sampleListWrapper',
     ).style.backgroundImage = `url(${url})`
-    setImage(url)
+    setLink(null)
+    setUpload(url)
   })
   reader.readAsDataURL(e.target.files[0])
 }
@@ -136,12 +172,39 @@ function cleanFields() {
   document.querySelector('.sampleLabelInputListImg').value = ''
   document.querySelector('.sampleListWrapper').style.backgroundImage = ``
 }
+
 function display(e, selector) {
   cleanFields()
   const htmlEl = document.querySelector(selector)
   if (htmlEl.classList.contains('show')) {
     htmlEl.classList.remove('show')
+    closeSettingsOptions()
   } else {
     htmlEl.classList.add('show')
   }
 }
+
+
+function displayImg(e, classN){
+    const el = document.querySelector(classN)
+    if(el.classList.contains('show')){
+        if(classN === '.optionsWrapper'){
+            closeSettingsOptions()
+        }
+        else if(classN === '.imgOptionWrapper'){
+            el.classList.remove('show')
+            document.querySelector('.wrap').classList.remove('show')
+        }
+        el.classList.remove('show')
+    }else{
+        el.classList.add('show')
+    }
+    
+}
+
+function closeSettingsOptions(){
+    document.querySelector('.optionsWrapper').classList.remove('show')
+    document.querySelector('.imgOptionWrapper').classList.remove('show')
+    document.querySelector('.wrap').classList.remove('show')
+}
+

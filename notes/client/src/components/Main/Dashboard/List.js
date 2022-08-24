@@ -28,7 +28,7 @@ function List(props) {
   const { setRefresh, setWaitingData } = props
   let listid = props._id
 //   let image = props.list_img_url
-  let image = props.cld_list_img_url
+  let image = props.cld_list_img_url && props.cld_list_img_url?.length > 0 ? props.cld_list_img_url : props.list_img_web_link
   const [title, setTitle] = useState()
   let isOwner = userid === props.ownerid
 

@@ -108,14 +108,7 @@
   padding: 0 0 0 15px;
   cursor: pointer;
 }
-.sampleAddImage{
-    position: absolute;
-    right: 50px;
-    top: 0px;
-    font-size: 30px;
-    color: white;
-     color: rgba(255, 255, 255, 0.747);
-}
+
 .sampleListWrapper .sampleTitle::placeholder{
     color: rgba(54, 54, 54, 0.651);
 }
@@ -123,20 +116,6 @@
   cursor: pointer;
 }
 
-.sampleOptions {
-  position: absolute;
-  right: -7px;
-  top: 10px;
-  font-size: 20px;
-}
-
-
-
-.fa-gear,
-.fa-pen,
-.fa-trash {
-  color: rgba(255, 255, 255, 0.897);
-}
 
 .sampleListWrapper main::-webkit-scrollbar {
   width: 10px;
@@ -188,4 +167,117 @@
     font-size: 17px;
     color: rgb(255, 0, 0);
     font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+/* IMAGE */
+
+.sampleOptions {
+
+    display: flex;
+    flex-direction: column;
+  position: absolute;
+  right: 5px;
+  top: 70px;
+  padding: 2px;
+  font-size: 20px;
+}
+
+.fa-gear,
+.fa-pen,
+.fa-trash {
+  color: rgba(255, 255, 255, 0.897);
+}
+
+.optionsWrapper{
+    display: flex;
+    position: relative;
+    padding: 5px 0px;
+
+}
+.optionsWrapper.hide{
+    display: none;
+}
+.optionsWrapper.show{
+    display: flex;
+    margin: 10px 0 0 0 ;
+
+}
+
+
+.imgOptionWrapper{
+    display: flex;
+    right: 33px; 
+    position: absolute;
+
+}
+.imgOptionWrapper.hide{
+    display: none;
+}
+.imgOptionWrapper.show{
+    display: flex;
+
+}
+
+.wrap{
+    position: relative;
+
+    display: flex;
+    top: 23px;
+    right:130px;
+
+}
+.wrap.hide{
+    display: none;
+}
+.wrap.show{
+    display: flex;
+}
+
+.sampleAddImage{
+    right: 0px;
+    top: 0px;
+    font-size: 20px;
+    color: white;
+    color: rgba(255, 255, 255, 0.849);
+}
+.imgIconLink, .imgIconUpload{
+    margin: 1px 7px;
+    color: white;
+    z-index: 2;
+}
+
+.sampleLabelInputListImg{
+    display: flex;
+}
+
+.imgIconUpload{
+    position: relative;
+    z-index: 2;
+}
+
+.imgOptionWrapper{
+    display: flex;
+}
+.sampleImgLinkWrapper{
+    display: flex;
+    position: relative;
+}
+
+.inputLink{
+    position: absolute; 
+    z-index: 2;
+    width: 200px;
+}
+@media screen and (max-width: 300px){
+    
+}
+
+.setIcon{
+    align-self: center;
+    font-size: 18px;
+    color: white;
+    z-index: 2;
+    
 }

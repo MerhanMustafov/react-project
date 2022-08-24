@@ -1,6 +1,6 @@
 @import url(./SampleList.css);
 .createListWrapperExtend{
-    background: rgba(88, 88, 88, 0.904);
+    background: rgba(0, 0, 0, 0.75);
     position: fixed;
     top: 0;
     left: 0;
