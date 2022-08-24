@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 function LoggedNav() {
-  const userImg = localStorage.getItem('img')
   const username = localStorage.getItem('username')
   const userid = localStorage.getItem('userId')
 
@@ -21,7 +20,7 @@ function LoggedNav() {
       </div>
       <div className="profile-area">
         <div className="profile-img-Wrapper">
-          <img src={userImg} alt="" className="profileImg" />
+          <img src={localStorage.getItem('img')} alt="" className="profileImg" />
         </div>
         <div className="profile-name-wrapper">
           <div className="profile-name" >

@@ -1,6 +1,6 @@
 .userProfilePageWrapper{
-    margin: 20px 0;
     /* border: 2px solid red; */
+    margin: 20px 0;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -8,7 +8,7 @@
 .profileInfoSection{
     /* border: 2px solid green; */
     width: auto;
-    width: 10rem;
+    /* width: 10rem; */
 }
 
 .profileInfoSection div{
@@ -19,7 +19,11 @@
 
 .profileInfoSection div img{
     border-radius: 20px ;
-    width: 100%;
+    max-width: 250px;
+    min-width: 100px;
+    max-height: 250px;
+    min-height: 100px;
+    object-fit: cover;
 }
 .nameAreaWrapper{
     display: flex;
@@ -27,9 +31,14 @@
     align-items: center;
 }
 .profSName{
+    /* border: white; */
     font-size: 2rem;
+    width: min-content;
+    max-width: 150px;
     color: white;
-    white-space: nowrap;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
 }
 .UserProfileListCount{

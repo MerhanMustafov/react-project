@@ -1,18 +1,47 @@
 .r-box{
     /* border: 2px solid red; */
 }
+.profile-img-label{
+    color: white;
+    font-size: 22px;
+    margin: 0 0 7px 0;
+}
+.r-imageWrapper{
+    /* border: 2px solid green; */
+    display: flex;
+    gap: 10px;
+
+    height: 30px;
+    /* justify-content: center; */
+    align-items: stretch;
+    margin: 0 0 10px 0;
+}
+.r-image-link-input{
+    flex: 1 0 auto;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.r-image-link-input::placeholder{
+}
+
+.registerImgLabel{
+    margin: 0 0 0 0 !important;
+    /* border-radius: 30px !important;  */
+    /* border:5px solid rgb(1, 96, 109) ; */
+    /* text-align: center; */
+    background: transparent;
+    /* background: white; */
+    
+    color: black !important;
+}
 #registerImgInput{
     display: none;
 }
 
-.registerImgLabel{
-    margin: 20px 0 25px 0 !important;
-    border-radius: 30px !important; 
-    border:5px solid rgb(1, 96, 109) ;
-    text-align: center;
-    background: transparent;
-    background: white;
-    color: black !important;
+.r-upload-img-icon{
+    color: white;
+    font-size: 23px;
+    z-index: 2;
 }
 
 .registerImgLabel:hover{

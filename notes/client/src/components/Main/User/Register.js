@@ -1,29 +1,39 @@
 import * as api from '../../../Api/userApi'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-function Register({setIsAuth}) {
-    
-    const navigate = useNavigate()
+function Register({ setIsAuth }) {
+  const navigate = useNavigate()
   let errKey = 0
   const [errors, setErrors] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
-  const [img, setImg] = useState('')
+  const [img, setImg] = useState(null)
+  const [linkImg, setLinkImg] = useState(null)
   const [gender, setGender] = useState(null)
+
 
   async function registerUser(e) {
     e.preventDefault()
     if (errors.length === 0) {
-      const userData = generateUserData({username, password, gender, uploadedImg: img})
-      try{
+      const userData = generateUserData({
+        username,
+        password,
+        gender,
+        uploadedImg: img,
+        linkImg,
+      })
+      try {
         const response = await api.register(userData)
-        
+
+        document.querySelector('.registerImgLabel').value = ''
+        document.getElementById('registerImgInput').value = ''
+        document.getElementById('r-image-link-input').value = ''
+
         setLocalStorage(response)
         setIsAuth(true)
         navigate('/')
-
-      }catch(err){
+      } catch (err) {
         const error = [...err.message]
         setErrors(err.message)
       }
@@ -90,17 +100,33 @@ function Register({setIsAuth}) {
           />
         </div>
         <div className="r-box">
-          <label htmlFor="registerImgInput" className="r-input-l registerImgLabel" onChange={(e) => uploadImg(e, setImg)}>
-            Upload Profile Image
+          <label htmlFor="r-image-link-input" className="profile-img-label">
+            Profile image
           </label>
-          <input
-            type="file"
-            id="registerImgInput"
-            className="r-input"
-            name="img"
-            placeholder="Image URL"
-            onChange={(e) => uploadImg(e, setImg)}
-          />
+          <div className="r-imageWrapper">
+            <input
+              type="text"
+              id="r-image-link-input"
+              className="r-image-link-input"
+              placeholder="Image URL"
+              onChange={(e) => set(e, setImg, setLinkImg, 'link')}
+            />
+            <label
+              htmlFor="registerImgInput"
+              className="r-input-l registerImgLabel"
+              onChange={(e) => set(e, setImg, setLinkImg, 'upload')}
+            >
+              <i className="fa-solid fa-upload r-upload-img-icon"></i>
+            </label>
+            <input
+              type="file"
+              id="registerImgInput"
+              className="r-input"
+              name="img"
+            //   placeholder="Image URL"
+              onChange={(e) => set(e, setImg, setLinkImg, 'upload')}
+            />
+          </div>
         </div>
         <div className="gender-wapper">
           <div className="F-wrapper">
@@ -138,7 +164,8 @@ function Register({setIsAuth}) {
               password,
               repeatPassword,
               gender,
-              img
+              img,
+              linkImg
             })
           }
         >
@@ -150,14 +177,36 @@ function Register({setIsAuth}) {
 }
 export { Register }
 
-function uploadImg(e, setImg){
-    const reader = new FileReader()
-    reader.addEventListener('load', (e) => {
-        const url = reader.result
-        setImg(url)
-    })
-    reader.readAsDataURL(e.target.files[0])
+function set(e, setImg, setLinkImg, type) {
+    const imageIcon = document.querySelector('.r-upload-img-icon')
+  if (type === 'link') {
+    const uploadImgLabel = document.querySelector('.registerImgLabel')
+    const uploadImgInput = document.getElementById('registerImgInput')
+    uploadImgLabel.value = ''
+    uploadImgInput.value = ''
+    setLinkImg(e.target.value)
+    imageIcon.style.color = 'white'
+    setImg(null)
+    // id r-image-link-input
+  } else if (type === 'upload') {
+    const linkImgInput = document.getElementById('r-image-link-input')
+    linkImgInput.value = ''
+    uploadImg(e, setImg, setLinkImg)
+    imageIcon.style.color = 'green'
+    setLinkImg(null)
+    // cl registerImgLabel
+    // id registerImgInput
   }
+}
+
+function uploadImg(e, setImg, setLinkImg) {
+  const reader = new FileReader()
+  reader.addEventListener('load', (e) => {
+    const url = reader.result
+    setImg(url)
+  })
+  reader.readAsDataURL(e.target.files[0])
+}
 
 function checkforErrors(setErrors, inputs) {
   let err = []
@@ -165,13 +214,13 @@ function checkforErrors(setErrors, inputs) {
     inputs.password.length > 0 &&
     inputs.repeatPassword.length > 0 &&
     inputs.username.length > 0 &&
-    inputs.img.length > 0 &&
+    // inputs.img || inputs.linkImg &&
     inputs.gender !== null
 
   const passMatch = inputs.password === inputs.repeatPassword
   const passLength = inputs.password.length >= 5
   const userLength = inputs.username.length >= 3
-  const imgPresent = inputs.img.length > 0
+//   const imgPresent = inputs.img || inputs.linkImg
   const genderchecked = inputs.gender !== null
   if (!allFilled) {
     err.push('all required fields should be filled!')
@@ -185,9 +234,9 @@ function checkforErrors(setErrors, inputs) {
   if (!passLength) {
     err.push('password should be at least 5 characters long!')
   }
-  if (!imgPresent) {
-    err.push('upload an image!')
-  }
+//   if (!imgPresent) {
+//     err.push('upload an image!')
+//   }
   if (!genderchecked) {
     err.push('should choose gender!')
   } else {
@@ -208,30 +257,35 @@ function checkboxHandler(e) {
   }
 }
 
-
-function setLocalStorage(data){
-    localStorage.setItem('userId', data.userId)
-    localStorage.setItem('username', data.username)
-    if(data.cld_profile_img_url.length > 0){
-        localStorage.setItem('img', data.cld_profile_img_url)
-    }else{
-        const maleImg = require('../../../profileImages/male.jpg')
-        const femaleImg = require('../../../profileImages/female.jpg')
-        if(data.gender === 'male'){
-            localStorage.setItem('img', maleImg)
-        }else{
-            localStorage.setItem('img', femaleImg)
-        }
-    }
-    localStorage.setItem('accessToken', data.accessToken)
-    localStorage.setItem('gender', data.gender)
+function setLocalStorage(data) {
+  const img = setImage(data)
+  localStorage.setItem('img', img)
+  localStorage.setItem('userId', data.userId)
+  localStorage.setItem('username', data.username)
+  localStorage.setItem('accessToken', data.accessToken)
+  localStorage.setItem('gender', data.gender)
 }
 
-function generateUserData(inputs){
-    return  {
-        username: inputs.username.trim(),
-        password: inputs.password.trim(),
-        uploadedImg: inputs.uploadedImg.trim(),
-        gender: inputs.gender.trim(),
-      }
+function setImage(data) {
+  if (data.cld_profile_img_url) {
+    return data.cld_profile_img_url
+  } else if (data.profile_img_web_link) {
+    return data.profile_img_web_link
+  } else {
+    if (data.gender == 'male') {
+      return data.default_image_male
+    } else if (data.gender == 'female') {
+      return data.default_image_female
+    }
+  }
+}
+
+function generateUserData(inputs) {
+  return {
+    username: inputs.username.trim(),
+    password: inputs.password.trim(),
+    uploadedImg: inputs.uploadedImg,
+    linkImg: inputs.linkImg,
+    gender: inputs.gender.trim(),
+  }
 }
