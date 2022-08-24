@@ -163,6 +163,9 @@ function CreatedNote(props) {
             >
               {props.noteData.title}
             </div>
+            {isOwner 
+            ?
+            <> 
             <div className="listNoteDelBtn">
               <i
                 className="fa-solid fa-xmark closeCreatedNote"
@@ -192,6 +195,9 @@ function CreatedNote(props) {
                 </button>
               </div>
             </div>
+            </>
+            : null}
+            
           </div>
         </>
       )}
