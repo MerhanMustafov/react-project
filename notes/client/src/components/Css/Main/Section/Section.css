@@ -3,7 +3,7 @@
 }
 
 .sectionInnerWrapper{
-
+    width: min-content;
 }
 
 .sectionHeadArea{
@@ -18,10 +18,11 @@
 
 }
 .sectionDropDownWrapper.hide{
-
+    display: none;
 }
 .sectionDropDownWrapper.show{
-
+    display: flex;
+    flex-direction: column;
 }
 
 .sectionCreateWrapper{
@@ -34,4 +35,12 @@
 
 .sectionCreateIcon{
 
+}
+
+
+.sectionDropDownFieldWrapper{
+    border: 2px solid red;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
 }

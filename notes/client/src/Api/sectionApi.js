@@ -32,5 +32,36 @@ async function getAll(ownerid){
         throw new Error(err.message)
     }
 }
+async function getOne(sectionid){
+    const endPoint = `/section/get/one/${sectionid}`
+    try{
+        const response = await fetch(baseUrl + endPoint)
+        if(response.ok == false){
+            await response.json()
+            throw new Error(response.error)
+        }
+        return await response.json()
+    }catch (err) {
+        throw new Error(err.message)
+    }
+}
 
-export {create, getAll}
+async function del(sectionid){
+    const endPoint = `/section/delete/${sectionid}`
+    try{
+        const response = await fetch(baseUrl + endPoint, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        if(response.ok == false){
+            await response.json()
+            throw new Error(response.error)
+        }
+        return await response.json()
+
+    }catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+export {create, getAll, getOne, del}

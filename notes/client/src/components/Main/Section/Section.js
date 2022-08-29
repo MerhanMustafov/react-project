@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as api from '../../../Api/sectionApi'
 import { List } from '../Dashboard/List'
-import {Search} from '../Dashboard/Search/Search'
 
 function Section() {
   const [refreshSection, setRefreshSection] = useState(false)
@@ -9,14 +8,23 @@ function Section() {
   const [sectionName, setSectionName] = useState('')
 
   const [sections, setSections] = useState([])
-  console.log(sections[0], 'Sections')
+  const [currentSection, setCurrentSection] = useState(null)
+  const [currentSectionId, setCurrentSectionId] = useState(null)
+  console.log(currentSectionId, 'cr Sections')
 
   useEffect(() => {
     async function get() {
+        let response;
       try {
-        const response = await api.getAll(localStorage.getItem('userId'))
-        console.log(response)
-        setSections(response)
+        if(currentSectionId){
+             response = await api.getOne(currentSectionId)
+             console.log('asdasddas', response)
+             setCurrentSection(response[0])
+        }else{
+             response = await api.getAll(localStorage.getItem('userId'))
+             setCurrentSection(response[0])
+                setSections(response)
+        }
       } catch (err) {
         console.log(err.message)
         // setErrors([err.message])
@@ -24,7 +32,7 @@ function Section() {
     }
     get()
     setRefreshSection(false)
-  }, [])
+  }, [refreshSection, currentSectionId])
 
   async function requestHandler(e, to) {
     if (to === 'create') {
@@ -32,11 +40,22 @@ function Section() {
         try {
           const data = generateData()
           const response = await api.create(data)
+          reset()
         } catch (err) {
           console.log(err.message)
+          reset()
         }
       } else {
+        reset()
         setErrors(['section Field is empty !'])
+      }
+    } else if (to === 'delete') {
+      try {
+        const response = await api.del(e.target.parentElement.id)
+        reset()
+      } catch (err) {
+        reset()
+        console.log(err.message)
       }
     }
   }
@@ -47,6 +66,13 @@ function Section() {
       ownerid: localStorage.getItem('userId'),
       lists: [],
     }
+  }
+
+  function reset() {
+    document.querySelector('.sectionCreateInput').value = ''
+    setSectionName('')
+    setErrors([])
+    setRefreshSection(true)
   }
 
   return (
@@ -60,7 +86,12 @@ function Section() {
       ) : null}
       <div className="sectionInnerWrapper">
         <div className="sectionHeadArea">
-          <div className="sectionCurrent">Javascript</div>
+          <div
+            className="sectionCurrent hide"
+            onClick={(e) => display(e, '.sectionDropDownWrapper')}
+          >
+            Javascript
+          </div>
           <div className="sectionDropDownWrapper hide">
             <div className="sectionCreateWrapper">
               <input
@@ -73,17 +104,31 @@ function Section() {
                 onClick={(e) => requestHandler(e, 'create')}
               ></i>
             </div>
+            {sections.map((s) => (
+              <div className="sectionDropDownFieldWrapper" key={s._id} id={s._id}>
+                {' '}
+                <div className="sectionDropDownField" onClick={(e) => setCurrentSectionId(e.target.parentElement.id)}>{s.sectionname}</div>{' '}
+                <i
+                  className="fa-solid fa-trash"
+                  
+                  onClick={(e) => requestHandler(e, 'delete')}
+                ></i>
+              </div>
+            ))}
           </div>
         </div>
         <div className="sectionMainArea">
           <div className="listsWrapper">
-        
-        <div className="listsInnerWrapper">
-          {sections[0]?.lists.map((listData) => (
-            <List key={listData._id} setRefresh={setRefreshSection} {...listData} />
-          ))}
-        </div>
-      </div>
+            <div className="listsInnerWrapper">
+              {currentSection && currentSection?.lists.map((listData) => (
+                <List
+                  key={listData._id}
+                  setRefresh={setRefreshSection}
+                  {...listData}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -91,3 +136,12 @@ function Section() {
 }
 
 export { Section }
+
+function display(e, selector) {
+  const htmlEl = document.querySelector(selector)
+  if (htmlEl.classList.contains('show')) {
+    htmlEl.classList.remove('show')
+  } else {
+    htmlEl.classList.add('show')
+  }
+}
