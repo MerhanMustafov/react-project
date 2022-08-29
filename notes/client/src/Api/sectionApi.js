@@ -19,4 +19,18 @@ async function create(data) {
 }
 
 
-export {create}
+async function getAll(ownerid){
+    const endPoint = `/section/get/all/${ownerid}`
+    try{
+        const response = await fetch(baseUrl + endPoint)
+        if(response.ok == false){
+            await response.json()
+            throw new Error(response.error)
+        }
+        return await response.json()
+    }catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+export {create, getAll}
