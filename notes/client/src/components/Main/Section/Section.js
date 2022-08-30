@@ -52,7 +52,8 @@ function Section() {
   async function requestHandler(e, to) {
     if (to === 'create') {
       if (sectionName.length > 0) {
-        try {
+        if(!sectionNames.includes(sectionName.toLocaleLowerCase())){
+             try {
           const data = generateData()
           const response = await api.create(data)
           reset()
@@ -60,6 +61,10 @@ function Section() {
           console.log(err.message)
           reset()
         }
+        }else{
+            setErrors(['section already exists !'])
+        }
+       
       } else {
         reset()
         setErrors(['section Field is empty !'])
