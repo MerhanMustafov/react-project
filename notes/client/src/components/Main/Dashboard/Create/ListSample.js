@@ -6,7 +6,6 @@ import { createListRecord } from '../../../../Api/listApi'
 import { getAll, create, del, getByName } from '../../../../Api/sectionApi'
 function ListSample(props) {
   const userid = localStorage.getItem('userId')
-  const { refresh } = props
   const [refreshListSample, setRefreshListSample] = useState('')
   const [listname, setListName] = useState('')
   const [uploadedImg, setUploadedImg] = useState(null)
@@ -14,37 +13,52 @@ function ListSample(props) {
   const [errors, setErrors] = useState('')
   const [waitingAddListData, setWaitingAddListData] = useState(false)
 
-  const [currentSection, setCurrentSection] = useState(null)
-  const [sections, setSections] = useState([])
-  const [currentSectionName, setCurrentSectionName] = useState(null)
-  const [sectionName, setSectionName] = useState('')
-  const [sectionNames, setSectionNames] = useState([])
-  console.log(sectionNames)
+    const {
+    sections,
+    setSections,
+    sectionNames,
+    setSectionNames,
+    sectionName,
+    setSectionName,
+    currentSection,
+    setCurrentSection,
+    currentSectionId,
+    currentSectionName,
+    setCurrentSectionName,
+    refresh,
+  } = props
 
-  useEffect(() => {
-    async function get() {
-      let response
-      try {
-        // if(currentSectionId){
-        //      response = await api.getOne(currentSectionId)
-        //      console.log('asdasddas', response)
-        //      setCurrentSection(response[0])
-        // }else{
-        response = await getAll(localStorage.getItem('userId'))
-        const sectionNames = response.map((s) => s.sectionname?.trim())
-        setSectionNames(sectionNames)
-        setCurrentSection(response[0])
-        setSections(response)
-        // }
-      } catch (err) {
-        console.log(err.message)
-        // setErrors([err.message])
-      }
-    }
-    get()
-    refresh(false)
-    setRefreshListSample(false)
-  }, [refresh || refreshListSample])
+//   const [currentSection, setCurrentSection] = useState(null)
+//   const [sections, setSections] = useState([])
+//   const [currentSectionName, setCurrentSectionName] = useState(null)
+//   const [sectionName, setSectionName] = useState('')
+//   const [sectionNames, setSectionNames] = useState([])
+//   console.log(sectionNames)
+
+//   useEffect(() => {
+//     async function get() {
+//       let response
+//       try {
+//         // if(currentSectionId){
+//         //      response = await api.getOne(currentSectionId)
+//         //      console.log('asdasddas', response)
+//         //      setCurrentSection(response[0])
+//         // }else{
+//         response = await getAll(localStorage.getItem('userId'))
+//         const sectionNames = response.map((s) => s.sectionname?.trim())
+//         setSectionNames(sectionNames)
+//         setCurrentSection(response[0])
+//         setSections(response)
+//         // }
+//       } catch (err) {
+//         console.log(err.message)
+//         // setErrors([err.message])
+//       }
+//     }
+//     get()
+//     // refresh(false)
+//     setRefreshListSample(false)
+//   }, [ refreshListSample])
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
