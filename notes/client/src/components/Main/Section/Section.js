@@ -131,7 +131,8 @@ function Section() {
                 onClick={(e) => requestHandler(e, 'create')}
               ></i>
             </div>
-            {sections.length > 0
+            <div className="sectionDropDownFieldsWrapper">
+                {sections.length > 0
               ? sections.map((s) => (
                   <div
                     className="sectionDropDownFieldWrapper"
@@ -155,6 +156,8 @@ function Section() {
                   </div>
                 ))
               : null}
+            </div>
+            
           </div>
         </div>
         <div className="sectionMainArea">

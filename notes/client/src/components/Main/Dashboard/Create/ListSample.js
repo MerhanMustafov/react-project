@@ -59,8 +59,10 @@ function ListSample(props) {
           display(null, '.createListWrapperExtend')
           displaySection(null, '.sampleSectionDropDownWrapper')
           setCurrentSection(null)
+          document.querySelector('.sampleSectionDropDownWrapper').classList.remove('show')
         } catch (err) {
           setErrors(err.message)
+          document.querySelector('.sampleSectionDropDownWrapper').classList.remove('show')
           setTimeout(() => {
             setErrors('')
           }, 3000)
@@ -68,6 +70,7 @@ function ListSample(props) {
 
         }else{
             setErrors('Choose section !')
+            document.querySelector('.sampleSectionDropDownWrapper').classList.remove('show')
         setTimeout(() => {
           setErrors('')
         }, 3000)
@@ -75,6 +78,7 @@ function ListSample(props) {
         
       } else {
         setErrors('Fill in the title field !')
+        document.querySelector('.sampleSectionDropDownWrapper').classList.remove('show')
         setTimeout(() => {
           setErrors('')
         }, 3000)
@@ -141,8 +145,9 @@ function ListSample(props) {
     refresh(true)
   })
 
-  function set(e){
+  function sett(e){
     setCurrentSectionName(e.target.innerText?.trim())
+    setCurrentSectionId(e.target.parentElement.id)
     displaySection(null, '.sampleSectionDropDownWrapper')
   }
 
@@ -167,13 +172,14 @@ function ListSample(props) {
               onClick={(e) => requestHandler(e, 'create')}
             ></i>
           </div>
-          {sections.map((s) => (
+          <div className="sectionDropDownFieldsWrapper">
+            {sections.map((s) => (
             <div className="sectionDropDownFieldWrapper" key={s._id} id={s._id}>
               {' '}
               <div
                 className="sectionDropDownField"
                 onClick={(e) =>
-                set(e)
+                sett(e)
                   
                 }
               >
@@ -185,13 +191,17 @@ function ListSample(props) {
               ></i>
             </div>
           ))}
+
+
+          </div>
+          
         </div>
       </div>
       <input
         type="file"
         id="sampleUploadimg"
         name="uploadimg"
-        onChange={(e) => set(e, setUploadedImg, setLinkImg, null)}
+        onChange={(e) => setImg(e, setUploadedImg, setLinkImg, null)}
       />
       <div className="sampleOptions">
         <i
@@ -208,7 +218,7 @@ function ListSample(props) {
               <div className="wrap hide">
                 <i
                   className="fa-solid fa-magnifying-glass setIcon"
-                  onClick={(e) => set(e, setUploadedImg, setLinkImg, 'link')}
+                  onClick={(e) => setImg(e, setUploadedImg, setLinkImg, 'link')}
                 ></i>
 
                 <div className="sampleImgLinkWrapper hide">
@@ -224,7 +234,7 @@ function ListSample(props) {
               <label
                 htmlFor="sampleUploadimg"
                 className="sampleLabelInputListImg"
-                onChange={(e) => set(e, setUploadedImg, setLinkImg, null)}
+                onChange={(e) => setImg(e, setUploadedImg, setLinkImg, null)}
               >
                 <i className="fa-solid fa-upload imgIconUpload"></i>
               </label>
@@ -277,7 +287,7 @@ function ListSample(props) {
 
 export { ListSample }
 
-function set(e, setUpload, setLink, link) {
+function setImg(e, setUpload, setLink, link) {
   if (link === 'link') {
     const linkUrl = document.querySelector('.inputLink').value
     if (linkUrl) {
@@ -345,6 +355,7 @@ function closeSettingsOptions() {
   document.querySelector('.optionsWrapper').classList.remove('show')
   document.querySelector('.imgOptionWrapper').classList.remove('show')
   document.querySelector('.wrap').classList.remove('show')
+  document.querySelector('.sampleSectionDropDownWrapper').classList.remove('show')
 }
 
 function displaySection(e, selector) {
