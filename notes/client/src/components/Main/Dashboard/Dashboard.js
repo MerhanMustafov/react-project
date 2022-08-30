@@ -30,10 +30,10 @@ function Dashboard() {
 
   return (
     <div className="dashboardWrapper">
-      <div className="dashboardHeaderArea">
+      {/* <div className="dashboardHeaderArea"> */}
         {/* <Menu setRefreshListArea={setRefreshListArea} /> */}
 
-      </div>
+      {/* </div> */}
         <Section />
       
     </div>

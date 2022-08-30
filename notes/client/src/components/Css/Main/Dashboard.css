@@ -1,6 +1,6 @@
 @import './Search/Search.css';
 
-/* .dashboardWrapper{
+.dashboardWrapper{
     border: 2px solid green; 
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
@@ -11,7 +11,7 @@
     min-width: 270px;
     max-width: 1300px;
     position: relative;
-} */
+}
 
 
 

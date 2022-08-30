@@ -96,6 +96,11 @@ function Section() {
     setRefreshSection(true)
   }
 
+  function set(e){
+    setCurrentSectionId(e.target.parentElement.id)
+    display(null, '.sectionDropDownWrapper')
+  }
+
   return (
     <div className="sectionWrapper">
       {errors.length > 0 ? (
@@ -106,22 +111,8 @@ function Section() {
         </div>
       ) : null}
       <div className="sectionInnerWrapper">
-        <Menu
-          sections={sections}
-          setSections={setSections}
-          sectionNames={sectionNames}
-          setSectionNames={setSectionNames}
-          sectionName={sectionName}
-          setSectionName={setSectionName}
-          currentSection={currentSection}
-          setCurrentSection={setCurrentSection}
-          currentSectionId={currentSectionId}
-          setCurrentSectionId={setCurrentSectionId}
-          currentSectionName={currentSectionName}
-          setCurrentSectionName={setCurrentSectionName}
-          refresh={setRefreshSection}
-        />
         <div className="sectionHeadArea">
+        
           <div
             className="sectionCurrent hide"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
@@ -151,7 +142,8 @@ function Section() {
                     <div
                       className="sectionDropDownField"
                       onClick={(e) =>
-                        setCurrentSectionId(e.target.parentElement.id)
+                        set(e)
+                        
                       }
                     >
                       {s.sectionname}
@@ -166,8 +158,27 @@ function Section() {
           </div>
         </div>
         <div className="sectionMainArea">
+            <Menu
+          sections={sections}
+          setSections={setSections}
+          sectionNames={sectionNames}
+          setSectionNames={setSectionNames}
+          sectionName={sectionName}
+          setSectionName={setSectionName}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          currentSectionId={currentSectionId}
+          setCurrentSectionId={setCurrentSectionId}
+          currentSectionName={currentSectionName}
+          setCurrentSectionName={setCurrentSectionName}
+          refresh={setRefreshSection}
+        />
+            
           <div className="listsWrapper">
+            
+           
             <div className="listsInnerWrapper">
+                 
               {currentSection &&
                 currentSection?.lists.map((listData) => (
                   <List

@@ -23,42 +23,13 @@ function ListSample(props) {
     currentSection,
     setCurrentSection,
     currentSectionId,
+    setCurrentSectionId,
     currentSectionName,
     setCurrentSectionName,
     refresh,
   } = props
 
-//   const [currentSection, setCurrentSection] = useState(null)
-//   const [sections, setSections] = useState([])
-//   const [currentSectionName, setCurrentSectionName] = useState(null)
-//   const [sectionName, setSectionName] = useState('')
-//   const [sectionNames, setSectionNames] = useState([])
-//   console.log(sectionNames)
 
-//   useEffect(() => {
-//     async function get() {
-//       let response
-//       try {
-//         // if(currentSectionId){
-//         //      response = await api.getOne(currentSectionId)
-//         //      console.log('asdasddas', response)
-//         //      setCurrentSection(response[0])
-//         // }else{
-//         response = await getAll(localStorage.getItem('userId'))
-//         const sectionNames = response.map((s) => s.sectionname?.trim())
-//         setSectionNames(sectionNames)
-//         setCurrentSection(response[0])
-//         setSections(response)
-//         // }
-//       } catch (err) {
-//         console.log(err.message)
-//         // setErrors([err.message])
-//       }
-//     }
-//     get()
-//     // refresh(false)
-//     setRefreshListSample(false)
-//   }, [ refreshListSample])
 
   async function requestHandler(e, to) {
     if (to === `/list/create/${userid}`) {
@@ -151,17 +122,29 @@ function ListSample(props) {
     }
   }
 
-  function reset() {
+//   function reset() {
+//     document.querySelector('.sampleSectionCreateInput').value = ''
+//     setSectionName('')
+//     setErrors([])
+//     refresh(true)
+//     // setRefreshListSample(true)
+//   }
+
+    function reset() {
     document.querySelector('.sampleSectionCreateInput').value = ''
+    setCurrentSectionId(null)
     setSectionName('')
     setErrors([])
     refresh(true)
-    setRefreshListSample(true)
   }
-
   socket.on('client-refresh-all', () => {
     refresh(true)
   })
+
+  function set(e){
+    setCurrentSectionName(e.target.innerText?.trim())
+    displaySection(null, '.sampleSectionDropDownWrapper')
+  }
 
   return (
     <div className="sampleListWrapper">
@@ -190,7 +173,8 @@ function ListSample(props) {
               <div
                 className="sectionDropDownField"
                 onClick={(e) =>
-                  setCurrentSectionName(e.target.innerText?.trim())
+                set(e)
+                  
                 }
               >
                 {s.sectionname}

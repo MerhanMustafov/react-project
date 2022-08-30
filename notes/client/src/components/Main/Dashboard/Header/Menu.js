@@ -19,19 +19,20 @@ function Menu(props) {
   return (
     <div className="menuWrapper">
       <div className="menuInnerWrapper">
-        <i
+        {/* <i
           className="fa-solid fa-bars dashboardMenuIcon"
           onClick={(e) => display(e, '.dashboardMenuButtonsWrapper')}
-        ></i>
-        <div className="dashboardMenuButtonsWrapper hide">
+        ></i> */}
+        <i className="fa-solid fa-plus addListIcon" onClick={(e) => display(e, '.createListWrapperExtend')}></i>
+        {/* <div className="dashboardMenuButtonsWrapper hide">
+
           <div
             className="menuCreateListBtn"
             onClick={(e) => display(e, '.createListWrapperExtend')}
           >
             Create List
           </div>
-          {/* <div className="menuCreateSectionBtn">Create Section</div> */}
-        </div>
+        </div> */}
       </div>
 
       <CreateList

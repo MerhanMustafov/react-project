@@ -291,6 +291,9 @@
     top: 0;
     left: 50%;
     transform: translate(-50%);
+    font-size: 17px;
+    
+    
 }
 
 .sampleSectionDropDownWrapper.hide{
@@ -299,4 +302,24 @@
 .sampleSectionDropDownWrapper.show{
     display: flex;
     flex-direction: column;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 25px;
+    
+}
+.sampleSectionCurrent{
+    border: 5px solid red;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.sampleSectionCreateWrapper{
+    display: flex;
+}
+.sampleSectionCreateInput{
+    flex: 1 0 auto;
 }

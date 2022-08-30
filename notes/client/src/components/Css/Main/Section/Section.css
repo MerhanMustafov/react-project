@@ -1,21 +1,47 @@
 .sectionWrapper{
-
+    border: 2px solid pink;
+    /* width: 100%; */
 }
 
 .sectionInnerWrapper{
-    width: min-content;
+    border: 2px solid pink;
+    /* width: min-content; */
 }
 
 .sectionHeadArea{
     border: 2px solid blue;
+    max-width: 20px;
+    min-width: max-content;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    /* position: relative; */
+    /* width: 20%; */
 }
 
 .sectionCurrent{
-
+    border: 5px solid rgb(0, 113, 128);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width:250px;
+    font-size: 30px;
+   
+    
 }
 
 .sectionDropDownWrapper{
-
+    background: rgba(0, 0, 0, 0.514);
+    color: white;
+    font-size: 20px;
+    /* width: auto; */
+     position: absolute;
+    /* top: auto; */
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 2;
 }
 .sectionDropDownWrapper.hide{
     display: none;
@@ -26,21 +52,35 @@
 }
 
 .sectionCreateWrapper{
-
+    border: 5px solid red;
+    display: flex; 
+    /* flex-wrap: nowrap; */
 }
 
 .sectionCreateInput{
+    flex: 1 0 auto;
+    width: auto;
 
 }
 
 .sectionCreateIcon{
+    border: 5px solid rgb(0, 113, 128);
 
 }
 
 
 .sectionDropDownFieldWrapper{
-    border: 2px solid red;
+    border: 5px solid green;
+    max-width: 250px;
     display: flex;
+    gap: 10px ;
     /* align-items: center; */
     justify-content: space-between;
+}
+.sectionDropDownField{
+    border: 2px solid red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* width: ; */
 }

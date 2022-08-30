@@ -6,6 +6,10 @@
     color: white;
     font-size: 35px;
 }
+.addListIcon{
+    color: white;
+    font-size: 35px;
+}
 .menuInnerWrapper{
     /* border: 10px solid black; */
     display: flex;

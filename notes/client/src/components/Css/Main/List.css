@@ -1,14 +1,15 @@
 .listsWrapper {
-    /* border: 2px solid rgb(255, 0, 64); */
+    border: 2px solid rgb(255, 0, 64);
 
   /* column-count: 3; */
-  /* width: auto; */
+  width: auto;
+  /* width: 100%; */
   /* height: auto; */
   margin: 20px auto;
   padding:20px; 
 }
 .listsInnerWrapper{
-    /* border: 2px solid blue; */
+    border: 2px solid blue;
     column-count: 3;
   /* width: auto; */
   /* width: 98%; */
