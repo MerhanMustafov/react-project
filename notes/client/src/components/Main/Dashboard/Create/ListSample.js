@@ -22,6 +22,7 @@ function ListSample(props) {
               linkImg,
               listname: listname.trim(),
               notes: [],
+              sectionid: null,
               ownerid: userid,
             },
             userid,
@@ -29,9 +30,9 @@ function ListSample(props) {
           setUploadedImg(null)
           setLinkImg(null)
           setListName('')
+          setWaitingAddListData(false)
           socket.emit('server-refresh-all', true)
 
-          setWaitingAddListData(false)
           display(null, '.createListWrapperExtend')
         } catch (err) {
           setErrors(err.message)
