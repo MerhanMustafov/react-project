@@ -25,7 +25,7 @@ function List(props) {
 
   const [spinnerNotes, setSpinnerNotes] = useState(false)
   //   const [isOwner, setIsOwner] = useState(false)
-  const { setRefresh, setWaitingData } = props
+  const { setRefresh, setWaitingData, currentSectionId } = props
   let listid = props._id
 //   let image = props.list_img_url
   let image = props.cld_list_img_url && props.cld_list_img_url?.length > 0 ? props.cld_list_img_url : props.list_img_web_link
@@ -78,9 +78,10 @@ function List(props) {
           
         }
       }
-    } else if (to === `/list/delete/${listid}/${userid}`) {
+    } else if (to === `/list/delete`) {
         setWaitindDelete(true)
-      await deleteList(listid, userid)
+        console.log(currentSectionId, 'CSID')
+      await deleteList(listid, userid, currentSectionId)
       setWaitindDelete(false)
       socket.emit('server-refresh-all', true)
     }
@@ -148,7 +149,7 @@ function List(props) {
                     <button
                       className="delete"
                       onClick={(e) =>
-                        requestHandler(e, `/list/delete/${listid}/${userid}`)
+                        requestHandler(e, `/list/delete`)
                       }
                     >
                       Delete

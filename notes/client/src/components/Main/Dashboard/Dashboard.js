@@ -31,7 +31,7 @@ function Dashboard() {
   return (
     <div className="dashboardWrapper">
       <div className="dashboardHeaderArea">
-        <Menu setRefreshListArea={setRefreshListArea} />
+        {/* <Menu setRefreshListArea={setRefreshListArea} /> */}
 
       </div>
         <Section />

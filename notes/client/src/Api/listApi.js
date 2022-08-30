@@ -66,9 +66,9 @@ async function updateListTitle(listname, listid) {
   }
 }
 
-async function deleteList(listid, userid) {
+async function deleteList(listid, userid, sectionid) {
   try {
-    const endPoint = `/list/delete/${listid}/${userid}`
+    const endPoint = `/list/delete/${listid}/${userid}/${sectionid}`
     const response = await fetch(baseUrl + endPoint, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

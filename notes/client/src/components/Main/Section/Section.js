@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as api from '../../../Api/sectionApi'
 import { List } from '../Dashboard/List'
+import {Menu} from '../Dashboard/Header/Menu'
 
 function Section() {
   const [refreshSection, setRefreshSection] = useState(false)
@@ -10,6 +11,7 @@ function Section() {
   const [sections, setSections] = useState([])
   const [currentSection, setCurrentSection] = useState(null)
   const [currentSectionId, setCurrentSectionId] = useState(null)
+  const [currentSectionName, setCurrentSectionName] = useState(null)
   console.log(currentSectionId, 'cr Sections')
 
   useEffect(() => {
@@ -18,11 +20,14 @@ function Section() {
       try {
         if(currentSectionId){
              response = await api.getOne(currentSectionId)
-             console.log('asdasddas', response)
              setCurrentSection(response[0])
+             setCurrentSectionName(response[0].sectionname)
+             setCurrentSectionId(response[0]._id)
         }else{
              response = await api.getAll(localStorage.getItem('userId'))
              setCurrentSection(response[0])
+             setCurrentSectionName(response[0].sectionname)
+             setCurrentSectionId(response[0]._id)
                 setSections(response)
         }
       } catch (err) {
@@ -32,7 +37,7 @@ function Section() {
     }
     get()
     setRefreshSection(false)
-  }, [refreshSection, currentSectionId])
+  }, [refreshSection || currentSectionId])
 
   async function requestHandler(e, to) {
     if (to === 'create') {
@@ -85,12 +90,13 @@ function Section() {
         </div>
       ) : null}
       <div className="sectionInnerWrapper">
+        <Menu refresh={setRefreshSection} />
         <div className="sectionHeadArea">
           <div
             className="sectionCurrent hide"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
           >
-            Javascript
+            {currentSectionName ? currentSectionName : 'Choose section'}
           </div>
           <div className="sectionDropDownWrapper hide">
             <div className="sectionCreateWrapper">
@@ -125,6 +131,7 @@ function Section() {
                   key={listData._id}
                   setRefresh={setRefreshSection}
                   {...listData}
+                  currentSectionId={currentSectionId}
                 />
               ))}
             </div>

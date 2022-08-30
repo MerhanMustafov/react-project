@@ -2,13 +2,13 @@ import {ListSample} from './ListSample'
 
 function CreateList(props) {
   const userid = localStorage.getItem('userId')
-  const { setRefreshListArea } = props
+  const { refresh } = props
   
 
 
   return (
     <div className="createListWrapperExtend hide">
-        <ListSample setRefreshListArea={setRefreshListArea}/>
+        <ListSample refresh={refresh}/>
       
     </div>
   )

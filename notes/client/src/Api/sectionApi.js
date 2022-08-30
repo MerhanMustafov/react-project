@@ -46,6 +46,20 @@ async function getOne(sectionid){
     }
 }
 
+async function getByName(sectionname){
+    const endPoint = `/section/get/byname/${sectionname}`
+     try{
+        const response = await fetch(baseUrl + endPoint)
+        if(response.ok == false){
+            await response.json()
+            throw new Error(response.error)
+        }
+        return await response.json()
+    }catch (err) {
+        throw new Error(err.message)
+    }
+
+}
 async function del(sectionid){
     const endPoint = `/section/delete/${sectionid}`
     try{
@@ -64,4 +78,4 @@ async function del(sectionid){
     }
 }
 
-export {create, getAll, getOne, del}
+export {create, getAll, getOne, getByName, del}

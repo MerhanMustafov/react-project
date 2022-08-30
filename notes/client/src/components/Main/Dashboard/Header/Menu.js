@@ -3,7 +3,7 @@ import { CreateList } from '../Create/CreateList'
 
 function Menu(props){
     const {
-        setRefreshListArea
+        refresh
     } = props 
     return (
         <div className="menuWrapper">
@@ -17,7 +17,7 @@ function Menu(props){
             </div>
 
 
-            <CreateList setRefreshListArea={setRefreshListArea}  />
+            <CreateList refresh={refresh}  />
         </div>
     );
 }
