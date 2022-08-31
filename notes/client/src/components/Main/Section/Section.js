@@ -62,10 +62,16 @@ function Section() {
           }
         } else {
           setErrors(['section already exists !'])
+          setTimeout(() => {
+            setErrors([])
+          }, 3000)
         }
       } else {
         reset()
         setErrors(['section Field is empty !'])
+        setTimeout(() => {
+            setErrors([])
+          }, 3000)
       }
     } else if (to === 'delete') {
       try {
@@ -102,13 +108,7 @@ function Section() {
 
   return (
     <div className="sectionWrapper">
-      {errors.length > 0 ? (
-        <div className="errorsWrapper">
-          {errors.map((msg) => (
-            <div className="error">{msg}</div>
-          ))}
-        </div>
-      ) : null}
+     
       <div className="sectionInnerWrapper">
         <div className="sectionHeadArea">
           <div
@@ -122,6 +122,13 @@ function Section() {
             </span>
           </div>
           <div className="sectionDropDownWrapper hide">
+             {errors.length > 0 ? (
+        <div className="errorsWrapper">
+          {errors.map((msg) => (
+            <div className="sectionError">{msg}</div>
+          ))}
+        </div>
+      ) : null}
             <div className="sectionCreateWrapper">
               <input
                 type="text"
@@ -180,7 +187,7 @@ function Section() {
               />
             </span>
             <div className="listsInnerWrapper">
-              {currentSection &&
+              {currentSection && currentSection.lists.length > 0 ?
                 currentSection?.lists.map((listData) => (
                   <List
                     key={listData._id}
@@ -188,7 +195,7 @@ function Section() {
                     {...listData}
                     currentSectionId={currentSectionId}
                   />
-                ))}
+                )) : <div className="sectionListsEmptyText">Thre is no lists in the section !</div> }
             </div>
           </div>
         </div>

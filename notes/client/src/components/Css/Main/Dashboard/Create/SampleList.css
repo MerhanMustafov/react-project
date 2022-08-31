@@ -301,6 +301,7 @@
     display: none;
 }
 .sampleSectionDropDownWrapper.show{
+    background: black;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -308,6 +309,9 @@
     transform: translate(-50%);
     font-size: 25px;
     
+}
+.sampleSectionDropDownFieldsWrapper{
+    background:black;
 }
 .sampleSectionCurrent{
     /* border: 5px solid red; */
@@ -324,4 +328,10 @@
 }
 .sampleSectionCreateInput{
     flex: 1 0 auto;
+}
+
+.sampleSectionError{
+    background: red;
+    font-size: 20px;
+    padding: 5px; 
 }

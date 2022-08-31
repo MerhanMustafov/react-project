@@ -1,7 +1,7 @@
 @import './Search/Search.css';
 
 .dashboardWrapper{
-    border: 2px solid green; 
+    /* border: 2px solid green;  */
     background-image: url(../../../../public/images/dashboard-view-img.jpg);
     background: rgba(80, 79, 99, 0.479) ;
     width: auto;

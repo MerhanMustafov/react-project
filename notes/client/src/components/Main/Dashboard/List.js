@@ -80,7 +80,6 @@ function List(props) {
       }
     } else if (to === `/list/delete`) {
         setWaitindDelete(true)
-        console.log(currentSectionId, 'CSID')
       await deleteList(listid, userid, currentSectionId)
       setWaitindDelete(false)
       socket.emit('server-refresh-all', true)

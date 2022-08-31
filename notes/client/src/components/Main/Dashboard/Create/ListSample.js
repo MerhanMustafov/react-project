@@ -12,6 +12,7 @@ function ListSample(props) {
   const [linkImg, setLinkImg] = useState(null)
   const [errors, setErrors] = useState('')
   const [waitingAddListData, setWaitingAddListData] = useState(false)
+  const [sectionErrors, setsectionErrors] = useState([])
 
     const {
     sections,
@@ -96,15 +97,15 @@ function ListSample(props) {
             reset()
           }
         } else {
-          setErrors(['section alredy exists !'])
+          setsectionErrors(['section alredy exists !'])
           setTimeout(() => {
-          setErrors('')
+          setsectionErrors([])
         }, 3000)
         }
       } else {
-        setErrors(['section alredy exists !'])
+        setsectionErrors(['section field is empty !'])
         setTimeout(() => {
-          setErrors('')
+          setsectionErrors([])
         }, 3000)
       }
     } else if (to === 'delete') {
@@ -161,6 +162,7 @@ function ListSample(props) {
         >
           Section: <span className="sampleSectionText">{currentSectionName ? currentSectionName : null}</span> 
         </div>
+        {sectionErrors.length > 0 ? sectionErrors.map((msg) => <div className="sampleSectionError">{msg}</div>) : null  }
         <div className="sampleSectionDropDownWrapper hide">
           <div className="sampleSectionCreateWrapper">
             <input
@@ -173,7 +175,7 @@ function ListSample(props) {
               onClick={(e) => requestHandler(e, 'create')}
             ></i>
           </div>
-          <div className="sectionDropDownFieldsWrapper">
+          <div className="sampleSectionDropDownFieldsWrapper">
             {sections.map((s) => (
             <div className="sectionDropDownFieldWrapper" key={s._id} id={s._id}>
               {' '}
