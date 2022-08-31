@@ -137,6 +137,7 @@ function ListSample(props) {
     function reset() {
     document.querySelector('.sampleSectionCreateInput').value = ''
     setCurrentSectionId(null)
+    setSectionNames([])
     setSectionName('')
     setErrors([])
     refresh(true)
@@ -158,7 +159,7 @@ function ListSample(props) {
           className="sampleSectionCurrent hide"
           onClick={(e) => displaySection(e, '.sampleSectionDropDownWrapper')}
         >
-          {currentSectionName ? currentSectionName : 'Choose Section'}
+          Section: <span className="sampleSectionText">{currentSectionName ? currentSectionName : null}</span> 
         </div>
         <div className="sampleSectionDropDownWrapper hide">
           <div className="sampleSectionCreateWrapper">

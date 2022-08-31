@@ -13,7 +13,6 @@ function Section() {
   const [currentSection, setCurrentSection] = useState(null)
   const [currentSectionId, setCurrentSectionId] = useState(null)
   const [currentSectionName, setCurrentSectionName] = useState(null)
-  console.log(currentSectionId, 'cr Sections')
 
   useEffect(() => {
     async function get() {
@@ -91,6 +90,7 @@ function Section() {
   function reset() {
     document.querySelector('.sectionCreateInput').value = ''
     setCurrentSectionId(null)
+    setSectionNames([])
     setSectionName('')
     setErrors([])
     setRefreshSection(true)
@@ -117,7 +117,7 @@ function Section() {
             className="sectionCurrent hide"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
           >
-            Section: <span className="sectionText"> {currentSectionName ? currentSectionName : 'Choose section'}</span>
+            Section: <span className="sectionText"> {currentSectionName ? currentSectionName : null}</span>
           </div>
           <div className="sectionDropDownWrapper hide">
             <div className="sectionCreateWrapper">
