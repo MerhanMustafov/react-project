@@ -30,7 +30,7 @@ function Section() {
             setCurrentSectionName(response[0].sectionname)
             setCurrentSectionId(response[0]._id)
             setSections(response)
-            const names = response.map(s => s.sectionname)
+            const names = response.map((s) => s.sectionname)
             setSectionNames(names)
           } else {
             setCurrentSection(null)
@@ -51,19 +51,18 @@ function Section() {
   async function requestHandler(e, to) {
     if (to === 'create') {
       if (sectionName.length > 0) {
-        if(!sectionNames.includes(sectionName.toLocaleLowerCase())){
-             try {
-          const data = generateData()
-          const response = await api.create(data)
-          reset()
-        } catch (err) {
-          console.log(err.message)
-          reset()
+        if (!sectionNames.includes(sectionName.toLocaleLowerCase())) {
+          try {
+            const data = generateData()
+            const response = await api.create(data)
+            reset()
+          } catch (err) {
+            console.log(err.message)
+            reset()
+          }
+        } else {
+          setErrors(['section already exists !'])
         }
-        }else{
-            setErrors(['section already exists !'])
-        }
-       
       } else {
         reset()
         setErrors(['section Field is empty !'])
@@ -96,7 +95,7 @@ function Section() {
     setRefreshSection(true)
   }
 
-  function set(e){
+  function set(e) {
     setCurrentSectionId(e.target.parentElement.id)
     display(null, '.sectionDropDownWrapper')
   }
@@ -112,12 +111,15 @@ function Section() {
       ) : null}
       <div className="sectionInnerWrapper">
         <div className="sectionHeadArea">
-        
           <div
             className="sectionCurrent hide"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
           >
-            Section: <span className="sectionText"> {currentSectionName ? currentSectionName : null}</span>
+            Section:{' '}
+            <span className="sectionText">
+              {' '}
+              {currentSectionName ? currentSectionName : null}
+            </span>
           </div>
           <div className="sectionDropDownWrapper hide">
             <div className="sectionCreateWrapper">
@@ -132,55 +134,51 @@ function Section() {
               ></i>
             </div>
             <div className="sectionDropDownFieldsWrapper">
-                {sections.length > 0
-              ? sections.map((s) => (
-                  <div
-                    className="sectionDropDownFieldWrapper"
-                    key={s._id}
-                    id={s._id}
-                  >
-                    {' '}
+              {sections.length > 0
+                ? sections.map((s) => (
                     <div
-                      className="sectionDropDownField"
-                      onClick={(e) =>
-                        set(e)
-                        
-                      }
+                      className="sectionDropDownFieldWrapper"
+                      key={s._id}
+                      id={s._id}
                     >
-                      {s.sectionname}
-                    </div>{' '}
-                    <i
-                      className="fa-solid fa-trash"
-                      onClick={(e) => requestHandler(e, 'delete')}
-                    ></i>
-                  </div>
-                ))
-              : null}
+                      {' '}
+                      <div
+                        className="sectionDropDownField"
+                        onClick={(e) => set(e)}
+                      >
+                        {s.sectionname}
+                      </div>{' '}
+                      <i
+                        className="fa-solid fa-trash"
+                        onClick={(e) => requestHandler(e, 'delete')}
+                      ></i>
+                    </div>
+                  ))
+                : null}
             </div>
-            
           </div>
         </div>
         <div className="sectionMainArea">
-            <Menu
-          sections={sections}
-          setSections={setSections}
-          sectionNames={sectionNames}
-          setSectionNames={setSectionNames}
-          sectionName={sectionName}
-          setSectionName={setSectionName}
-          currentSection={currentSection}
-          setCurrentSection={setCurrentSection}
-          currentSectionId={currentSectionId}
-          setCurrentSectionId={setCurrentSectionId}
-          currentSectionName={currentSectionName}
-          setCurrentSectionName={setCurrentSectionName}
-          refresh={setRefreshSection}
-        />
-            
+
           <div className="listsWrapper">
-            
-           
-                 <span className="listText">Lists</span>
+            <span className="listText">
+              Lists{' '}
+              <Menu
+                sections={sections}
+                setSections={setSections}
+                sectionNames={sectionNames}
+                setSectionNames={setSectionNames}
+                sectionName={sectionName}
+                setSectionName={setSectionName}
+                currentSection={currentSection}
+                setCurrentSection={setCurrentSection}
+                currentSectionId={currentSectionId}
+                setCurrentSectionId={setCurrentSectionId}
+                currentSectionName={currentSectionName}
+                setCurrentSectionName={setCurrentSectionName}
+                refresh={setRefreshSection}
+              />
+            </span>
             <div className="listsInnerWrapper">
               {currentSection &&
                 currentSection?.lists.map((listData) => (
