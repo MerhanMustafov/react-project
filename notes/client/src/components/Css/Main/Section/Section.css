@@ -1,0 +1,113 @@
+.sectionWrapper{
+    /* border: 2px solid pink; */
+    border: 2px solid transparent;
+    /* width: 100%; */
+}
+
+.sectionInnerWrapper{
+    /* border: 2px solid pink; */
+    /* width: min-content; */
+}
+
+.sectionHeadArea{
+    /* border: 2px solid blue; */
+    max-width: 20px;
+    min-width: max-content;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    /* position: relative; */
+    /* width: 20%; */
+}
+
+.sectionText{
+    font-size: 30px;
+}
+.sectionCurrent{
+    /* border: 5px solid rgb(0, 113, 128); */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width:500px;
+    font-size: 30px;
+    color: white;
+   
+    
+}
+
+.sectionDropDownWrapper{
+    /* border: 5px solid blue; */
+    background: rgba(0, 0, 0, 0.952);
+    color: white;
+    font-size: 20px;
+    /* width: auto; */
+     position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 2;
+}
+.sectionDropDownWrapper.hide{
+    display: none;
+}
+.sectionDropDownWrapper.show{
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionCreateWrapper{
+    /* border: 5px solid red; */
+    display: flex; 
+    /* flex-wrap: nowrap; */
+}
+
+.sectionCreateInput{
+    flex: 1 0 auto;
+    width: auto;
+
+}
+
+/* .sectionCreateIcon{
+
+} */
+.sectionDropDownFieldsWrapper{
+    /* border: 3px solid pink; */
+    max-height: 250px;
+    overflow: auto;
+
+}
+.sectionDropDownFieldsWrapper::-webkit-scrollbar{
+    width: 10px;
+}
+.sectionDropDownFieldsWrapper::-webkit-scrollbar-thumb{
+    background: white;
+    border-radius: 50px;
+}
+.sectionDropDownFieldsWrapper::-webkit-scrollbar-track{
+    background: transparent;
+}
+.sectionDropDownFieldWrapper{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.445);
+    max-width: 250px;
+    display: flex;
+    gap: 10px ;
+    /* align-items: center; */
+    justify-content: space-between;
+    margin: 5px 0 10px 0;
+}
+.sectionDropDownField{
+    /* border: 2px solid red; */
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* width: ; */
+}
+
+
+.sectionError{
+    background: red;
+}
+

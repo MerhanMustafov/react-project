@@ -2,10 +2,19 @@
     /* border: 2px solid rgb(255, 0, 64); */
 
   /* column-count: 3; */
-  /* width: auto; */
+  width: auto;
+  /* width: 100%; */
   /* height: auto; */
   margin: 20px auto;
   padding:20px; 
+}
+.listText{
+    font-size: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    
 }
 .listsInnerWrapper{
     /* border: 2px solid blue; */
@@ -16,6 +25,11 @@
   height: auto;
   margin: 20px auto;
   padding:20px; 
+}
+.sectionListsEmptyText{
+    /* border: 5px solid black; */
+    color: white;
+    font-size: 30px;
 }
 .expandBackgroundOn {
   position: fixed;
@@ -92,14 +106,14 @@
   border-top: 2px solid rgb(156, 156, 156);
   border-bottom: 2px solid rgb(156, 156, 156);
 }
-.listsWrapper .main div {
-  /* position: relative; */
-}
+/* .listsWrapper .main div {
+} */
 .expandListBtn {
   position: absolute;
   top: 5px;
   right: 10px;
   color: white;
+  font-size: 17px
 }
 .listWrapper header {
   position: relative;
@@ -253,6 +267,8 @@
 }
 
 
+
+
 @media screen and (max-width: 1050px) {
   .listsInnerWrapper {
     column-count: 1;
@@ -280,3 +296,4 @@
     width: 75%;
   }
 }
+

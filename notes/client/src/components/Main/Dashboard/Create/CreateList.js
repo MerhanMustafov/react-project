@@ -1,22 +1,48 @@
-import {ListSample} from './ListSample'
+import { ListSample } from './ListSample'
 
 function CreateList(props) {
   const userid = localStorage.getItem('userId')
-  const { setRefreshListArea } = props
-  
-
+  const {
+    sections,
+    setSections,
+    sectionNames,
+    setSectionNames,
+    sectionName,
+    setSectionName,
+    currentSection,
+    setCurrentSection,
+    currentSectionId,
+    setCurrentSectionId,
+    currentSectionName,
+    setCurrentSectionName,
+    refresh,
+  } = props
 
   return (
     <div className="createListWrapperExtend hide">
-        <ListSample setRefreshListArea={setRefreshListArea}/>
-      
+      <ListSample
+        sections={sections}
+        setSections={setSections}
+        sectionNames={sectionNames}
+        setSectionNames={setSectionNames}
+        sectionName={sectionName}
+        setSectionName={setSectionName}
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        currentSectionId={currentSectionId}
+        setCurrentSectionId={setCurrentSectionId}
+        currentSectionName={currentSectionName}
+        setCurrentSectionName={setCurrentSectionName}
+        refresh={refresh}
+      />
     </div>
   )
 }
 
 export { CreateList }
 
-{/* <div className="createListWrapper">
+{
+  /* <div className="createListWrapper">
         <i className="fa-solid fa-xmark createListCloseIcon" onClick={(e) => display(e, 'createListWrapperExtend')}></i>
         <div className="createListInnerWrapper">
           
@@ -48,4 +74,5 @@ export { CreateList }
             {waitingAddListData ? <AddListSpinner /> : 'New List'}
           </button>
         </div>
-      </div> */}
+      </div> */
+}
