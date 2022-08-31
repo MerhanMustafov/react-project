@@ -111,3 +111,17 @@
     background: red;
 }
 
+
+
+@media screen and (max-width: 600px){
+    .sectionCurrent{
+        max-width: 300px;
+    }
+    
+}
+@media screen and (max-width: 400px){
+    .sectionCurrent{
+        max-width: 250px;
+    }
+    
+}

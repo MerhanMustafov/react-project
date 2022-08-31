@@ -113,10 +113,11 @@ function Section() {
         <div className="sectionHeadArea">
           <div
             className="sectionCurrent hide"
+            title="create or choose section"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
           >
             Section:{' '}
-            <span className="sectionText">
+            <span className="sectionText" title={currentSectionName}>
               {' '}
               {currentSectionName ? currentSectionName : null}
             </span>
@@ -195,7 +196,7 @@ function Section() {
                     {...listData}
                     currentSectionId={currentSectionId}
                   />
-                )) : <div className="sectionListsEmptyText">Thre is no lists in the section !</div> }
+                )) : <div className="sectionListsEmptyText">There is no lists in the section !</div> }
             </div>
           </div>
         </div>

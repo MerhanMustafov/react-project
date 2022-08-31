@@ -315,7 +315,7 @@
 }
 .sampleSectionCurrent{
     /* border: 5px solid red; */
-    max-width: 250px;
+    max-width: 450px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -334,4 +334,17 @@
     background: red;
     font-size: 20px;
     padding: 5px; 
+}
+
+@media screen and (max-width: 600px){
+    .sampleSectionCurrent{
+        max-width: 300px;
+    }
+    
+}
+@media screen and (max-width: 400px){
+    .sampleSectionCurrent{
+        max-width: 250px;
+    }
+    
 }
