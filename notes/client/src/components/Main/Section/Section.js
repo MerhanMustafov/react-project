@@ -117,7 +117,7 @@ function Section() {
             className="sectionCurrent hide"
             onClick={(e) => display(e, '.sectionDropDownWrapper')}
           >
-            {currentSectionName ? currentSectionName : 'Choose section'}
+            Section: <span className="sectionText"> {currentSectionName ? currentSectionName : 'Choose section'}</span>
           </div>
           <div className="sectionDropDownWrapper hide">
             <div className="sectionCreateWrapper">
@@ -180,8 +180,8 @@ function Section() {
           <div className="listsWrapper">
             
            
+                 <span className="listText">Lists</span>
             <div className="listsInnerWrapper">
-                 
               {currentSection &&
                 currentSection?.lists.map((listData) => (
                   <List

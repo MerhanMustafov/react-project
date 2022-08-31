@@ -21,6 +21,9 @@
     /* width: 20%; */
 }
 
+.sectionText{
+    font-size: 40px;
+}
 .sectionCurrent{
     /* border: 5px solid rgb(0, 113, 128); */
     overflow: hidden;
@@ -40,7 +43,7 @@
     font-size: 20px;
     /* width: auto; */
      position: absolute;
-    top: 40px;
+    top: 50px;
     left: 50%;
     transform: translate(-50%);
     z-index: 2;

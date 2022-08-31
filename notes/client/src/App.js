@@ -60,14 +60,14 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
               </Route>
 
-              <Route
+              {/* <Route
                 element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}
-              >
+              > */}
                 <Route
                   path={`/profile/:username/:userid`}
                   element={<UserProfile />}
                 />
-              </Route>
+              {/* </Route> */}
 
               <Route element={<LoggedGuard isAuth={isAuth} setIsAuth={setIsAuth} />}>
                 <Route

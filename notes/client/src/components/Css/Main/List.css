@@ -8,6 +8,10 @@
   margin: 20px auto;
   padding:20px; 
 }
+.listText{
+    font-size: 40px;
+    color: white;
+}
 .listsInnerWrapper{
     border: 2px solid blue;
     column-count: 3;
