@@ -24,7 +24,7 @@
 }
 .show-l-form{
      max-width: 500px;
-    height: 65vh;
+    height: 700px;
 }
 
 #show-hide-btn{
@@ -85,5 +85,7 @@
     padding: 10px;
     margin-top: 20px;
     text-align: center;
-    background: rgb(255, 255, 255);
+    /* background: rgb(255, 255, 255); */
+    background: transparent;
+    color: white;
 }
