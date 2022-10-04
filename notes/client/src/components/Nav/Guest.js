@@ -4,6 +4,7 @@ function GuestNav() {
 
   return (
     <nav>
+        
       <div className="main-nav-area">
         <div className="logo-area">NoTes</div>
         <ul>

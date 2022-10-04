@@ -158,9 +158,10 @@ function ListSample(props) {
       <div className="sampleSectionHeadArea">
         <div
           className="sampleSectionCurrent hide"
+          title="choose or create section"
           onClick={(e) => displaySection(e, '.sampleSectionDropDownWrapper')}
         >
-          Section: <span className="sampleSectionText">{currentSectionName ? currentSectionName : null}</span> 
+          Section: <span className="sampleSectionText" title={currentSectionName}>{currentSectionName ? currentSectionName : null}</span> 
         </div>
         {sectionErrors.length > 0 ? sectionErrors.map((msg) => <div className="sampleSectionError">{msg}</div>) : null  }
         <div className="sampleSectionDropDownWrapper hide">

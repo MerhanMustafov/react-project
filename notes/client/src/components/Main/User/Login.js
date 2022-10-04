@@ -91,6 +91,13 @@ function Login({ setIsAuth }) {
         >
           Log in
         </button>
+      <div className="users show">
+        <div className="userInfo">You can log in with one of the following users:</div>
+            <div className="user">david - 123456</div>
+            <div className="user">jhon - 123456</div>
+            <div className="user">ruth - 123456</div>
+            <div className="user">lily - 123456</div>
+        </div>
       </form>
     </div>
   )

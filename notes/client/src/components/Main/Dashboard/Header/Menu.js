@@ -23,7 +23,7 @@ function Menu(props) {
           className="fa-solid fa-bars dashboardMenuIcon"
           onClick={(e) => display(e, '.dashboardMenuButtonsWrapper')}
         ></i> */}
-        <i className="fa-solid fa-plus addListIcon" onClick={(e) => display(e, '.createListWrapperExtend')}></i>
+        <i className="fa-solid fa-plus addListIcon" title="create list" onClick={(e) => display(e, '.createListWrapperExtend')}></i>
         {/* <div className="dashboardMenuButtonsWrapper hide">
 
           <div
