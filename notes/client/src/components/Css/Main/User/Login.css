@@ -24,7 +24,7 @@
 }
 .show-l-form{
      max-width: 500px;
-    height: 300px;
+    height: 65vh;
 }
 
 #show-hide-btn{
@@ -78,4 +78,12 @@
 
 .login-btn:disabled{
      background: linear-gradient(to right, rgba(115, 116, 177, 0.3), rgba(22, 112, 139, 0.3));
+}
+
+.users{
+    /* border: 5px solid red; */
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    background: rgb(255, 255, 255);
 }

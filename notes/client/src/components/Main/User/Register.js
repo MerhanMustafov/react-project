@@ -171,6 +171,13 @@ function Register({ setIsAuth }) {
         >
           Sign up
         </button>
+        <div className="users show">
+        <div className="userInfo">You can log in with one of the following users:</div>
+            <div className="user">David - 123456</div>
+            <div className="user">Jhon - 123456</div>
+            <div className="user">Ruth - 123456</div>
+            <div className="user">lily - 123456</div>
+        </div>
       </form>
     </div>
   )
